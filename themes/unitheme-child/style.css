@@ -141,6 +141,14 @@ header a{
 	text-transform: capitalize!important;
 }
 
+
+body:not(i) { font-family: 'eva_pronormal'!important; }
+h2, h3, h6{ font-family: 'eva_probold'!important; }
+.product-det h3 {
+    font-family: 'eva_prosemibold'!important;
+    color: #5E5E5E;
+}
+
 	/*Search*/
 .desk .search.animated {
 	width: 45%;
@@ -221,7 +229,7 @@ h2 { text-transform: uppercase!important; }
 }
 */
 
- .nz-content-box [class^="icon-"]:before, [class*=" icon-"]:before {
+ .nz-content-box [class^="icon-"]:before,  .nz-content-box [class*=" icon-"]:before {
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
