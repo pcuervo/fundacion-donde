@@ -1,0 +1,167 @@
+/*
+	Theme Name: Unitheme Child
+	Theme URI: http://www.unitheme.ninzio.com
+	Description: Unitheme Multipurpose Responsive Retina-Ready  Wordpress Premium Child Theme
+	Author: Ninzio Team
+	Author URI: http://www.ninzio.com
+	Template:unitheme
+	Version: 3.4
+*/
+@import url("../unitheme/style.css");
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
+
+	/*Font*/
+@font-face {
+    font-family: 'eva_problack';
+    src: url('fonts/evapro-black-webfont.woff2') format('woff2'),
+         url('fonts/evapro-black-webfont.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'eva_problackitalic';
+    src: url('fonts/evapro-blackitalic-webfont.woff2') format('woff2'),
+         url('fonts/evapro-blackitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+
+}
+@font-face {
+    font-family: 'eva_probold';
+    src: url('fonts/evapro-bold-webfont.woff2') format('woff2'),
+         url('fonts/evapro-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'eva_probolditalic';
+    src: url('fonts/evapro-bolditalic-webfont.woff2') format('woff2'),
+         url('fonts/evapro-bolditalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+
+}
+@font-face {
+    font-family: 'eva_prolight';
+    src: url('fonts/evapro-light-webfont.woff2') format('woff2'),
+         url('fonts/evapro-light-webfont.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'eva_prolightitalic';
+    src: url('fonts/evapro-lightitalic-webfont.woff2') format('woff2'),
+         url('fonts/evapro-lightitalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+
+}
+@font-face {
+    font-family: 'eva_pronormal';
+    src: url('fonts/evapro-normal-webfont.woff2') format('woff2'),
+         url('fonts/evapro-normal-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'eva_pronormalitalic';
+    src: url('fonts/evapro-normaltalic-webfont.woff2') format('woff2'),
+         url('fonts/evapro-normaltalic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+
+}
+@font-face {
+    font-family: 'eva_prosemibold';
+    src: url('fonts/evapro-semibold-webfont.woff2') format('woff2'),
+         url('fonts/evapro-semibold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'eva_prosemibolditalic';
+    src: url('fonts/evapro-semibolditalic-webfont.woff2') format('woff2'),
+         url('fonts/evapro-semibolditalic-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+/*HEADER*/
+	/*logo*/
+.logo.logo-desk { display: none; }
+	/*Header top*/
+.header-top { height: 80px!important; }
+.header-top .desk-slogan { width: 100%; }
+.header-top img { max-height: 45px; margin-top: 5px; }
+.header-top a { color:#fff!important; }
+.header-top a:hover { color:#FDB813!important; }
+
+	/*Header*/
+.desk .header-content {
+	position: relative;
+	right: 0px; top: -35px;
+	border-top-left-radius: 2em;
+	background-color: transparent!important;
+}
+
+.desk .header-content .fondo-header {
+	height: 60px;
+	width: 50%;
+	float: right;
+	background: #8EC63F;
+	position: absolute; right: 0px;
+	border-top-left-radius: 1em;
+}
+
+@media ( min-width: 1025px ) and ( max-width: 1300px){ .desk .header-content .fondo-header { width: 60%!important; } }
+
+.desk .header-content .ribbon-left {
+	position: absolute; left: 3px; top: 35px;
+	background: #FDB813;
+	width: 40px;
+	height: 25px;
+	-webkit-transform: rotate(56deg) skew(55deg, -34deg);
+	-moz-transform: rotate(56deg) skew(55deg, -34deg);
+	-ms-transform: rotate(56deg) skew(55deg, -34deg);
+	-o-transform: rotate(56deg) skew(55deg, -34deg);
+	transform: rotate(56deg) skew(55deg, -34deg);
+}
+
+.desk .header-content a { font-size: 18px!important;   }
+
+header a{
+	font-family: 'eva_pronormalitalic'!important;
+	text-transform: capitalize!important;
+}
+
+	/*Search*/
+.desk .search.animated {
+	width: 45%;
+	right: 0px;
+}
+
+
+/*BOX MODEL*/
+.margin-right { margin-right: 20px; }
+
+.float-right { float: right; }
+
+.inline-block { display: inline-block; }
+
+/*TIPOGRAPHY*/
+.line-height--50 { line-height: 50px; }
+
+	/*Font*/
+
+
+
+/*GRID*/
+@media ( min-width: 1025px ) and ( max-width: 1300px){ .container { max-width:900px!important; width:900px!important; } }
