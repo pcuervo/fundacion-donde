@@ -104,7 +104,7 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 				if ( is_array( $vcTaxonomiesTypes ) && ! empty( $vcTaxonomiesTypes ) ) {
 					foreach ( $vcTaxonomiesTypes as $t => $data ) {
 						if ( 'post_format' !== $t && is_object( $data ) ) {
-							$taxonomiesForFilter[ $data->labels->name . '(' . $t . ')' ] = $t;
+							$taxonomiesForFilter[ $data->labels->name ] = $t;
 						}
 					}
 				}
@@ -204,7 +204,7 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 						'element' => 'post_type',
 						'value_not_equal_to' => array( 'custom' ),
 					),
-					'edit_field_class' => 'vc_col-sm-6',
+					'edit_field_class' => 'vc_col-sm-6 vc_column',
 					'description' => __( 'Select display style for grid.', 'js_composer' ),
 				),
 				array(
@@ -221,7 +221,7 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 							'pagination',
 						),
 					),
-					'edit_field_class' => 'vc_col-sm-6',
+					'edit_field_class' => 'vc_col-sm-6 vc_column',
 				),
 				array(
 					'type' => 'checkbox',
@@ -236,7 +236,7 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 					'param_name' => 'element_width',
 					'value' => self::$gridColsList,
 					'std' => '4',
-					'edit_field_class' => 'vc_col-sm-6',
+					'edit_field_class' => 'vc_col-sm-6 vc_column',
 					'description' => __( 'Select number of single grid elements per row.', 'js_composer' ),
 				),
 				array(
@@ -259,7 +259,7 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 					),
 					'std' => '30',
 					'description' => __( 'Select gap between grid elements.', 'js_composer' ),
-					'edit_field_class' => 'vc_col-sm-6',
+					'edit_field_class' => 'vc_col-sm-6 vc_column',
 				),
 				// Data settings
 				array(
@@ -757,7 +757,7 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 						'element' => 'post_type',
 						'value_not_equal_to' => array( 'custom' ),
 					),
-					'edit_field_class' => 'vc_col-sm-6',
+					'edit_field_class' => 'vc_col-sm-6 vc_column',
 					'description' => __( 'Select display style for grid.', 'js_composer' ),
 				),
 				array(
@@ -774,7 +774,7 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 							'pagination',
 						),
 					),
-					'edit_field_class' => 'vc_col-sm-6',
+					'edit_field_class' => 'vc_col-sm-6 vc_column',
 				),
 				array(
 					'type' => 'dropdown',
@@ -782,7 +782,7 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 					'param_name' => 'element_width',
 					'value' => self::$gridColsList,
 					'std' => '4',
-					'edit_field_class' => 'vc_col-sm-6',
+					'edit_field_class' => 'vc_col-sm-6 vc_column',
 					'description' => __( 'Select number of single grid elements per row.', 'js_composer' ),
 				),
 				array(
@@ -805,7 +805,7 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 					),
 					'std' => '5',
 					'description' => __( 'Select gap between grid elements.', 'js_composer' ),
-					'edit_field_class' => 'vc_col-sm-6',
+					'edit_field_class' => 'vc_col-sm-6 vc_column',
 				),
 				array(
 					'type' => 'hidden',
@@ -1154,10 +1154,9 @@ if ( ! class_exists( 'VcGridsCommon' ) ) {
 				'param_name' => 'initial_loading_animation',
 				'value' => array(
 					__( 'None', 'js_composer' ) => 'none',
-					__( 'Default', 'js_composer' ) => 'zoomIn',
+					__( 'Default', 'js_composer' ) => 'default',
 					__( 'Fade In', 'js_composer' ) => 'fadeIn',
 				),
-				'std' => 'zoomIn',
 				'settings' => array(
 					'type' => array(
 						'in',

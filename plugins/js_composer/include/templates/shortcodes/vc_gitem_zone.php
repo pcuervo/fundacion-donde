@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Shortcode class
  * @var $this WPBakeryShortCode_VC_Gitem_Zone
  */
-$el_class = $css = $position = $bgimage = $height = $link = $url = $height_mode = $featured_image = $render = $rel = '';
+$el_class = $css = $position = $bgimage = $height = $link = $url = $height_mode = $featured_image = $render = '';
 
 $css_style = $css_style_mini = '';
 $image_block = $image = '';
@@ -74,13 +74,9 @@ if ( strlen( $link ) > 0 && 'none' !== $link ) {
 		           . ' data-vc-target="' . esc_attr( trim($link_s['target']) ) . '"'
 		           . ' title="' . esc_attr( $link_s['title'] ) . '"';
 		*/
-		$rel = '';
-		if ( ! empty( $link_s['rel'] ) ) {
-			$rel = ' rel="' . esc_attr( trim( $link_s['rel'] ) ) . '"';
-		}
 		$image_block = '<a href="' . esc_attr( $link_s['url'] ) . '" title="'
 			. esc_attr( $link_s['title'] ) . '" target="' . esc_attr( trim( $link_s['target'] ) )
-			. '" class="vc_gitem-link vc-zone-link"' . $rel . '></a>';
+			. '" class="vc_gitem-link vc-zone-link"></a>';
 	} elseif ( 'post_link' === $link ) {
 		$image_block = '<a href="{{ post_link_url }}" title="{{ post_title }}" class="vc_gitem-link vc-zone-link"></a>';
 	} elseif ( 'post_author' === $link ) {

@@ -147,6 +147,13 @@ header a{
 	right: 0px;
 }
 
+/*FOOTER*/
+footer .formas-pago {
+    background-color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+footer .formas-pago img { width: 70px; }
 
 /*BOX MODEL*/
 .margin-right { margin-right: 20px; }
@@ -164,3 +171,4 @@ header a{
 
 /*GRID*/
 @media ( min-width: 1025px ) and ( max-width: 1300px){ .container { max-width:900px!important; width:900px!important; } }
+

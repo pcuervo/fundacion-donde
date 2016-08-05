@@ -108,7 +108,7 @@ if ( ! empty( $tooltips ) ) {
 }
 
 if ( ! empty( $animation ) ) {
-	$options[] = 'data-vc-animation="' . esc_attr( $animation ) . '"';
+	$options[] = 'data-vc-animation="' . $animation . '"';
 }
 
 if ( ! empty( $stroke_color ) ) {
@@ -122,11 +122,11 @@ if ( ! empty( $stroke_color ) ) {
 		$color = $base_colors['normal'][ $stroke_color ];
 	}
 
-	$options[] = 'data-vc-stroke-color="' . esc_attr( $color ) . '"';
+	$options[] = 'data-vc-stroke-color="' . $color . '"';
 }
 
 if ( ! empty( $stroke_width ) ) {
-	$options[] = 'data-vc-stroke-width="' . esc_attr( $stroke_width ) . '"';
+	$options[] = 'data-vc-stroke-width="' . $stroke_width . '"';
 }
 
 $values = (array) vc_param_group_parse_atts( $values );
