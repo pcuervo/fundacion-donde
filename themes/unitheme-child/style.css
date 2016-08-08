@@ -141,6 +141,8 @@ header a{
 	text-transform: capitalize!important;
 }
 
+.header { box-shadow: none!important; }
+
   /*WPML*/
 #lang_sel { float: right; display: inline-block; line-height: 50px; }
 
