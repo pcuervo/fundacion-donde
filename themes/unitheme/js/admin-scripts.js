@@ -85,7 +85,7 @@
                     if($this.hasClass('ninzio-ui')){
                         layerIndex.val('');
                     }
-                }); 
+                });
             }
         });
 
@@ -94,7 +94,7 @@
 (function($){
 
     "use strict";
-    
+
     $('.ninzio-color-picker').wpColorPicker();
 
     $('.delay').spinner({
@@ -250,7 +250,7 @@
             switchPOortfolioMediaOptions($this);
         }
 
-    });   
+    });
 
 })(jQuery);
 

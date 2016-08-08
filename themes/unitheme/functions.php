@@ -13,7 +13,7 @@
 
 /*  HANDLE EXTERNAL PLUGINS
 /*======================*/
-    
+
     add_action( 'tgmpa_register', 'ninzio_register_required_plugins' );
     function ninzio_register_required_plugins() {
 
@@ -157,7 +157,7 @@
         /*--------------------*/
 
         function nz_excerpt($limit) {
-            
+
             $excerpt = get_the_excerpt();
             $limit++;
 
@@ -190,7 +190,7 @@
 
     /*  Simple pagination (Next & Prev Controls)
     /*-------------------*/
-        
+
         function ninzio_post_nav($post_id){
             $post_type  = (get_post_type($post_id)) ? get_post_type($post_id) : 'post';
             $prev_title = __('Previous post', TEMPNAME);
@@ -205,7 +205,7 @@
                     $prev_title = __('Previous product', TEMPNAME);
                     $next_title = __('Next product', TEMPNAME);
                     break;
-                
+
                 default:
                     $prev_title = __('Previous post', TEMPNAME);
                     $next_title = __('Next post', TEMPNAME);
@@ -214,9 +214,9 @@
 
         ?>
             <?php if (is_single()): ?>
-                <nav class="nz-clearfix ninzio-nav-single">  
-                  <div class="nav-previous" title="<?php echo $prev_title; ?>"><?php previous_post_link( '%link', ''); ?></div>  
-                  <div class="nav-next" title="<?php echo $next_title; ?>"><?php next_post_link( '%link', ''); ?></div>  
+                <nav class="nz-clearfix ninzio-nav-single">
+                  <div class="nav-previous" title="<?php echo $prev_title; ?>"><?php previous_post_link( '%link', ''); ?></div>
+                  <div class="nav-next" title="<?php echo $next_title; ?>"><?php next_post_link( '%link', ''); ?></div>
                 </nav>
             <?php endif ?>
         <?php }
@@ -248,9 +248,9 @@
                     'type'      => 'list'
                 ));
             echo "</nav>";
-  
+
         }
-            
+
     /*  Not found
     /*-------------------*/
 
@@ -269,7 +269,7 @@
                 case 'general':
                     $output .= __('No search results found. Try a different search', TEMPNAME);
                     break;
-                
+
                 default:
                     $output .= __('No posts found.', TEMPNAME);
                     break;
@@ -290,7 +290,7 @@
             if ( is_feed() ){
                 return $title;
             }
-                
+
             $site_description = get_bloginfo( 'description' );
 
             $filtered_title = $title . get_bloginfo( 'name' );
@@ -355,7 +355,7 @@
                         <div class="ninzio-overlay"></div>
                         <div class="post-date"><span><?php echo get_the_date("d");?></span><span><?php echo get_the_date("M");?></span></div>
                         <?php if (is_sticky($post_id)): ?>
-                           <div class="post-sticky"><span class="icon-pushpin"></span></div> 
+                           <div class="post-sticky"><span class="icon-pushpin"></span></div>
                         <?php endif ?>
                     </div>
                 </a>
@@ -473,7 +473,7 @@
                 <div class="post-gallery media">
                     <div class="post-date"><span><?php echo get_the_date("d");?></span><span><?php echo get_the_date("M");?></span></div>
                     <?php if (is_sticky($post_id)): ?>
-                       <div class="post-sticky"><span class="icon-pushpin"></span></div> 
+                       <div class="post-sticky"><span class="icon-pushpin"></span></div>
                     <?php endif ?>
                     <ul class="slides">
                         <li>
@@ -601,7 +601,7 @@
 
                 $content = $chatoutput . "</ul>\n";
                 return $content;
-            } else { 
+            } else {
                 return $content;
             }
         }
@@ -651,13 +651,13 @@
     /*-------------------*/
 
         if( !function_exists('get_the_widget') ){
-      
+
             function get_the_widget( $widget, $instance = '', $args = '' ){
                 ob_start();
                 the_widget($widget, $instance, $args);
                 return ob_get_clean();
             }
-            
+
         }
 
 
@@ -679,9 +679,9 @@
         }
 
         function custom_image_sizes( $sizes ) {
-        
+
             $new_sizes = array();
-            
+
             $added_sizes = get_intermediate_image_sizes();
 
             foreach( $added_sizes as $key => $value) {
@@ -691,7 +691,7 @@
             }
 
             $new_sizes = array_merge( $new_sizes, $sizes );
-            
+
             return $new_sizes;
         }
         add_filter('image_size_names_choose', 'custom_image_sizes', 11, 1);
@@ -821,7 +821,7 @@
                   'footer-menu'      => __( 'Footer Menu', TEMPNAME )
                 )
             );
-          
+
         }
         add_action( 'after_setup_theme', 'ninzio_register_menu' );
 
@@ -830,7 +830,7 @@
 
         if ( function_exists( 'register_sidebar' ) ){
 
-            register_sidebar( 
+            register_sidebar(
                 array (
                 'name'          => __( 'Main sidebar', TEMPNAME),
                 'id'            => 'main-widget-area',
@@ -842,7 +842,7 @@
                 'after_title'   => '</h6>' )
             );
 
-            register_sidebar( 
+            register_sidebar(
                 array (
                 'name'          => __( 'Blog sidebar', TEMPNAME),
                 'id'            => 'blog-widget-area',
@@ -854,7 +854,7 @@
                 'after_title'   => '</h6>' )
             );
 
-            register_sidebar( 
+            register_sidebar(
                 array (
                 'name'          => __( 'Portfolio sidebar', TEMPNAME),
                 'id'            => 'portfolio-widget-area',
@@ -866,7 +866,7 @@
                 'after_title'   => '</h6>' )
             );
 
-            register_sidebar( 
+            register_sidebar(
                 array (
                 'name'          => __( 'Shop sidebar', TEMPNAME),
                 'id'            => 'shop-widget-area',
@@ -878,8 +878,8 @@
                 'after_title'   => '</h6>' )
             );
 
-            for ($i=1; $i < 4; $i++) { 
-                register_sidebar( 
+            for ($i=1; $i < 4; $i++) {
+                register_sidebar(
                     array (
                     'name'          => __( 'Page sidebar #'.$i, TEMPNAME),
                     'id'            => 'page-widget-area-'.$i,
@@ -892,7 +892,7 @@
                 );
             }
 
-            register_sidebar( 
+            register_sidebar(
                 array (
                 'name'          => __( 'Footer sidebar', TEMPNAME),
                 'id'            => 'footer-widget-area',
@@ -926,7 +926,7 @@
             $thumbnail = array(
                 'width'     => '100',
                 'height'    => '100',
-                'crop'      => 1 
+                'crop'      => 1
             );
 
             update_option( 'shop_catalog_image_size', $catalog );
@@ -958,14 +958,14 @@
                 </div>
                 <div class="product-det">
 
-        <?php 
+        <?php
         }
 
         function nz_procut_thumb_cart_after() { ?>
                 </div>
             </div>
 
-        <?php 
+        <?php
         }
 
         //change the product-category structure
@@ -974,23 +974,23 @@
         add_action('woocommerce_after_subcategory_title', 'nz_procut_cat_thumb_end2', 10 );
 
         function nz_procut_cat_thumb_start() { ?>
-            
+
            <div class="product-body">
                 <div class="nz-thumbnail">
                     <div class="ninzio-overlay"></div>
-        <?php 
+        <?php
         }
 
         function nz_procut_cat_thumb_end() { ?>
                 </div>
                 <div class="product-det cat-det">
-        <?php 
+        <?php
         }
 
         function nz_procut_cat_thumb_end2() { ?>
                 </div>
            </div>
-        <?php 
+        <?php
         }
 
         // Ensure cart contents update when products are added to the cart via AJAX
@@ -1028,7 +1028,7 @@
 
         // insert tabs in summary
         remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10);
-        add_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 1);  
+        add_action('woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 1);
 
         //wrap single product image in column div
         add_action( 'woocommerce_before_single_product_summary', 'ninzio_column_open_div', 2);
@@ -1042,7 +1042,7 @@
         //remove wooCommerce prettyPhoto
         global $woocommerce;
         if($woocommerce) {
-            
+
             function ninzio_remove_pretty_photo(){
                 wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
                 wp_dequeue_style( 'woocommerce_chosen_styles' );
@@ -1051,7 +1051,7 @@
                 wp_dequeue_script( 'prettyPhoto' );
                 wp_dequeue_script( 'wc-chosen' );
             }
-            
+
             add_action( 'wp_enqueue_scripts', 'ninzio_remove_pretty_photo', 99 );
 
             global $nz_ninzio;
@@ -1068,7 +1068,7 @@
           global $product, $nz_ninzio;
 
             $posts_per_page = ($nz_ninzio['shop-rpn']) ? $nz_ninzio['shop-rpn'] : 4;
-            
+
             $args = array(
                 'post_type'             => 'product',
                 'no_found_rows'         => 1,
@@ -1103,7 +1103,7 @@
 
 /*  STYLES
 /*======================*/
-    
+
     function ninzio_add_menu_icons_styles(){
     ?>
     <style>
@@ -1121,7 +1121,7 @@
     {
         if(!is_admin())
         {
-            
+
             global $nz_ninzio;
 
             if (isset($nz_ninzio['google-api-key']) && !empty($nz_ninzio['google-api-key'])) {
@@ -1136,8 +1136,9 @@
                 wp_enqueue_script( 'smoothscroll', TEMPPATH . '/js/smoothscroll.js', array('jquery'), '', true);
             }
             wp_enqueue_script( 'controller', TEMPPATH . '/js/controller.js', array('jquery'), '', true);
-        }  
-    
+            wp_enqueue_script( 'functions', TEMPPATH . '/js/functions.js', array('jquery'), '', true);
+        }
+
     }
     add_action( 'wp_enqueue_scripts', 'ninzio_script' );
 

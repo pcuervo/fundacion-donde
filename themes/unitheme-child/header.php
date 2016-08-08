@@ -183,146 +183,18 @@
 	<!-- wrap start -->
 	<div id="wrap" class="nz-<?php echo $nz_layout; ?>">
 
-		<header class="<?php echo $mob_class; ?>">
+		<div class="[ js-header ]">
+			<header class="<?php echo $mob_class; ?> ">
 
-			<div class="logo-toggle">
-
-				<div class="container nz-clearfix">
-
-					<?php if (!empty($nz_mob_logo)): ?>
-
-						<div class="logo logo-mob">
-							<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-								<img style="max-width:<?php echo $nz_mob_logo_w; ?>px;max-height:<?php echo $nz_mob_logo_h; ?>px;" src="<?php echo $nz_mob_logo; ?>" alt="<?php bloginfo('name'); ?>">
-							</a>
-						</div>
-
-					<?php endif ?>
-
-					<div class="sidebar-toggle" title="<?php echo __('Toggle sidebar',TEMPNAME); ?>">
-						<span>&nbsp;</span>
-						<span>&nbsp;</span>
-						<span>&nbsp;</span>
-					</div>
-
-					<div class="menu-toggle" title="<?php echo __('Toggle menu',TEMPNAME); ?>">
-						<span>&nbsp;</span>
-						<span>&nbsp;</span>
-						<span>&nbsp;</span>
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="header-content">
-
-				<nav class="header-menu mob-menu nz-clearfix">
-					<?php
-
-						$mobarg = array(
-							'theme_location' => 'header-menu',
-							'depth'          => 3,
-							'container'      => false,
-							'menu_id'        => 'mob-header-menu',
-							'link_before'    => '<span class="mi"></span><span class="txt">',
-							'link_after'     => '</span><span class="di icon-arrow-down8"></span>'
-						);
-						if(has_nav_menu("header-menu")){wp_nav_menu($mobarg);}
-
-					?>
-				</nav>
-
-				<?php if ($nz_ninzio['desk-ls'] && $nz_ninzio['desk-ls'] == 1): ?>
-
-					<div class="ls nz-clearfix">
-						<?php do_action('icl_language_selector'); ?>
-					</div>
-
-				<?php endif ?>
-
-				<?php if ($nz_mob_search == "true"): ?>
-					<div class="search nz-clearfix">
-						<?php get_search_form(); ?>
-					</div>
-				<?php endif ?>
-
-			</div>
-
-		</header>
-
-		<header class="<?php echo $desk_class; ?>">
-
-			<?php if ($nz_desk_top == "true"): ?>
-
-				<div class="header-top">
+				<div class="logo-toggle">
 
 					<div class="container nz-clearfix">
 
-						<?php if ($nz_ninzio['desk-slogan']): ?>
-							<div class="desk-slogan">
-								<?php
-									echo do_action('wpml_add_language_selector');
-									echo do_shortcode(wp_kses_post($nz_ninzio['desk-slogan']));
-								?>
-							</div>
-						<?php endif ?>
+						<?php if (!empty($nz_mob_logo)): ?>
 
-						<?php if ($nz_ninzio['desk-ls'] && $nz_ninzio['desk-ls'] == 1): ?>
-
-							<div class="ls nz-clearfix">
-								<?php do_action('icl_language_selector'); ?>
-							</div>
-
-						<?php endif ?>
-
-						<?php if ($nz_ninzio['desk-sl'] && $nz_ninzio['desk-sl'] == 1): ?>
-
-							<div class="social-links nz-clearfix">
-								<?php include(locate_template('includes/social-links.php' )); ?>
-							</div>
-
-						<?php endif ?>
-
-					</div>
-
-				</div>
-
-			<?php endif ?>
-
-			<div class="header-content">
-				<div class="[ fondo-header ]"> <!-- unicamente contiene ribbon -->
-					<div class="[ ribbon-left ]"></div>
-				</div>
-				<div class="[ fondo-header ]"></div>
-				<div class="container nz-clearfix">
-					<div class="header-cont">
-
-						<?php if (!empty($nz_desk_logo)): ?>
-
-							<div class="logo logo-desk">
+							<div class="logo logo-mob">
 								<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-									<img style="max-width:<?php echo $nz_desk_logo_w; ?>px;max-height:<?php echo $nz_desk_logo_h; ?>px;" src="<?php echo $nz_desk_logo; ?>" alt="<?php bloginfo('name'); ?>">
-								</a>
-							</div>
-
-						<?php endif ?>
-
-						<?php if (!empty($nz_fixed_logo)): ?>
-
-							<div class="logo logo-fixed">
-								<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-									<img style="max-width:<?php echo $nz_fixed_logo_w; ?>px;max-height:<?php echo $nz_fixed_logo_h; ?>px;"  src="<?php echo $nz_fixed_logo; ?>" alt="<?php bloginfo('name'); ?>">
-								</a>
-							</div>
-
-						<?php endif ?>
-
-						<?php if (!empty($nz_stuck_logo)): ?>
-
-							<div class="logo logo-stuck">
-								<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-									<img style="max-width:<?php echo $nz_stuck_logo_w; ?>px;max-height:<?php echo $nz_stuck_logo_h; ?>px;" src="<?php echo $nz_stuck_logo; ?>" alt="<?php bloginfo('name'); ?>">
+									<img style="max-width:<?php echo $nz_mob_logo_w; ?>px;max-height:<?php echo $nz_mob_logo_h; ?>px;" src="<?php echo $nz_mob_logo; ?>" alt="<?php bloginfo('name'); ?>">
 								</a>
 							</div>
 
@@ -334,50 +206,43 @@
 							<span>&nbsp;</span>
 						</div>
 
-						<?php if ($nz_ninzio['desk-search'] && $nz_ninzio['desk-search'] == 1): ?>
-							<div class="search-toggle icon-search2"></div>
-						<?php endif ?>
-
-						<?php if ($nz_ninzio['desk-shop-cart'] && $nz_ninzio['desk-shop-cart'] == 1): ?>
-
-							<?php if (class_exists('Woocommerce')): ?>
-								<?php global $woocommerce;?>
-								<div class="cart-toggle">
-									<a class="cart-contents" href="<?php echo esc_url($woocommerce->cart->get_cart_url()); ?>" title="<?php esc_html__('View your shopping cart', TEMPNAME); ?>">
-						                <span class="icon-cart3"></span>
-						                <span class="cart-info"><?php echo $woocommerce->cart->cart_contents_count; ?></span>
-						            </a>
-										<div class="cart-dropdown nz-clearfix">
-										<?php
-											if ( version_compare( WOOCOMMERCE_VERSION, "2.0.0" ) >= 0 ) {
-												echo get_the_widget( 'WC_Widget_Cart', 'title=Cart' );
-											} else {
-												echo get_the_widget( 'WooCommerce_Widget_Cart', 'title=Cart' );
-											}
-										?>
-										</div>
-								</div>
-							<?php endif; ?>
-
-						<?php endif ?>
-
-						<nav class="header-menu desk-menu nz-clearfix">
-							<?php
-								$arg = array(
-									'theme_location' => 'header-menu',
-									'depth'          => 3,
-									'container'      => false,
-									'menu_id'        => 'header-menu',
-									'link_before'    => '<span class="mi"></span><span class="txt">',
-									'link_after'     => '</span><span class="di icon-arrow-down8"></span>'
-								);
-								if(has_nav_menu("header-menu")){wp_nav_menu($arg);}
-							?>
-						</nav>
+						<div class="menu-toggle" title="<?php echo __('Toggle menu',TEMPNAME); ?>">
+							<span>&nbsp;</span>
+							<span>&nbsp;</span>
+							<span>&nbsp;</span>
+						</div>
 
 					</div>
 
-					<?php if ($nz_ninzio['desk-search'] && $nz_ninzio['desk-search'] == 1): ?>
+				</div>
+
+				<div class="header-content">
+
+					<nav class="header-menu mob-menu nz-clearfix">
+						<?php
+
+							$mobarg = array(
+								'theme_location' => 'header-menu',
+								'depth'          => 3,
+								'container'      => false,
+								'menu_id'        => 'mob-header-menu',
+								'link_before'    => '<span class="mi"></span><span class="txt">',
+								'link_after'     => '</span><span class="di icon-arrow-down8"></span>'
+							);
+							if(has_nav_menu("header-menu")){wp_nav_menu($mobarg);}
+
+						?>
+					</nav>
+
+					<?php if ($nz_ninzio['desk-ls'] && $nz_ninzio['desk-ls'] == 1): ?>
+
+						<div class="ls nz-clearfix">
+							<?php do_action('icl_language_selector'); ?>
+						</div>
+
+					<?php endif ?>
+
+					<?php if ($nz_mob_search == "true"): ?>
 						<div class="search nz-clearfix">
 							<?php get_search_form(); ?>
 						</div>
@@ -385,8 +250,146 @@
 
 				</div>
 
-			</div>
+			</header>
 
-		</header>
+			<header class="<?php echo $desk_class; ?>">
 
-		<div class="page-wrap">
+				<?php if ($nz_desk_top == "true"): ?>
+
+					<div class="header-top">
+
+						<div class="container nz-clearfix">
+
+							<?php if ($nz_ninzio['desk-slogan']): ?>
+								<div class="desk-slogan">
+									<?php
+										echo do_action('wpml_add_language_selector');
+										echo do_shortcode(wp_kses_post($nz_ninzio['desk-slogan']));
+									?>
+								</div>
+							<?php endif ?>
+
+							<?php if ($nz_ninzio['desk-ls'] && $nz_ninzio['desk-ls'] == 1): ?>
+
+								<div class="ls nz-clearfix">
+									<?php do_action('icl_language_selector'); ?>
+								</div>
+
+							<?php endif ?>
+
+							<?php if ($nz_ninzio['desk-sl'] && $nz_ninzio['desk-sl'] == 1): ?>
+
+								<div class="social-links nz-clearfix">
+									<?php include(locate_template('includes/social-links.php' )); ?>
+								</div>
+
+							<?php endif ?>
+
+						</div>
+
+					</div>
+
+				<?php endif ?>
+
+				<div class="header-content">
+					<div class="[ fondo-header ]"> <!-- unicamente contiene ribbon -->
+						<div class="[ ribbon-left ]"></div>
+					</div>
+					<div class="[ fondo-header ]"></div>
+					<div class="container nz-clearfix">
+						<div class="header-cont">
+
+							<?php if (!empty($nz_desk_logo)): ?>
+
+								<div class="logo logo-desk">
+									<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
+										<img style="max-width:<?php echo $nz_desk_logo_w; ?>px;max-height:<?php echo $nz_desk_logo_h; ?>px;" src="<?php echo $nz_desk_logo; ?>" alt="<?php bloginfo('name'); ?>">
+									</a>
+								</div>
+
+							<?php endif ?>
+
+							<?php if (!empty($nz_fixed_logo)): ?>
+
+								<div class="logo logo-fixed">
+									<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
+										<img style="max-width:<?php echo $nz_fixed_logo_w; ?>px;max-height:<?php echo $nz_fixed_logo_h; ?>px;"  src="<?php echo $nz_fixed_logo; ?>" alt="<?php bloginfo('name'); ?>">
+									</a>
+								</div>
+
+							<?php endif ?>
+
+							<?php if (!empty($nz_stuck_logo)): ?>
+
+								<div class="logo logo-stuck">
+									<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
+										<img style="max-width:<?php echo $nz_stuck_logo_w; ?>px;max-height:<?php echo $nz_stuck_logo_h; ?>px;" src="<?php echo $nz_stuck_logo; ?>" alt="<?php bloginfo('name'); ?>">
+									</a>
+								</div>
+
+							<?php endif ?>
+
+							<div class="sidebar-toggle" title="<?php echo __('Toggle sidebar',TEMPNAME); ?>">
+								<span>&nbsp;</span>
+								<span>&nbsp;</span>
+								<span>&nbsp;</span>
+							</div>
+
+							<?php if ($nz_ninzio['desk-search'] && $nz_ninzio['desk-search'] == 1): ?>
+								<div class="search-toggle icon-search2"></div>
+							<?php endif ?>
+
+							<?php if ($nz_ninzio['desk-shop-cart'] && $nz_ninzio['desk-shop-cart'] == 1): ?>
+
+								<?php if (class_exists('Woocommerce')): ?>
+									<?php global $woocommerce;?>
+									<div class="cart-toggle">
+										<a class="cart-contents" href="<?php echo esc_url($woocommerce->cart->get_cart_url()); ?>" title="<?php esc_html__('View your shopping cart', TEMPNAME); ?>">
+							                <span class="icon-cart3"></span>
+							                <span class="cart-info"><?php echo $woocommerce->cart->cart_contents_count; ?></span>
+							            </a>
+											<div class="cart-dropdown nz-clearfix">
+											<?php
+												if ( version_compare( WOOCOMMERCE_VERSION, "2.0.0" ) >= 0 ) {
+													echo get_the_widget( 'WC_Widget_Cart', 'title=Cart' );
+												} else {
+													echo get_the_widget( 'WooCommerce_Widget_Cart', 'title=Cart' );
+												}
+											?>
+											</div>
+									</div>
+								<?php endif; ?>
+
+							<?php endif ?>
+
+							<nav class="header-menu desk-menu nz-clearfix">
+								<?php
+									$arg = array(
+										'theme_location' => 'header-menu',
+										'depth'          => 3,
+										'container'      => false,
+										'menu_id'        => 'header-menu',
+										'link_before'    => '<span class="mi"></span><span class="txt">',
+										'link_after'     => '</span><span class="di icon-arrow-down8"></span>'
+									);
+									if(has_nav_menu("header-menu")){wp_nav_menu($arg);}
+								?>
+							</nav>
+
+						</div>
+
+						<?php if ($nz_ninzio['desk-search'] && $nz_ninzio['desk-search'] == 1): ?>
+							<div class="search nz-clearfix">
+								<?php get_search_form(); ?>
+							</div>
+						<?php endif ?>
+
+					</div>
+
+				</div>
+
+			</header>
+		</div>
+
+		<div class="[ main-body ]">
+			<div class="page-wrap">
