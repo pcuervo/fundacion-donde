@@ -156,15 +156,21 @@ h2, h3, h6{ font-family: 'eva_probold'!important; }
 }
 
 /*FOOTER*/
+  /*Footer top*/
 footer .formas-pago {
     background-color: #fff;
     padding: 15px;
     text-align: center;
 }
 footer .formas-pago img { width: 70px; }
+.footer-widget-area .widget { margin-top: 40px; margin-bottom: 40px; }
+@media only screen and (min-width: 768px){ .footer-widget-area .widget {width: 25%!important; } }
 
+  /*footer bottom*/
 footer .footer-content a,
 footer .footer-content .footer-info { text-transform: capitalize!important; }
+@media (max-width:1023px){ .footer-content { line-height: 30px; } }
+@media (max-width:1300px){ .footer-info { width: 100%!important; text-align: center; padding-top: 0px; font-size: 14px; } }
 
 /*BOX MODEL*/
 .margin-right { margin-right: 20px; }
