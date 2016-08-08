@@ -141,6 +141,9 @@ header a{
 	text-transform: capitalize!important;
 }
 
+  /*WPML*/
+#lang_sel { float: right; display: inline-block; line-height: 50px; }
+
 
 body:not(i) { font-family: 'eva_pronormal'!important; }
 h2, h3, h6{ font-family: 'eva_probold'!important; }

@@ -127,6 +127,28 @@
 	<!-- META TAGS -->
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- SEO -->
+	<meta name="keywords" content="fruta, verdura, orgánico, sustentable, canastas, productos, calidad">
+    <meta name="description" content="Pixan es un espacio incluyente, que da empleo y capacitación a la gente local y con capacidades diferentes, generando productos de alta calidad.">
+	<!-- Facebook, Twitter metas -->
+	<meta property="og:title" content="Fundación Dondé">
+	<meta name="og:description" content="" />
+	<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé">
+	<meta property="og:image:width" content="210" />
+	<meta property="og:image:height" content="110" />
+	<meta property="fb:app_id" content="1109660165770884" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="" />
+	<meta name="twitter:title" content="Fundación Dondé" />
+	<meta name="twitter:description" content="" />
+	<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé" />
+	<!-- Compatibility -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="cleartype" content="on">
+	<!-- Sitemap Google Verify -->
+	<meta name="google-site-verification" content="4Bt7KHVG0kzwetxi_LnrYR8QUCkKFdSNGA4PU2hpaDs" />
+
 	<!-- LINK TAGS -->
 	<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
@@ -139,6 +161,23 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1109660165770884',
+      xfbml      : true,
+      version    : 'v2.7'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <!-- general wrap start -->
 <div id="gen-wrap">
 	<!-- wrap start -->
@@ -222,7 +261,10 @@
 
 						<?php if ($nz_ninzio['desk-slogan']): ?>
 							<div class="desk-slogan">
-								<?php echo do_shortcode(wp_kses_post($nz_ninzio['desk-slogan'])); ?>
+								<?php
+									echo do_action('wpml_add_language_selector');
+									echo do_shortcode(wp_kses_post($nz_ninzio['desk-slogan']));
+								?>
 							</div>
 						<?php endif ?>
 
@@ -254,7 +296,6 @@
 				</div>
 				<div class="[ fondo-header ]"></div>
 				<div class="container nz-clearfix">
-
 					<div class="header-cont">
 
 						<?php if (!empty($nz_desk_logo)): ?>
