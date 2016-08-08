@@ -143,7 +143,8 @@ header a{
 
 .header { box-shadow: none!important; }
 
-.promo-home .post-date,
+/*Promo home*/
+.post-date,
 .promo-home .post-body a { display: none; }
 .promo-home .post-body {
   min-height: 135px;
@@ -164,7 +165,6 @@ header a{
 }
 
   /*WPML*/
-}
 #lang_sel { float: right; display: inline-block; line-height: 50px; }
 
 
