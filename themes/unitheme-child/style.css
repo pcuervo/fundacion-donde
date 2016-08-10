@@ -143,6 +143,16 @@ header a{
 
 .header { box-shadow: none!important; }
 
+/*Submenú*/
+
+.desk-menu .sub-menu li > a {
+  background-color: #018A5E!important;
+  border: none!important;
+  color: #fff!important;
+}
+
+.desk-menu .sub-menu li > a:hover { background-color: #01a36f!important; }
+
 /*Promo home*/
 .post-date,
 .promo-home .post-body a { display: none; }
