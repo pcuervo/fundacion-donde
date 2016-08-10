@@ -209,9 +209,10 @@ footer .footer-content .footer-info { text-transform: capitalize!important; }
 @media (max-width:1300px){ .footer-info { width: 100%!important; text-align: center; padding-top: 0px; font-size: 14px; } }
 
 /*BOX MODEL*/
+.no-margin-right { margin-right: 0px!important; }
 .margin-right { margin-right: 20px; }
 
-.float-right { float: right; }
+.float-right { float: right!important; }
 
 .inline-block { display: inline-block; }
 
@@ -321,8 +322,6 @@ h2 { text-transform: uppercase!important; }
 .icon-badge:before { content: '\e81e'; } /* '' */
 .icon-envio-gratis:before { content: '\e81f'; } /* '' */*/
 
-/*WOOCOMMERCE*/
-
 /*Fijar footer*/
 html,
 body { height: 100%; }
@@ -343,3 +342,8 @@ footer{
 .header-complete{
   width: 100%;
 }
+
+/*WOOCOMMERCE*/
+
+  /*Cart*/
+input[name="update_cart"] { float: right; }
