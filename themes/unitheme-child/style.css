@@ -194,6 +194,11 @@ h2, h3, h6{ font-family: 'eva_probold'!important; }
 	right: 0px;
 }
 
+@media (min-width: 768px){
+.columns-search .col-1_2 { width: 40%; padding-right: 15px; display: inline-block; }
+.columns-search .col-2_2 { width: 59%; display: inline-block; vertical-align: top; }
+}
+
 /*FOOTER*/
   /*Footer top*/
 footer .formas-pago {
@@ -269,6 +274,12 @@ h2 { text-transform: uppercase!important; }
   background-color: #8EC63F;
 }
 #ninzio-slider .button { font-weight: 600!important; }
+
+/*Search page*/
+.search-results .header-cont,
+.search-results .search-results-title { position: relative; top: -20px; }
+
+.post-indication { display: none; }
 
 /*ICONS*/
 @font-face {
@@ -390,7 +401,7 @@ footer{
 .box-review {
   margin-bottom: 30px;
   padding: 30px;
-  border: 2px solid #01a36f;
+  border: 5px solid #01a36f;
   border-radius: 10px;
 }
 .woocommerce #order_review .shop_table th,
