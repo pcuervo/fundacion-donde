@@ -157,7 +157,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 </form>
 
-<div class="cart-collaterals">
+<div class="cart-collaterals [ no-margin-right ]">
 
 	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
 
