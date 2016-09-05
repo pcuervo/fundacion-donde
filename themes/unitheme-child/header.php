@@ -139,7 +139,7 @@
 	<meta property="og:image:height" content="110" />
 	<meta property="fb:app_id" content="1109660165770884" />
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:site" content="" />
+	<meta name="twitter:site" content="@FundacionDonde1" />
 	<meta name="twitter:title" content="Fundación Dondé" />
 	<meta name="twitter:description" content="" />
 	<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé" />
