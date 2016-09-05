@@ -303,7 +303,7 @@ h2 { text-transform: uppercase!important; }
   font-family: 'eva_pronormalitalic'!important;
 }
 @media (min-width: 1025px){ #ninzio-slider { top: -60px!important; } }
-#ninzio-slider li { padding-top: 50px!important; padding-bottm: 50px!important; }
+#ninzio-slider li { padding-top: 70px!important; padding-bottm: 50px!important; }
 #ninzio-slider li p {
   line-height: 50px;
     font-family: 'eva_pronormalitalic'!important;
