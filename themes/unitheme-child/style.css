@@ -106,6 +106,32 @@
 .header-top a { color:#fff!important; }
 .header-top a:hover { color:#FDB813!important; }
 
+.logo-header {
+  line-height: 80px;
+  display: inline-block;
+  position: relative;
+  z-index: 99;
+}
+
+.logo-header img{
+  margin-top: 0px;
+  vertical-align: middle;
+}
+
+  /*Language*/
+#lang_sel ul ul {
+  position: absolute;
+  background-color: #018a5e;
+  z-index: 1;
+  width: 115px;
+  text-align: center;
+  top: 45px;
+  display: none;
+}
+
+#lang_sel a { display: block; line-height: 50px; }
+#lang_sel a span { display: inline-block; line-height: 50px; }
+
 	/*Header*/
 .desk .header-content {
 	position: relative;
@@ -472,3 +498,4 @@ li.reviews_tab,
 .shop-layout-wrap { padding-top: 0px; }
 
 .woocommerce-page .page-title { color: #018a5e; }
+
