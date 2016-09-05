@@ -120,7 +120,7 @@
 	float: right;
 	background: #8EC63F;
 	position: absolute; right: 0px;
-	border-top-left-radius: 1em;
+	border-top-left-radius: 10px;
 }
 
 @media ( min-width: 1025px ) and ( max-width: 1300px){ .desk .header-content .fondo-header { width: 60%!important; } }

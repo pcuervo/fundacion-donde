@@ -162,7 +162,7 @@ function joya_options_product_tab_content() {
 
 			// Descripción de piedras
 			woocommerce_wp_text_input( array(
-				'id'			=> '_joya_text_descripción_de_piedras',
+				'id'			=> '_joya_text_descripcion_de_piedras',
 				'label'			=> __( 'Descripción de piedras', 'woocommerce' ),
 				'type' 			=> 'text',
 			));
@@ -508,8 +508,6 @@ function electronico_options_product_tab_content() {
 				'label'			=> __( 'Estado', 'woocommerce' ),
 				'type' 			=> 'text',
 			));
-
-
 		?></div>
 
 	</div><?php
@@ -541,8 +539,8 @@ function save_joya_option_field( $post_id ) {
 	if ( isset( $_POST['_joya_text_corte_de_piedras'] ) ) {
 		update_post_meta( $post_id, '_joya_text_corte_de_piedras', sanitize_text_field( $_POST['_joya_text_corte_de_piedras'] ) );
 	}
-	if ( isset( $_POST['_joya_text_descripción_de_piedras'] ) ) {
-		update_post_meta( $post_id, '_joya_text_descripción_de_piedras', sanitize_text_field( $_POST['_joya_text_descripción_de_piedras'] ) );
+	if ( isset( $_POST['_joya_text_descripcion_de_piedras'] ) ) {
+		update_post_meta( $post_id, '_joya_text_descripcion_de_piedras', sanitize_text_field( $_POST['_joya_text_descripcion_de_piedras'] ) );
 	}
 	if ( isset( $_POST['_joya_text_metal'] ) ) {
 		update_post_meta( $post_id, '_joya_text_metal', sanitize_text_field( $_POST['_joya_text_metal'] ) );
