@@ -238,6 +238,12 @@ h1,h2, h3, h6{ font-family: 'eva_probold'!important; }
 .columns-search .col-2_2 { width: 59%; display: inline-block; vertical-align: top; }
 }
 
+  /*Results*/
+
+  .search-results nav.header-menu.desk-menu,
+  .search-results .cart-toggle,
+  .search-results .search-toggle { margin-top: 20px; }
+
 /*FOOTER*/
   /*Footer top*/
 footer .formas-pago {
@@ -399,6 +405,9 @@ footer{
 .header-complete{
   width: 100%;
 }
+
+/*Box model*/
+.margin-top { margin-top: 20px; }
 
 /*WOOCOMMERCE*/
 
