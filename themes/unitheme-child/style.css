@@ -189,6 +189,8 @@ header a{
 
 .mini_cart_item a { color: #5E5E5E!important; }
 
+@media(min-width: 1025px){.js-header { margin-bottom: 40px; }}
+
 /*Promo home*/
 .post-date,
 .promo-home .post-body a { display: none; }
