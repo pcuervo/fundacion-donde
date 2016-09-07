@@ -241,8 +241,9 @@ h1,h2, h3, h6{ font-family: 'eva_probold'!important; }
   /*Results*/
 
   .search-results nav.header-menu.desk-menu,
-  .search-results .cart-toggle,
-  .search-results .search-toggle { margin-top: 20px; }
+  .search-results .cart-toggle
+  /*.search-results .search-toggle*/ { margin-top: 20px; }
+  .search-results .search-toggle { padding-top: 20px; }
 
 /*FOOTER*/
   /*Footer top*/
