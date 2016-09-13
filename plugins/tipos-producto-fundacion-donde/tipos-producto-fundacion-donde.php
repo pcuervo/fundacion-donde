@@ -127,8 +127,6 @@ function save_reloj_option_field( $post_id ) {
 
 }
 add_action( 'woocommerce_process_product_meta_simple_reloj', 'save_reloj_option_field'  );
-add_action( 'woocommerce_process_product_meta_variable_reloj', 'save_reloj_option_field'  );
-
 
 /**
  * Hide Attributes data panel.
