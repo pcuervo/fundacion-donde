@@ -304,6 +304,8 @@ h2 { text-transform: uppercase!important; }
 /*BOX ICON*/
 #nz-box-1, #nz-box-2 { border-right: 1px solid #cfcfcf; }
 
+#info-nosotros #nz-box-1 { border-right: 0px!important; }
+
 /*Slider*/
 #ninzio-slider {
   height: 400px!important;
@@ -494,6 +496,12 @@ footer{
 li.description_tab,
 li.reviews_tab,
 .woocommerce-Reviews { display: none!important; }
+
+input[type=number]::-webkit-inner-spin-button,
+ input[type=number]::-webkit-outer-spin-button {
+     -webkit-appearance: none;
+     margin: 8px;
+ }
 
 /*Etiquetas*/
 

@@ -692,8 +692,8 @@ function save_electronico_option_field( $post_id ) {
 
 
 }
-add_action( 'woocommerce_process_product_meta_simple_electronico', 'save_electronico_option_field' );
 
+add_action( 'woocommerce_process_product_meta_simple_electronico', 'save_electronico_option_field' );
 
 /**
  * Hide Attributes data panel.
