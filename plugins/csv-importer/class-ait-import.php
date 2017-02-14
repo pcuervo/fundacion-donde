@@ -272,6 +272,7 @@ class AitImport {
 	 * @param  string $data      row in array format
 	 * 
 	 */
+	/*
 	public function validate_row($data) {
 		//VALIDAR QUE LOS CAMPOS REQUERIDOS ESTEN SETEADOS Y NO ESTEN VACIOS
 		if(!isset($data[0]) || empty($data[0]) || !isset($data[1]) || empty($data[1]) || !isset($data[2]) || empty($data[2]) || !isset($data[4]) || empty($data[4]) || !isset($data[5]) || empty($data[5]) || !isset($data[6]) || empty($data[6]) || !isset($data[7]) || empty($data[7]) || !isset($data[13]) || empty($data[13]) ) {
@@ -310,6 +311,86 @@ class AitImport {
 			}
 		}
 		return false;
+	}
+	*/
+
+	public function validate_row($data) {
+		$i = 0;
+		$ok = true;
+		$respu = '';
+		for($i = 0; $i<=19; $i++) {
+			//VALIDAR CAMPOS OBLIGAROTIOS
+			$col = $i+1;
+			if(in_array($i, array(2,3,4,6,7,8,9,15 ))) {
+				if(!isset($data[$i]) || empty($data[$i])) {
+					$respu .= 'La columna '.$col.' es obligarotia, no debe estar vacia.<br>';
+					$ok = false;
+				}	
+			}
+
+			//VALIDAR QUE LA COLUMNA UPC NO CONTENGA +
+			if($i == 2) {
+				if( strpos( $data[$i], '+' ) !== false ) {
+				    $respu .= 'La columna '.$col.' no debe tener el caracter "+".<br>';
+					$ok = false;
+				}
+			}
+
+			//VALIDAR CAMPOS NUMERICOS
+			if(in_array($i, array(6))) {
+				if($data[$i] < 0 || !is_numeric($data[$i])) {
+			    	$respu .= 'La columna '.$col.' debe tener un valor numerico mayor que 0.<br>';
+			    	$ok = false;
+			    }
+			}
+			if($i==18) {
+				//VALIDAR QUE SI EL AÑO NO ESTA VACIO, QUE CONTENGA UN VALOR NUMERICO
+			    if(!empty($data[$i]) && $data[$i] != '' ) {
+				    if(!is_numeric($data[$i])) {
+				    	$respu .= 'La columna '.$col.' (año) debe tener un valor numerico.<br>';
+			    		$ok = false;
+				    }
+				}
+			}
+			if($i==7) {
+				//VALIDACION PARA LA CATEGORIA Relojes
+				if($data[$i] != 'Relojes' && $data[$i] != 'Joyas' && $data[$i] != 'Electronicos') {
+					$respu .= 'La columna categoria solo admite los valores "Relojes|Joyas|Electronicos". Valor recibido ['.$data[$i].']';
+					$ok = false;
+				}
+				else {
+					if($data[$i] == 'Relojes') {
+						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
+						if($data[8] != 'dama' && $data[8] != 'caballero') {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "dama|caballero". Valor recibido ['.$data[8].']';
+							$ok = false;
+						}
+					}
+					//VALIDACION PARA LA CATEGORIA Relojes
+					if($data[$i] == 'Joyas') {
+						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
+						if($data[8] != 'aretes' && $data[8] != 'cadenas' && $data[8] != 'dijes' && $data[8] != 'pulseras' && $data[8] != 'anillos' && $data[8] != 'broqueles' ) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "aretes|cadenas|dijes|pulseras|anillos|broqueles". Valor recibido ['.$data[8].']';
+							$ok = false;
+						}
+					}
+					//VALIDACION PARA LA CATEGORIA Relojes
+					if($data[$i] == 'Electronicos') {
+						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
+						if($data[8] != 'celulares' && $data[8] != 'tablets' && $data[8] != 'pantallas') {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "celulares|tablets|pantallas". Valor recibido ['.$data[8].']';
+							$ok = false;
+						}
+					}
+				}
+			}
+		}
+		
+		if($ok) {
+			$respu .= "OK";
+		}
+		return $respu;
+		
 	}
 
 	/**
@@ -405,8 +486,8 @@ class AitImport {
 
 					//VALIDATE DUPLICATE SKU
 					//echo "SELECT post_id FROM $wpdb->postmeta WHERE meta_value = '".$data_row[0]."' and meta_key = '_sku'";
-					if (isset($data_row[0]) && !empty($data_row[0])) {
-						$sku = $data_row[0];
+					if (isset($data_row[2]) && !empty($data_row[2])) {
+						$sku = $data_row[2];
 						$existente_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_value = '".$sku."' and meta_key = '_sku'");
 					}
 					if (isset($existente_id) && $existente_id) {
@@ -418,7 +499,11 @@ class AitImport {
 
 					//VALIDAR DATOS DE ENTRADA
 					if(!$ignore) { 
-						$ignore = $this->validate_row($data_row); 
+						$respues = $this->validate_row($data_row); 
+						if($respues != 'OK') { 
+							$ignore = true; 
+							echo '<div class="error"><p><h5>ERRORES PARA <strong>[SKU : '.$data_row[2].']</strong></h5>'.$respues.'</p></div>';
+						}
 						if($ignore) { $num_ignored++; $sku_invalidos .= $sku.', '; }
 					}
 					
@@ -443,8 +528,8 @@ class AitImport {
 							}
 						}
 
-						$attrs['post_title'] = $data_row[1]; //columna 'nombre' del archivo csv
-						$attrs['post_content'] = $data_row[3];	//columna 'descripcion' del archivo csv					
+						$attrs['post_title'] = $data_row[3]; //columna 'nombre' del archivo csv
+						$attrs['post_content'] = $data_row[5];	//columna 'descripcion' del archivo csv					
 						// insert or update
 						$post_id = wp_insert_post( $attrs, true );
 

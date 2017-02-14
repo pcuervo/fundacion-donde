@@ -42,37 +42,37 @@ $import = AitImport::get_instance();
 		}
 	}
 	?>
-
+	<!--
 	<div class="import-settings metabox-holder">
 		<div class="import-options postbox">
 
 			<div class="handlediv" title="Click to toggle"><br></div>
 
-			<h3 class="hndle"><span><?php _e('Import settings'); ?></span></h3>
+			<h3 class="hndle"><span><?php //_e('Import settings'); ?></span></h3>
 
 			<div class="inside">
 
-				<?php $saved_encoding = get_option( 'ait_import_plugin_encoding', '25' ); ?>
+				<?php //$saved_encoding = get_option( 'ait_import_plugin_encoding', '25' ); ?>
 
 				<form action="admin.php?page=ait-import" method="post">
-					<label for="import-encoding"><?php _e('Encoding of imported CSV files: '); ?></label>
+					<label for="import-encoding"><?php //_e('Encoding of imported CSV files: '); ?></label>
 					<select name="encoding" id="import-encoding">
-					<?php foreach (mb_list_encodings() as $key => $value) {
+					<?php /*foreach (mb_list_encodings() as $key => $value) {
 						if($key == intval($saved_encoding)) {
 							echo "<option selected='selected' value='$key'>$value</option>";
 						} else {
 							echo "<option value='$key'>$value</option>";
 						}
-					} ?>
+					}*/ ?>
 					</select>
-					<input type="submit" value="<?php _e('Save settings'); ?>" class="save button">
+					<input type="submit" value="<?php //_e('Save settings'); ?>" class="save button">
 				</form>
 
 			</div>
 
 		</div>
 	</div>
-
+	-->
 	<?php
 	foreach ($import->post_types as $type) { ?>
 	<div class="import-custom-type metabox-holder">
