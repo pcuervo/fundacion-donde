@@ -29,7 +29,7 @@ $import = AitImport::get_instance();
 		if ($_FILES["posts_csv"]["error"] > 0) {
 			echo '<div class="error"><p>'.__('Incorrect CSV file').'.</p></div>';
 		} else {
-			$import->import_csv($_POST["type"],$_FILES["posts_csv"]['tmp_name'],$_POST["duplicate"], $_POST["statusProductos"]);
+			$import->import_csv($_POST["type"],$_FILES["posts_csv"]['tmp_name'],$_POST["duplicate"], $_POST["statusProductos"], $_POST["porcentaje"]);
 		}
 		
 	}
@@ -111,7 +111,7 @@ $import = AitImport::get_instance();
 					<h4>Status de los productos <br>
 					<label>Publish</label><input type="radio" name="statusProductos" value="publish" checked="checked">
 					<label>Draft</label><input type="radio" name="statusProductos" value="draft"></h4>
-					<input type="checkbox" name="limpiarnuevos"> <label><strong>Limpiar productos "Nuevos" de la tienda</strong></label><br>
+					<input type="number" name="porcentaje" min="0" max="100" value="0">% <label><strong>Porcentaje de incremento al precio de los artículos</strong></label><br>
 					<input type="file" name="posts_csv">
 					<input type="submit" value="<?php _e('Import from CSV'); ?>" class="upload button-primary">
 				</form>

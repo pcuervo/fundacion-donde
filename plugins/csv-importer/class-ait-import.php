@@ -428,7 +428,7 @@ class AitImport {
 	 * @param  string $duplicate how to handle duplicate items
 	 * 
 	 */
-	public function import_csv($type, $file, $duplicate, $statusProductos) {
+	public function import_csv($type, $file, $duplicate, $statusProductos, $porcentaje) {
 
 		$encoding_id = intval( get_option( 'ait_import_plugin_encoding', '25' ) );
 		$encoding_list = mb_list_encodings();
@@ -605,8 +605,14 @@ class AitImport {
 											break;
 										case 'precio':
 												$opt = '_price';
-												update_post_meta( $post_id, $opt, $data_row[$key] );
-												update_post_meta( $post_id, '_regular_price', $data_row[$key] );
+												if($porcentaje > 0) {
+													$precio = round($data_row[$key]*(1+$porcentaje/100),2);
+												}
+												else {
+													$precio = $data_row[$key];
+												}
+												update_post_meta( $post_id, $opt, $precio );
+												update_post_meta( $post_id, '_regular_price', $precio );
 											break;
 										case 'descripcion':
 												$opt = 'post_content';
