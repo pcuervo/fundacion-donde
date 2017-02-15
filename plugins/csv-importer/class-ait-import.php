@@ -378,7 +378,7 @@ class AitImport {
 				//VALIDACION PARA LA CATEGORIA Relojes
 				$cate = $this->sanitize_txt($data[$i]);
 				
-				if(!in_array($cate, array('Relojes', 'Joyas', 'Electrónicos'))) {
+				if(!in_array($cate, array('Relojes', 'Joyas', 'Electronicos'))) {
 				//if($cat != 'Relojes' && $cat != 'Joyas' && strpos($cate, 'Electr') !== FALSE $cat != 'Electrónicos') {
 					$respu .= 'La columna categoria solo admite los valores "Relojes|Joyas|Electrónicos". Valor recibido ['.$cate.']';
 					$ok = false;
@@ -400,7 +400,7 @@ class AitImport {
 						}
 					}
 					//VALIDACION PARA LA CATEGORIA Relojes
-					if($this->sanitize_txt($data[$i]) == 'Electrónicos') {
+					if($this->sanitize_txt($data[$i]) == 'Electronicos') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
 						if(!in_array($data[8], array('Celulares', 'celulares', 'Tablets', 'tablets', 'Pantallas', 'pantallas' ))) {
 							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "celulares|tablets|pantallas". Valor recibido ['.$this->sanitize_txt($data[8]).']';
