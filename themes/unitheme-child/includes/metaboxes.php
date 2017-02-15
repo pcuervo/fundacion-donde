@@ -73,7 +73,7 @@
 		echo '<div class="row">';
 			echo '<div class="md-12" style="width:100%; float:left;">';
 				echo '<strong>Numero de Sucursal: </strong>';
-				echo '<input type="number" class="" name="sucursal" id="sucursal" value="'.$numero_sucursal.'"  />';
+				echo '<input type="number" class="" name="sucursal" id="sucursal" value="'.$sucursal.'"  />';
 				echo '<strong>Estado del Artículo: </strong>';
 				echo '<input type="text" class="" name="estado" id="estado" value="'.$estado.'"  />';
 			echo '</div>';

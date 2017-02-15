@@ -553,8 +553,8 @@ class AitImport {
 							}
 						}
 
-						$attrs['post_title'] = $data_row[3]; //columna 'nombre' del archivo csv
-						$attrs['post_content'] = $data_row[5];	//columna 'descripcion' del archivo csv					
+						$attrs['post_title'] = $this->sanitize_txt($data_row[3]); //columna 'nombre' del archivo csv
+						$attrs['post_content'] = $this->sanitize_txt($data_row[5]);	//columna 'descripcion' del archivo csv					
 						// insert or update
 						$post_id = wp_insert_post( $attrs, true );
 
@@ -604,10 +604,16 @@ class AitImport {
 										case 'precio':
 												$opt = '_price';
 												update_post_meta( $post_id, $opt, $data_row[$key] );
+												update_post_meta( $post_id, '_regular_price', $data_row[$key] );
 											break;
 										case 'descripcion':
 												$opt = 'post_content';
 												update_post_meta( $post_id, $opt, $data_row[$key] );
+											break;
+										case 'cantidad':
+												update_post_meta( $post_id, '_manage_stock', 'yes' );
+												update_post_meta( $post_id, '_stock_status', 'instock' );
+												update_post_meta( $post_id, '_stock', $data_row[$key] );
 											break;
 										case 'categoria':
 												$term_id = get_term_by('slug', $data_row[$key], 'product_cat');

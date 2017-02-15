@@ -1,0 +1,388 @@
+[15-Feb-2017 16:23:49 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:23:49 UTC] PHP Stack trace:
+[15-Feb-2017 16:23:49 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:23:49 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:23:49 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:23:49 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:23:49 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:23:49 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:23:49 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:49 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:49 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:23:49 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:49 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:49 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:23:49 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:23:49 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:23:49 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:23:49 UTC] PHP Stack trace:
+[15-Feb-2017 16:23:49 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:23:49 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:23:49 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:23:49 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:23:49 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:23:49 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:23:49 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:49 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:49 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:23:49 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:49 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:49 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:23:49 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:23:49 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:23:49 UTC] %%%%%%%%%%%%%%%%%%%%%%%%%%% Order PAYMENT COMPLETED for order 354
+[15-Feb-2017 16:23:49 UTC] CORREO -> 
+[15-Feb-2017 16:23:54 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:23:54 UTC] PHP Stack trace:
+[15-Feb-2017 16:23:54 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:23:54 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:23:54 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:23:54 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:23:54 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:23:54 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:23:54 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:54 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:54 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:23:54 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:54 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:54 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:23:54 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:23:54 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:23:54 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:23:54 UTC] PHP Stack trace:
+[15-Feb-2017 16:23:54 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:23:54 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:23:54 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:23:54 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:23:54 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:23:54 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:23:54 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:54 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:54 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:23:54 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:54 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:23:54 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:23:54 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:23:54 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:24:33 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:24:33 UTC] PHP Stack trace:
+[15-Feb-2017 16:24:33 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\edit.php:0
+[15-Feb-2017 16:24:33 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\edit.php:10
+[15-Feb-2017 16:24:33 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:24:33 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:24:33 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:24:33 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:24:33 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:33 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:33 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:24:33 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:33 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:33 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:24:33 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:24:33 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:24:33 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:24:33 UTC] PHP Stack trace:
+[15-Feb-2017 16:24:33 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\edit.php:0
+[15-Feb-2017 16:24:33 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\edit.php:10
+[15-Feb-2017 16:24:33 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:24:33 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:24:33 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:24:33 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:24:33 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:33 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:33 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:24:33 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:33 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:33 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:24:33 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:24:33 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:24:50 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:24:50 UTC] PHP Stack trace:
+[15-Feb-2017 16:24:50 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:24:50 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:24:50 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:24:50 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:24:50 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:24:50 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:24:50 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:50 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:50 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:24:50 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:50 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:50 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:24:50 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:24:50 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:24:50 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:24:50 UTC] PHP Stack trace:
+[15-Feb-2017 16:24:50 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:24:50 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:24:50 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:24:50 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:24:50 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:24:50 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:24:50 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:50 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:50 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:24:50 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:50 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:24:50 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:24:50 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:24:50 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:25:28 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:25:28 UTC] PHP Stack trace:
+[15-Feb-2017 16:25:28 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:25:28 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:25:28 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:25:28 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:25:28 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:25:28 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:25:28 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:28 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:28 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:25:28 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:28 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:28 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:25:28 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:25:28 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:25:28 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:25:28 UTC] PHP Stack trace:
+[15-Feb-2017 16:25:28 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:25:28 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:25:28 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:25:28 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:25:28 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:25:28 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:25:28 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:28 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:28 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:25:28 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:28 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:28 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:25:28 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:25:28 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:25:31 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:25:31 UTC] PHP Stack trace:
+[15-Feb-2017 16:25:31 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:25:31 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:25:31 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:25:31 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:25:31 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:25:31 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:25:31 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:31 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:31 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:25:31 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:31 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:31 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:25:31 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:25:31 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:25:31 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:25:31 UTC] PHP Stack trace:
+[15-Feb-2017 16:25:31 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:25:31 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:25:31 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:25:31 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:25:31 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:25:31 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:25:31 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:31 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:31 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:25:31 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:31 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:31 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:25:31 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:25:31 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:25:39 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:25:39 UTC] PHP Stack trace:
+[15-Feb-2017 16:25:39 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:25:39 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:25:39 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:25:39 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:25:39 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:25:39 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:25:39 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:39 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:39 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:25:39 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:39 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:39 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:25:39 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:25:39 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:25:39 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:25:39 UTC] PHP Stack trace:
+[15-Feb-2017 16:25:39 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:25:39 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:25:39 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:25:39 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:25:39 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:25:39 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:25:39 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:39 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:39 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:25:39 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:39 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:25:39 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:25:39 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:25:39 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:29:27 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:29:27 UTC] PHP Stack trace:
+[15-Feb-2017 16:29:27 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\edit.php:0
+[15-Feb-2017 16:29:27 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\edit.php:10
+[15-Feb-2017 16:29:27 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:29:27 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:29:27 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:29:27 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:29:27 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:27 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:27 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:29:27 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:27 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:27 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:29:27 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:29:27 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:29:27 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:29:27 UTC] PHP Stack trace:
+[15-Feb-2017 16:29:27 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\edit.php:0
+[15-Feb-2017 16:29:27 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\edit.php:10
+[15-Feb-2017 16:29:27 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:29:27 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:29:27 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:29:27 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:29:27 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:27 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:27 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:29:27 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:27 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:27 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:29:27 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:29:27 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:29:35 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:29:35 UTC] PHP Stack trace:
+[15-Feb-2017 16:29:35 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:29:35 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:29:35 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:29:35 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:29:35 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:29:35 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:29:35 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:35 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:35 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:29:35 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:35 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:35 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:29:35 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:29:35 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:29:35 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:29:35 UTC] PHP Stack trace:
+[15-Feb-2017 16:29:35 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:29:35 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:29:35 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:29:35 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:29:35 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:29:35 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:29:35 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:35 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:35 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:29:35 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:35 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:35 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:29:35 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:29:35 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:29:48 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:29:49 UTC] PHP Stack trace:
+[15-Feb-2017 16:29:49 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:29:49 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:29:49 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:29:49 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:29:49 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:29:49 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:29:49 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:49 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:49 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:29:49 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:49 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:49 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:29:49 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:29:49 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:29:49 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:29:49 UTC] PHP Stack trace:
+[15-Feb-2017 16:29:49 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:29:49 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:29:49 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:29:49 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:29:49 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:29:49 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:29:49 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:49 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:49 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:29:49 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:49 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:49 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:29:49 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:29:49 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:29:49 UTC] %%%%%%%%%%%%%%%%%%%%%%%%%%% Order PAYMENT COMPLETED for order 356
+[15-Feb-2017 16:29:49 UTC] CORREO -> 
+[15-Feb-2017 16:29:51 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:29:51 UTC] PHP Stack trace:
+[15-Feb-2017 16:29:51 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:29:51 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:29:51 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:29:51 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:29:51 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:29:51 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:29:51 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:51 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:51 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:29:51 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:51 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:51 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:29:51 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:29:51 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:29:51 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:29:51 UTC] PHP Stack trace:
+[15-Feb-2017 16:29:51 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\post.php:0
+[15-Feb-2017 16:29:51 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\post.php:12
+[15-Feb-2017 16:29:51 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:29:51 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:29:51 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:29:51 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:29:51 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:51 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:51 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:29:51 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:51 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:29:51 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:29:51 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:29:51 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:30:20 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:30:20 UTC] PHP Stack trace:
+[15-Feb-2017 16:30:20 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\edit.php:0
+[15-Feb-2017 16:30:20 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\edit.php:10
+[15-Feb-2017 16:30:20 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:30:20 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:30:20 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:30:20 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:30:20 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:30:20 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:30:20 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:30:20 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:30:20 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:30:20 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:30:20 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 16:30:20 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 16:30:20 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 16:30:20 UTC] PHP Stack trace:
+[15-Feb-2017 16:30:20 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\edit.php:0
+[15-Feb-2017 16:30:20 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\edit.php:10
+[15-Feb-2017 16:30:20 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 16:30:20 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 16:30:20 UTC] PHP   5. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 16:30:20 UTC] PHP   6. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 16:30:20 UTC] PHP   7. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:30:20 UTC] PHP   8. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:30:20 UTC] PHP   9. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 16:30:20 UTC] PHP  10. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:30:20 UTC] PHP  11. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 16:30:20 UTC] PHP  12. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 16:30:20 UTC] PHP  13. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 16:30:20 UTC] PHP  14. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
