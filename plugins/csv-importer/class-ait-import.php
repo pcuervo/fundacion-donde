@@ -304,7 +304,7 @@ class AitImport {
 			}
 		}
 		//VALIDACION PARA LA CATEGORIA Relojes
-		if($data[5] == 'Electronicos') {
+		if($data[5] == 'Electrónicos') {
 			//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
 			if($data[6] != 'celulares' && $data[6] != 'tablets' && $data[6] != 'pantallas') {
 				return true;
@@ -313,19 +313,41 @@ class AitImport {
 		return false;
 	}
 	*/
+	function sanitize_txt ( $text ) {
+        $san_text = filter_var($text, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH | FILTER_FLAG_STRIP_LOW ) ;
+        return $san_text;
+    }
 
 	public function validate_row($data) {
+		global $wpdb;
 		$i = 0;
 		$ok = true;
 		$respu = '';
 		for($i = 0; $i<=19; $i++) {
 			//VALIDAR CAMPOS OBLIGAROTIOS
 			$col = $i+1;
-			if(in_array($i, array(2,3,4,6,7,8,9,15 ))) {
+			if(in_array($i, array(0,1,2,3,4,6,7,8,9,15 ))) {
 				if(!isset($data[$i]) || empty($data[$i])) {
-					$respu .= 'La columna '.$col.' es obligarotia, no debe estar vacia.<br>';
+					$respu .= 'La columna '.$col.' es obligatoria, no debe estar vacia.<br>';
 					$ok = false;
 				}	
+			}
+
+			//VALIDAR QUE LA SUCURSAL EXISTA
+			if($i == 0) {
+				$sucu = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE meta_value = '".$data[$i]."' and meta_key = 'numero_sucursal'");
+				if(is_null($sucu)) {
+					$respu .= 'No se encontro la "sucursal" con numero de sucursal <strong>'.$data[$i].'</strong>.<br>';
+					$ok = false;
+				}
+			}
+
+			//VALIDAR QUE LA SUCURSAL EXISTA
+			if($i == 1) {
+				if($data[$i] != 'Excelente' && $data[$i] != 'Muy bueno' && $data[$i] != 'Bueno') {
+					$respu .= 'La columna "estado" solo admite los valores "Excelente|Muy bueno|Bueno". Valor recibido ['.$data[$i].']<br>';
+					$ok = false;
+				}
 			}
 
 			//VALIDAR QUE LA COLUMNA UPC NO CONTENGA +
@@ -354,14 +376,17 @@ class AitImport {
 			}
 			if($i==7) {
 				//VALIDACION PARA LA CATEGORIA Relojes
-				if($data[$i] != 'Relojes' && $data[$i] != 'Joyas' && $data[$i] != 'Electronicos') {
-					$respu .= 'La columna categoria solo admite los valores "Relojes|Joyas|Electronicos". Valor recibido ['.$data[$i].']';
+				$cate = $this->sanitize_txt($data[$i]);
+				
+				if(!in_array($cate, array('Relojes', 'Joyas', 'Electrónicos'))) {
+				//if($cat != 'Relojes' && $cat != 'Joyas' && strpos($cate, 'Electr') !== FALSE $cat != 'Electrónicos') {
+					$respu .= 'La columna categoria solo admite los valores "Relojes|Joyas|Electrónicos". Valor recibido ['.$cate.']';
 					$ok = false;
 				}
 				else {
 					if($data[$i] == 'Relojes') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
-						if($data[8] != 'dama' && $data[8] != 'caballero') {
+						if(!in_array($data[8], array('Dama', 'dama', 'Caballero', 'caballero' ))) {
 							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "dama|caballero". Valor recibido ['.$data[8].']';
 							$ok = false;
 						}
@@ -369,16 +394,16 @@ class AitImport {
 					//VALIDACION PARA LA CATEGORIA Relojes
 					if($data[$i] == 'Joyas') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
-						if($data[8] != 'aretes' && $data[8] != 'cadenas' && $data[8] != 'dijes' && $data[8] != 'pulseras' && $data[8] != 'anillos' && $data[8] != 'broqueles' ) {
+						if(!in_array($data[8], array('Aretes', 'aretes', 'Cadenas', 'cadenas', 'Dijes', 'dijes', 'Pulseras', 'pulseras', 'Anillos', 'anillos', 'Broqueles', 'broqueles' )) ) {
 							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "aretes|cadenas|dijes|pulseras|anillos|broqueles". Valor recibido ['.$data[8].']';
 							$ok = false;
 						}
 					}
 					//VALIDACION PARA LA CATEGORIA Relojes
-					if($data[$i] == 'Electronicos') {
+					if($this->sanitize_txt($data[$i]) == 'Electrónicos') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
-						if($data[8] != 'celulares' && $data[8] != 'tablets' && $data[8] != 'pantallas') {
-							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "celulares|tablets|pantallas". Valor recibido ['.$data[8].']';
+						if(!in_array($data[8], array('Celulares', 'celulares', 'Tablets', 'tablets', 'Pantallas', 'pantallas' ))) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "celulares|tablets|pantallas". Valor recibido ['.$this->sanitize_txt($data[8]).']';
 							$ok = false;
 						}
 					}

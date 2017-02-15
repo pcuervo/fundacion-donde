@@ -63,10 +63,40 @@
 				
 	});// save_meta_boxes_biblioteca
 
+	function show_products_meta($post) {
+		$sucursal = get_post_meta($post->ID, 'sucursal', true);
+		$estado = get_post_meta($post->ID, 'estado', true);
+
+		wp_nonce_field(__FILE__, '_sucursal_nonce');
+		wp_nonce_field(__FILE__, '_estado_nonce');
+
+		echo '<div class="row">';
+			echo '<div class="md-12" style="width:100%; float:left;">';
+				echo '<strong>Numero de Sucursal: </strong>';
+				echo '<input type="number" class="" name="sucursal" id="sucursal" value="'.$numero_sucursal.'"  />';
+				echo '<strong>Estado del Artículo: </strong>';
+				echo '<input type="text" class="" name="estado" id="estado" value="'.$estado.'"  />';
+			echo '</div>';
+			echo '<br>';
+		echo '<br>';
+		echo '</div>';
+	}
+
+	add_action( 'save_post', function ( $post_id ){
+		if ( isset($_POST['sucursal']) and check_admin_referer(__FILE__, '_sucursal_nonce') ){
+			update_post_meta($post_id, 'sucursal', $_POST['sucursal']);
+		}
+		if ( isset($_POST['estado']) and check_admin_referer(__FILE__, '_estado_nonce') ){
+			update_post_meta($post_id, 'estado', $_POST['estado']);
+		}
+		
+				
+	});// save_meta_boxes_biblioteca
+
 	add_action('add_meta_boxes', function(){
 		global $post;
 		add_meta_box( 'meta-box-sucursal', 'Datos adicionales', 'show_metabox_sucursal', 'sucursal');
-		
+		add_meta_box( 'meta-box-articulo', 'Datos adicionales', 'show_products_meta', 'product');
 	});
 
 ?>
