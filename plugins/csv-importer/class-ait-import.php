@@ -520,6 +520,7 @@ class AitImport {
 						$ignore = true;
 						$attrs['ID'] = $existente_id;
 						$sku_existentes .= $sku.', ';
+						echo '<div class="error"><p><h5>Artículo ignorado por ya existir <strong>[SKU : '.$sku.' - Nombre : '.$data_row[3].']</strong></h5>'.$respues.'</p></div>';
 					}
 
 					//VALIDAR DATOS DE ENTRADA

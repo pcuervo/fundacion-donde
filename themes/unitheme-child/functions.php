@@ -15,9 +15,10 @@
 		$order = new WC_Order( $order_id );
 		$order_item = $order->get_items();
 		foreach ($order_item as $item ) {
-			if(!isset($item['variation_id'])) {
+			var_dump($item);
+			if(!isset($item['product_id'])) {
 				foreach ($item['item_meta_array'] as $m) {
-					if($m->key == '_variation_id') {
+					if($m->key == '_product_id') {
 						$meta = get_post_meta($m->value);
 						$sucu = $meta['sucursal'][0];
 					}
@@ -26,14 +27,15 @@
 					}
 					
 				}
-				$articulos .= $item['name'].' Cant:'.$qty.' Sucursal:'.$sucu.' <br>';
+				$articulos .= $item['name'].' - Cantidad:'.$qty.' Sucursal:'.$sucu.' <br>';
 			}
 			else {
-				$meta = get_post_meta($item['variation_id']);
+				$meta = get_post_meta($item['product_id']);
 				$sucu = $meta['sucursal'][0];
-				$articulos .= $item['name'].' Cant:'.$item['qty'].' Sucursal:'.$sucu.' <br>';
+				$articulos .= $item['name'].' - Cantidad:'.$item['qty'].' Sucursal:'.$sucu.' <br>';
 			}
 		}
+		//error_log("===---".$sucu, 0);
 		$meta_orden = get_post_meta($order_id);
 		$total = $meta_orden['_order_total'][0];
 		
@@ -52,17 +54,21 @@
 		//SEND EMAIL CONFIRMATION
 		$emails = '';
 		$sucu_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_value = '".$sucu."' and meta_key = 'numero_sucursal'");
+		//error_log("ooooooooooooo>".$sucu_id, 0);
 		$sucu_metas = get_post_meta($sucu_id);
-		if(isset($meta['email_responsable_principal'][0]) && $meta['email_responsable_principal'][0] != '') {
-			$emails .= $meta['email_responsable_principal'][0].',';
+		
+		//error_log(print_r($sucu_metas, true));
+		if(isset($sucu_metas['email_responsable_principal'][0]) && $sucu_metas['email_responsable_principal'][0] != '') {
+			$emails .= $sucu_metas['email_responsable_principal'][0].',';
 		}
-		if(isset($meta['email_responsable_secundario'][0]) && $meta['email_responsable_secundario'][0] != '') {
-			$emails .= $meta['email_responsable_secundario'][0].',';
+		if(isset($sucu_metas['email_responsable_secundario'][0]) && $sucu_metas['email_responsable_secundario'][0] != '') {
+			$emails .= $sucu_metas['email_responsable_secundario'][0].',';
 		}
-		if(isset($meta['email_responsable_terciario'][0]) && $meta['email_responsable_terciario'][0] != '') {
-			$emails .= $meta['email_responsable_terciario'][0].',';
+		if(isset($sucu_metas['email_responsable_terciario'][0]) && $sucu_metas['email_responsable_terciario'][0] != '') {
+			$emails .= $sucu_metas['email_responsable_terciario'][0].',';
 		}
 		$emails = substr($emails, 0, -1);
+		error_log("==============>".$emails, 0);
 		$resp = wp_mail( $emails, $subject, $message, $headers );
 		error_log('CORREO -> '.$resp, 0);
 			
