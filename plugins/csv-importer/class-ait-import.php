@@ -88,7 +88,8 @@ class AitImport {
 
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
-
+		add_action( 'admin_menu', array( $this, 'add_sales_reports_admin_menu' ) );
+		
 		// Load admin style sheet and JavaScript.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
@@ -212,12 +213,42 @@ class AitImport {
 	}
 
 	/**
+	 * Register the administration menu for sales reports.
+	 *
+	 * @since    1.0.0
+	 */
+	public function add_sales_reports_admin_menu() {
+
+		if( is_admin() && current_user_can("manage_options") ) {
+			$this->plugin_screen_hook_suffix = add_menu_page(
+				__('Reportes de ventas', 'sales-report'),
+				__('Reportes de Ventas', 'sales-report'),
+				'read',
+				'sales-report',
+				array( $this, 'display_reports_admin_page' ),
+				'dashicons-index-card',
+				2
+			);
+		}
+
+	}
+
+	/**
 	 * Render the settings page for this plugin.
 	 *
 	 * @since    1.0.0
 	 */
 	public function display_plugin_admin_page() {
 		include_once( 'views/admin.php' );
+	}
+
+	/**
+	 * Render the settings page for this plugin.
+	 *
+	 * @since    1.0.0
+	 */
+	public function display_reports_admin_page() {
+		include_once( 'views/reports.php' );
 	}
 
 	/**

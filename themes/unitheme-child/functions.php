@@ -15,7 +15,7 @@
 		$order = new WC_Order( $order_id );
 		$order_item = $order->get_items();
 		foreach ($order_item as $item ) {
-			var_dump($item);
+			//var_dump($item);
 			if(!isset($item['product_id'])) {
 				foreach ($item['item_meta_array'] as $m) {
 					if($m->key == '_product_id') {
@@ -27,13 +27,16 @@
 					}
 					
 				}
-				$articulos .= $item['name'].' - Cantidad:'.$qty.' Sucursal:'.$sucu.' <br>';
+				$s = get_the_title($sucu);
+				$articulos .= $item['name'].' - Cantidad:'.$qty.' <br>Sucursal:'.$sucu.'.- '.$s.' <br>';
 			}
 			else {
 				$meta = get_post_meta($item['product_id']);
 				$sucu = $meta['sucursal'][0];
-				$articulos .= $item['name'].' - Cantidad:'.$item['qty'].' Sucursal:'.$sucu.' <br>';
+				$s = get_the_title($sucu);
+				$articulos .= $item['name'].' - Cantidad:'.$item['qty'].' <br>Sucursal: '.$sucu.'.- '.$s.' <br>';
 			}
+			error_log(print_r($s, true));
 		}
 		//error_log("===---".$sucu, 0);
 		$meta_orden = get_post_meta($order_id);
