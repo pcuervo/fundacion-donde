@@ -29,7 +29,7 @@ $import = AitImport::get_instance();
 		if ($_FILES["posts_csv"]["error"] > 0) {
 			echo '<div class="error"><p>'.__('Incorrect CSV file').'.</p></div>';
 		} else {
-			$import->import_csv($_POST["type"],$_FILES["posts_csv"]['tmp_name'],$_POST["duplicate"]);
+			$import->import_csv($_POST["type"],$_FILES["posts_csv"]['tmp_name'],$_POST["duplicate"], $_POST["statusProductos"]);
 		}
 		
 	}
@@ -108,6 +108,10 @@ $import = AitImport::get_instance();
 						<input type="radio" name="duplicate" value="3"> <?php _e("Ignore item if item with name (slug) already exists"); ?> <br>
 
 					</div>
+					<h4>Status de los productos <br>
+					<label>Publish</label><input type="radio" name="statusProductos" value="publish" checked="checked">
+					<label>Draft</label><input type="radio" name="statusProductos" value="draft"></h4>
+					<input type="checkbox" name="limpiarnuevos"> <label><strong>Limpiar productos "Nuevos" de la tienda</strong></label><br>
 					<input type="file" name="posts_csv">
 					<input type="submit" value="<?php _e('Import from CSV'); ?>" class="upload button-primary">
 				</form>

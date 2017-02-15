@@ -428,7 +428,7 @@ class AitImport {
 	 * @param  string $duplicate how to handle duplicate items
 	 * 
 	 */
-	public function import_csv($type, $file, $duplicate) {
+	public function import_csv($type, $file, $duplicate, $statusProductos) {
 
 		$encoding_id = intval( get_option( 'ait_import_plugin_encoding', '25' ) );
 		$encoding_list = mb_list_encodings();
@@ -555,7 +555,8 @@ class AitImport {
 						}
 
 						$attrs['post_title'] = $this->sanitize_txt($data_row[3]); //columna 'nombre' del archivo csv
-						$attrs['post_content'] = $this->sanitize_txt($data_row[5]);	//columna 'descripcion' del archivo csv					
+						$attrs['post_content'] = $this->sanitize_txt($data_row[5]);	//columna 'descripcion' del archivo csv		
+						$attrs['post_status'] = $statusProductos;			
 						// insert or update
 						$post_id = wp_insert_post( $attrs, true );
 
