@@ -83,7 +83,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php if ( 'no' === get_option( 'woocommerce_registration_generate_username' ) ) : ?>
 
 					<p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide">
-						<label for="reg_username">Nombre y apellido<span class="required">*</span></label>
+						<label for="reg_username"><?php _e( 'Username', 'woocommerce' ); ?> <span class="required">*</span></label>
 						<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="reg_username" value="<?php if ( ! empty( $_POST['username'] ) ) echo esc_attr( $_POST['username'] ); ?>" />
 					</p>
 
