@@ -577,3 +577,34 @@ input[type=number]::-webkit-inner-spin-button,
     font-weight:100;
     color:#ccc;
 }
+
+/*Mi cuenta*/
+
+.woocommerce-MyAccount-navigation ul {
+  background-color: #008a60;
+  list-style: none;
+  padding: 2px;
+  text-align: center;
+}
+.woocommerce-MyAccount-navigation li {
+  display: inline-block;
+}
+.woocommerce-MyAccount-navigation li a {
+  color: #fff;
+  padding: 0 10px;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+}
+.woocommerce-MyAccount-navigation li a:hover {
+  background-color: #fff;
+  color: #008a60;
+}
+
+.woocommerce-MyAccount-navigation-link--downloads { display: none!important; }
+@media(min-width: 1025px){
+  .col.md-6.offsett-md3 {
+    width: 50%;
+    margin-left: 25%;
+  }
+}
