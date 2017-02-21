@@ -1,4 +1,20 @@
 <?php
+
+
+/**
+* Define paths to javascript, styles, theme and site.
+**/
+define( 'JSPATH', get_template_directory_uri() . '/js/' );
+define( 'CSSPATH', get_template_directory_uri() . '/css/' );
+define( 'THEMEPATH', get_template_directory_uri() . '/' );
+
+/*------------------------------------*\
+    #SNIPPETS
+\*------------------------------------*/
+
+require_once( 'inc/pages.php' );
+
+
 	function additionals_functions() {
 		// https://developer.wordpress.org/reference/functions/locate_template/
 		// locate_template( $nombres_de_plantilla, $cargar, $requerir_una_vez )
