@@ -68,9 +68,13 @@ function icl_reset_wpml( $blog_id = false ) {
 		delete_option( 'wpml_config_index' );
 		delete_option( 'wpml_config_index_updated' );
 		delete_option( 'wpml_config_files_arr' );
+		delete_option( 'wpml_language_switcher' );
 
 		$sitepress_settings = null;
 		wp_cache_init();
+
+		$wpml_cache_directory = new WPML_Cache_Directory( new WPML_WP_API() );
+		$wpml_cache_directory->remove();
 
 		do_action( 'wpml_reset_plugins_after' );
 		

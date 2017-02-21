@@ -398,3 +398,9 @@
 
 		<div class="[ main-body ]">
 			<div class="page-wrap">
+
+			<?php if ( !is_front_page() ) { ?>
+				<div class="container">
+					<?php custom_breadcrumbs(); ?>
+				</div>
+			<?php } ?>
