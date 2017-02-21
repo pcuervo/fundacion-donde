@@ -1,8 +1,165 @@
-[13-Sep-2016 23:35:11 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in /Users/micho/Documents/cuervo/sitios/fundacion-donde/wp-includes/functions.php on line 3890
-[13-Sep-2016 23:35:11 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in /Users/micho/Documents/cuervo/sitios/fundacion-donde/wp-includes/functions.php on line 3890
-[13-Sep-2016 23:35:18 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in /Users/micho/Documents/cuervo/sitios/fundacion-donde/wp-includes/functions.php on line 3891
-[13-Sep-2016 23:35:18 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in /Users/micho/Documents/cuervo/sitios/fundacion-donde/wp-includes/functions.php on line 3891
-[13-Sep-2016 23:35:44 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in /Users/micho/Documents/cuervo/sitios/fundacion-donde/wp-includes/functions.php on line 3891
-[13-Sep-2016 23:35:44 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in /Users/micho/Documents/cuervo/sitios/fundacion-donde/wp-includes/functions.php on line 3891
-[13-Sep-2016 23:35:46 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in /Users/micho/Documents/cuervo/sitios/fundacion-donde/wp-includes/functions.php on line 3891
-[13-Sep-2016 23:35:46 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in /Users/micho/Documents/cuervo/sitios/fundacion-donde/wp-includes/functions.php on line 3891
+[15-Feb-2017 20:13:35 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 20:13:35 UTC] PHP Stack trace:
+[15-Feb-2017 20:13:35 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:13:35 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 20:13:35 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 20:13:35 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 20:13:35 UTC] PHP   5. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 20:13:35 UTC] PHP   6. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:35 UTC] PHP   7. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:35 UTC] PHP   8. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 20:13:35 UTC] PHP   9. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:35 UTC] PHP  10. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:35 UTC] PHP  11. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 20:13:35 UTC] PHP  12. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 20:13:35 UTC] PHP  13. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 20:13:35 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 20:13:35 UTC] PHP Stack trace:
+[15-Feb-2017 20:13:35 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:13:35 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 20:13:35 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 20:13:35 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 20:13:35 UTC] PHP   5. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 20:13:35 UTC] PHP   6. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:35 UTC] PHP   7. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:36 UTC] PHP   8. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 20:13:36 UTC] PHP   9. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:36 UTC] PHP  10. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:36 UTC] PHP  11. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 20:13:36 UTC] PHP  12. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 20:13:36 UTC] PHP  13. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 20:13:36 UTC] PHP Warning:  include_once(views/reports.php): failed to open stream: No such file or directory in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\class-ait-import.php on line 251
+[15-Feb-2017 20:13:36 UTC] PHP Stack trace:
+[15-Feb-2017 20:13:36 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:13:36 UTC] PHP   2. do_action() C:\wamp\www\fundacion-donde\wp-admin\admin.php:236
+[15-Feb-2017 20:13:36 UTC] PHP   3. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:36 UTC] PHP   4. AitImport->display_reports_admin_page() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:36 UTC] PHP Warning:  include_once(): Failed opening 'views/reports.php' for inclusion (include_path='.;C:\php\pear') in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\class-ait-import.php on line 251
+[15-Feb-2017 20:13:36 UTC] PHP Stack trace:
+[15-Feb-2017 20:13:36 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:13:36 UTC] PHP   2. do_action() C:\wamp\www\fundacion-donde\wp-admin\admin.php:236
+[15-Feb-2017 20:13:36 UTC] PHP   3. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:13:36 UTC] PHP   4. AitImport->display_reports_admin_page() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 20:16:09 UTC] PHP Stack trace:
+[15-Feb-2017 20:16:09 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:16:09 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 20:16:09 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 20:16:09 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 20:16:09 UTC] PHP   5. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 20:16:09 UTC] PHP   6. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP   7. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP   8. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 20:16:09 UTC] PHP   9. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP  10. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP  11. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 20:16:09 UTC] PHP  12. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 20:16:09 UTC] PHP  13. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 20:16:09 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 20:16:09 UTC] PHP Stack trace:
+[15-Feb-2017 20:16:09 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:16:09 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 20:16:09 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 20:16:09 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 20:16:09 UTC] PHP   5. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 20:16:09 UTC] PHP   6. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP   7. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP   8. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 20:16:09 UTC] PHP   9. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP  10. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP  11. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 20:16:09 UTC] PHP  12. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 20:16:09 UTC] PHP  13. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 20:16:09 UTC] PHP Notice:  Undefined index: action in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\views\reports.php on line 24
+[15-Feb-2017 20:16:09 UTC] PHP Stack trace:
+[15-Feb-2017 20:16:09 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:16:09 UTC] PHP   2. do_action() C:\wamp\www\fundacion-donde\wp-admin\admin.php:236
+[15-Feb-2017 20:16:09 UTC] PHP   3. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP   4. AitImport->display_reports_admin_page() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:16:09 UTC] PHP   5. include_once() C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\class-ait-import.php:251
+[15-Feb-2017 20:26:45 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 20:26:45 UTC] PHP Stack trace:
+[15-Feb-2017 20:26:45 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:26:45 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 20:26:45 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 20:26:45 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 20:26:45 UTC] PHP   5. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 20:26:45 UTC] PHP   6. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP   7. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP   8. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 20:26:45 UTC] PHP   9. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP  10. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP  11. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 20:26:45 UTC] PHP  12. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 20:26:45 UTC] PHP  13. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 20:26:45 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 20:26:45 UTC] PHP Stack trace:
+[15-Feb-2017 20:26:45 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:26:45 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 20:26:45 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 20:26:45 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 20:26:45 UTC] PHP   5. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 20:26:45 UTC] PHP   6. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP   7. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP   8. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 20:26:45 UTC] PHP   9. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP  10. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP  11. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 20:26:45 UTC] PHP  12. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 20:26:45 UTC] PHP  13. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 20:26:45 UTC] PHP Notice:  Undefined index: action in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\views\reports.php on line 24
+[15-Feb-2017 20:26:45 UTC] PHP Stack trace:
+[15-Feb-2017 20:26:45 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:26:45 UTC] PHP   2. do_action() C:\wamp\www\fundacion-donde\wp-admin\admin.php:236
+[15-Feb-2017 20:26:45 UTC] PHP   3. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP   4. AitImport->display_reports_admin_page() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:26:45 UTC] PHP   5. include_once() C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\class-ait-import.php:251
+[15-Feb-2017 20:26:50 UTC] PHP Notice:  Undefined index: pa_talla in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\sales-report-paypal.php on line 89
+[15-Feb-2017 20:26:50 UTC] PHP Stack trace:
+[15-Feb-2017 20:26:50 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\sales-report-paypal.php:0
+[15-Feb-2017 20:26:50 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\sales-report-paypal.php on line 123
+[15-Feb-2017 20:26:50 UTC] PHP Stack trace:
+[15-Feb-2017 20:26:50 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\sales-report-paypal.php:0
+[15-Feb-2017 20:26:50 UTC] PHP Notice:  Undefined index: pa_talla in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\sales-report-paypal.php on line 89
+[15-Feb-2017 20:26:50 UTC] PHP Stack trace:
+[15-Feb-2017 20:26:50 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\sales-report-paypal.php:0
+[15-Feb-2017 20:26:50 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\sales-report-paypal.php on line 123
+[15-Feb-2017 20:26:50 UTC] PHP Stack trace:
+[15-Feb-2017 20:26:50 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\sales-report-paypal.php:0
+[15-Feb-2017 20:36:40 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 20:36:40 UTC] PHP Stack trace:
+[15-Feb-2017 20:36:40 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:36:40 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 20:36:40 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 20:36:40 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 20:36:40 UTC] PHP   5. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 20:36:40 UTC] PHP   6. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP   7. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP   8. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 20:36:40 UTC] PHP   9. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP  10. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP  11. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 20:36:40 UTC] PHP  12. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2143
+[15-Feb-2017 20:36:40 UTC] PHP  13. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 20:36:40 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[15-Feb-2017 20:36:40 UTC] PHP Stack trace:
+[15-Feb-2017 20:36:40 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:36:40 UTC] PHP   2. require_once() C:\wamp\www\fundacion-donde\wp-admin\admin.php:31
+[15-Feb-2017 20:36:40 UTC] PHP   3. require_once() C:\wamp\www\fundacion-donde\wp-load.php:37
+[15-Feb-2017 20:36:40 UTC] PHP   4. require_once() C:\wamp\www\fundacion-donde\wp-config.php:91
+[15-Feb-2017 20:36:40 UTC] PHP   5. do_action() C:\wamp\www\fundacion-donde\wp-settings.php:393
+[15-Feb-2017 20:36:40 UTC] PHP   6. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP   7. TGM_Plugin_Activation->init() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP   8. do_action() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:407
+[15-Feb-2017 20:36:40 UTC] PHP   9. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP  10. ninzio_register_required_plugins() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP  11. tgmpa() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php:102
+[15-Feb-2017 20:36:40 UTC] PHP  12. _deprecated_argument() C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\includes\class-tgm-plugin-activation.php:2146
+[15-Feb-2017 20:36:40 UTC] PHP  13. trigger_error() C:\wamp\www\fundacion-donde\wp-includes\functions.php:3887
+[15-Feb-2017 20:36:40 UTC] PHP Notice:  Undefined index: action in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\views\reports.php on line 24
+[15-Feb-2017 20:36:40 UTC] PHP Stack trace:
+[15-Feb-2017 20:36:40 UTC] PHP   1. {main}() C:\wamp\www\fundacion-donde\wp-admin\admin.php:0
+[15-Feb-2017 20:36:40 UTC] PHP   2. do_action() C:\wamp\www\fundacion-donde\wp-admin\admin.php:236
+[15-Feb-2017 20:36:40 UTC] PHP   3. call_user_func_array() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP   4. AitImport->display_reports_admin_page() C:\wamp\www\fundacion-donde\wp-includes\plugin.php:525
+[15-Feb-2017 20:36:40 UTC] PHP   5. include_once() C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\class-ait-import.php:251

@@ -29,7 +29,7 @@ $import = AitImport::get_instance();
 		if ($_FILES["posts_csv"]["error"] > 0) {
 			echo '<div class="error"><p>'.__('Incorrect CSV file').'.</p></div>';
 		} else {
-			$import->import_csv($_POST["type"],$_FILES["posts_csv"]['tmp_name'],$_POST["duplicate"]);
+			$import->import_csv($_POST["type"],$_FILES["posts_csv"]['tmp_name'],$_POST["duplicate"], $_POST["statusProductos"], $_POST["porcentaje"]);
 		}
 		
 	}
@@ -42,37 +42,37 @@ $import = AitImport::get_instance();
 		}
 	}
 	?>
-
+	<!--
 	<div class="import-settings metabox-holder">
 		<div class="import-options postbox">
 
 			<div class="handlediv" title="Click to toggle"><br></div>
 
-			<h3 class="hndle"><span><?php _e('Import settings'); ?></span></h3>
+			<h3 class="hndle"><span><?php //_e('Import settings'); ?></span></h3>
 
 			<div class="inside">
 
-				<?php $saved_encoding = get_option( 'ait_import_plugin_encoding', '25' ); ?>
+				<?php //$saved_encoding = get_option( 'ait_import_plugin_encoding', '25' ); ?>
 
 				<form action="admin.php?page=ait-import" method="post">
-					<label for="import-encoding"><?php _e('Encoding of imported CSV files: '); ?></label>
+					<label for="import-encoding"><?php //_e('Encoding of imported CSV files: '); ?></label>
 					<select name="encoding" id="import-encoding">
-					<?php foreach (mb_list_encodings() as $key => $value) {
+					<?php /*foreach (mb_list_encodings() as $key => $value) {
 						if($key == intval($saved_encoding)) {
 							echo "<option selected='selected' value='$key'>$value</option>";
 						} else {
 							echo "<option value='$key'>$value</option>";
 						}
-					} ?>
+					}*/ ?>
 					</select>
-					<input type="submit" value="<?php _e('Save settings'); ?>" class="save button">
+					<input type="submit" value="<?php //_e('Save settings'); ?>" class="save button">
 				</form>
 
 			</div>
 
 		</div>
 	</div>
-
+	-->
 	<?php
 	foreach ($import->post_types as $type) { ?>
 	<div class="import-custom-type metabox-holder">
@@ -108,6 +108,10 @@ $import = AitImport::get_instance();
 						<input type="radio" name="duplicate" value="3"> <?php _e("Ignore item if item with name (slug) already exists"); ?> <br>
 
 					</div>
+					<h4>Status de los productos <br>
+					<label>Publish</label><input type="radio" name="statusProductos" value="publish" checked="checked">
+					<label>Draft</label><input type="radio" name="statusProductos" value="draft"></h4>
+					<input type="number" name="porcentaje" min="0" max="100" value="0">% <label><strong>Porcentaje de incremento al precio de los artículos</strong></label><br>
 					<input type="file" name="posts_csv">
 					<input type="submit" value="<?php _e('Import from CSV'); ?>" class="upload button-primary">
 				</form>

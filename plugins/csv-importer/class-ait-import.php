@@ -88,7 +88,8 @@ class AitImport {
 
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
-
+		add_action( 'admin_menu', array( $this, 'add_sales_reports_admin_menu' ) );
+		
 		// Load admin style sheet and JavaScript.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
@@ -212,12 +213,42 @@ class AitImport {
 	}
 
 	/**
+	 * Register the administration menu for sales reports.
+	 *
+	 * @since    1.0.0
+	 */
+	public function add_sales_reports_admin_menu() {
+
+		if( is_admin() && current_user_can("manage_options") ) {
+			$this->plugin_screen_hook_suffix = add_menu_page(
+				__('Reportes de ventas', 'sales-report'),
+				__('Reportes de Ventas', 'sales-report'),
+				'read',
+				'sales-report',
+				array( $this, 'display_reports_admin_page' ),
+				'dashicons-index-card',
+				2
+			);
+		}
+
+	}
+
+	/**
 	 * Render the settings page for this plugin.
 	 *
 	 * @since    1.0.0
 	 */
 	public function display_plugin_admin_page() {
 		include_once( 'views/admin.php' );
+	}
+
+	/**
+	 * Render the settings page for this plugin.
+	 *
+	 * @since    1.0.0
+	 */
+	public function display_reports_admin_page() {
+		include_once( 'views/reports.php' );
 	}
 
 	/**
@@ -272,6 +303,7 @@ class AitImport {
 	 * @param  string $data      row in array format
 	 * 
 	 */
+	/*
 	public function validate_row($data) {
 		//VALIDAR QUE LOS CAMPOS REQUERIDOS ESTEN SETEADOS Y NO ESTEN VACIOS
 		if(!isset($data[0]) || empty($data[0]) || !isset($data[1]) || empty($data[1]) || !isset($data[2]) || empty($data[2]) || !isset($data[4]) || empty($data[4]) || !isset($data[5]) || empty($data[5]) || !isset($data[6]) || empty($data[6]) || !isset($data[7]) || empty($data[7]) || !isset($data[13]) || empty($data[13]) ) {
@@ -303,13 +335,118 @@ class AitImport {
 			}
 		}
 		//VALIDACION PARA LA CATEGORIA Relojes
-		if($data[5] == 'Electronicos') {
+		if($data[5] == 'Electrónicos') {
 			//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
 			if($data[6] != 'celulares' && $data[6] != 'tablets' && $data[6] != 'pantallas') {
 				return true;
 			}
 		}
 		return false;
+	}
+	*/
+	function sanitize_txt ( $text ) {
+        $san_text = filter_var($text, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH | FILTER_FLAG_STRIP_LOW ) ;
+        return $san_text;
+    }
+
+	public function validate_row($data) {
+		global $wpdb;
+		$i = 0;
+		$ok = true;
+		$respu = '';
+		for($i = 0; $i<=19; $i++) {
+			//VALIDAR CAMPOS OBLIGAROTIOS
+			$col = $i+1;
+			if(in_array($i, array(0,1,2,3,4,6,7,8,9,15 ))) {
+				if(!isset($data[$i]) || empty($data[$i])) {
+					$respu .= 'La columna '.$col.' es obligatoria, no debe estar vacia.<br>';
+					$ok = false;
+				}	
+			}
+
+			//VALIDAR QUE LA SUCURSAL EXISTA
+			if($i == 0) {
+				$sucu = $wpdb->get_var("SELECT meta_value FROM $wpdb->postmeta WHERE meta_value = '".$data[$i]."' and meta_key = 'numero_sucursal'");
+				if(is_null($sucu)) {
+					$respu .= 'No se encontro la "sucursal" con numero de sucursal <strong>'.$data[$i].'</strong>.<br>';
+					$ok = false;
+				}
+			}
+
+			//VALIDAR QUE LA SUCURSAL EXISTA
+			if($i == 1) {
+				if($data[$i] != 'Excelente' && $data[$i] != 'Muy bueno' && $data[$i] != 'Bueno') {
+					$respu .= 'La columna "estado" solo admite los valores "Excelente|Muy bueno|Bueno". Valor recibido ['.$data[$i].']<br>';
+					$ok = false;
+				}
+			}
+
+			//VALIDAR QUE LA COLUMNA UPC NO CONTENGA +
+			if($i == 2) {
+				if( strpos( $data[$i], '+' ) !== false ) {
+				    $respu .= 'La columna '.$col.' no debe tener el caracter "+".<br>';
+					$ok = false;
+				}
+			}
+
+			//VALIDAR CAMPOS NUMERICOS
+			if(in_array($i, array(6))) {
+				if($data[$i] < 0 || !is_numeric($data[$i])) {
+			    	$respu .= 'La columna '.$col.' debe tener un valor numerico mayor que 0.<br>';
+			    	$ok = false;
+			    }
+			}
+			if($i==18) {
+				//VALIDAR QUE SI EL AÑO NO ESTA VACIO, QUE CONTENGA UN VALOR NUMERICO
+			    if(!empty($data[$i]) && $data[$i] != '' ) {
+				    if(!is_numeric($data[$i])) {
+				    	$respu .= 'La columna '.$col.' (año) debe tener un valor numerico.<br>';
+			    		$ok = false;
+				    }
+				}
+			}
+			if($i==7) {
+				//VALIDACION PARA LA CATEGORIA Relojes
+				$cate = $this->sanitize_txt($data[$i]);
+				
+				if(!in_array($cate, array('Relojes', 'Joyas', 'Electronicos'))) {
+				//if($cat != 'Relojes' && $cat != 'Joyas' && strpos($cate, 'Electr') !== FALSE $cat != 'Electrónicos') {
+					$respu .= 'La columna categoria solo admite los valores "Relojes|Joyas|Electrónicos". Valor recibido ['.$cate.']';
+					$ok = false;
+				}
+				else {
+					if($data[$i] == 'Relojes') {
+						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
+						if(!in_array($data[8], array('Dama', 'dama', 'Caballero', 'caballero' ))) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "dama|caballero". Valor recibido ['.$data[8].']';
+							$ok = false;
+						}
+					}
+					//VALIDACION PARA LA CATEGORIA Relojes
+					if($data[$i] == 'Joyas') {
+						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
+						if(!in_array($data[8], array('Aretes', 'aretes', 'Cadenas', 'cadenas', 'Dijes', 'dijes', 'Pulseras', 'pulseras', 'Anillos', 'anillos', 'Broqueles', 'broqueles' )) ) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "aretes|cadenas|dijes|pulseras|anillos|broqueles". Valor recibido ['.$data[8].']';
+							$ok = false;
+						}
+					}
+					//VALIDACION PARA LA CATEGORIA Relojes
+					if($this->sanitize_txt($data[$i]) == 'Electronicos') {
+						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
+						if(!in_array($data[8], array('Celulares', 'celulares', 'Tablets', 'tablets', 'Pantallas', 'pantallas' ))) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "celulares|tablets|pantallas". Valor recibido ['.$this->sanitize_txt($data[8]).']';
+							$ok = false;
+						}
+					}
+				}
+			}
+		}
+		
+		if($ok) {
+			$respu .= "OK";
+		}
+		return $respu;
+		
 	}
 
 	/**
@@ -322,7 +459,7 @@ class AitImport {
 	 * @param  string $duplicate how to handle duplicate items
 	 * 
 	 */
-	public function import_csv($type, $file, $duplicate) {
+	public function import_csv($type, $file, $duplicate, $statusProductos, $porcentaje) {
 
 		$encoding_id = intval( get_option( 'ait_import_plugin_encoding', '25' ) );
 		$encoding_list = mb_list_encodings();
@@ -405,8 +542,8 @@ class AitImport {
 
 					//VALIDATE DUPLICATE SKU
 					//echo "SELECT post_id FROM $wpdb->postmeta WHERE meta_value = '".$data_row[0]."' and meta_key = '_sku'";
-					if (isset($data_row[0]) && !empty($data_row[0])) {
-						$sku = $data_row[0];
+					if (isset($data_row[2]) && !empty($data_row[2])) {
+						$sku = $data_row[2];
 						$existente_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_value = '".$sku."' and meta_key = '_sku'");
 					}
 					if (isset($existente_id) && $existente_id) {
@@ -414,11 +551,16 @@ class AitImport {
 						$ignore = true;
 						$attrs['ID'] = $existente_id;
 						$sku_existentes .= $sku.', ';
+						echo '<div class="error"><p><h5>Artículo ignorado por ya existir <strong>[SKU : '.$sku.' - Nombre : '.$data_row[3].']</strong></h5>'.$respues.'</p></div>';
 					}
 
 					//VALIDAR DATOS DE ENTRADA
 					if(!$ignore) { 
-						$ignore = $this->validate_row($data_row); 
+						$respues = $this->validate_row($data_row); 
+						if($respues != 'OK') { 
+							$ignore = true; 
+							echo '<div class="error"><p><h5>ERRORES PARA <strong>[SKU : '.$data_row[2].']</strong></h5>'.$respues.'</p></div>';
+						}
 						if($ignore) { $num_ignored++; $sku_invalidos .= $sku.', '; }
 					}
 					
@@ -443,8 +585,9 @@ class AitImport {
 							}
 						}
 
-						$attrs['post_title'] = $data_row[1]; //columna 'nombre' del archivo csv
-						$attrs['post_content'] = $data_row[3];	//columna 'descripcion' del archivo csv					
+						$attrs['post_title'] = $this->sanitize_txt($data_row[3]); //columna 'nombre' del archivo csv
+						$attrs['post_content'] = $this->sanitize_txt($data_row[5]);	//columna 'descripcion' del archivo csv		
+						$attrs['post_status'] = $statusProductos;			
 						// insert or update
 						$post_id = wp_insert_post( $attrs, true );
 
@@ -493,11 +636,23 @@ class AitImport {
 											break;
 										case 'precio':
 												$opt = '_price';
-												update_post_meta( $post_id, $opt, $data_row[$key] );
+												if($porcentaje > 0) {
+													$precio = round($data_row[$key]*(1+$porcentaje/100),2);
+												}
+												else {
+													$precio = $data_row[$key];
+												}
+												update_post_meta( $post_id, $opt, $precio );
+												update_post_meta( $post_id, '_regular_price', $precio );
 											break;
 										case 'descripcion':
 												$opt = 'post_content';
 												update_post_meta( $post_id, $opt, $data_row[$key] );
+											break;
+										case 'cantidad':
+												update_post_meta( $post_id, '_manage_stock', 'yes' );
+												update_post_meta( $post_id, '_stock_status', 'instock' );
+												update_post_meta( $post_id, '_stock', $data_row[$key] );
 											break;
 										case 'categoria':
 												$term_id = get_term_by('slug', $data_row[$key], 'product_cat');
