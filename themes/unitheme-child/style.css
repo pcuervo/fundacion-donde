@@ -118,6 +118,9 @@
   vertical-align: middle;
 }
 
+.log-in .cuenta-logout,
+.log-out .cuenta-login { display: none; }
+
   /*Language*/
 #lang_sel ul ul {
   position: absolute;
@@ -412,6 +415,7 @@ footer{
 /*Box model*/
 .margin-top { margin-top: 20px; }
 
+.hidden { display: none!important; }
 /*WOOCOMMERCE*/
 
   /*Cart*/
@@ -503,6 +507,23 @@ input[type=number]::-webkit-inner-spin-button,
      margin: 8px;
  }
 
+.content-message {
+  background-color: #008a60;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.product .single-product-image .onsale {
+  top: 0px;
+}
+
+.product .quantity {
+  display: none;
+}
+
 /*Etiquetas*/
 
 .woocommerce .product .onsale {
@@ -519,3 +540,18 @@ input[type=number]::-webkit-inner-spin-button,
 
 .woocommerce-page .page-title { color: #018a5e; }
 
+.woocommerce-error a,
+.woocommerce-message a,
+.woocommerce-error .button,
+.woocommerce-message .button,
+.woocommerce-message .button.wc-forward {
+  background-color: #018a5e!important;
+  color: #ffffff !important;
+  height: 45px;
+  display: inline-block;
+  line-height: 45px;
+  padding: 0 10px;
+  vertical-align: middle;
+  margin: 0 10px;
+  border-radius: 5px!important;
+}

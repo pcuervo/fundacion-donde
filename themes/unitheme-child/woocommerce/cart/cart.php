@@ -35,7 +35,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 			<th class="product-thumbnail">&nbsp;</th>
 			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
 			<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
-			<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
+			<th class="product-quantity [ hidden ]"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
 			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
 		</tr>
 	</thead>
@@ -100,7 +100,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						?>
 					</td>
 
-					<td class="product-quantity" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
+					<td class="product-quantity [ hidden ]" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
 						<?php
 							if ( $_product->is_sold_individually() ) {
 								$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );

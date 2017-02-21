@@ -261,7 +261,12 @@
 						<div class="container nz-clearfix">
 
 							<?php if ($nz_ninzio['desk-slogan']): ?>
-								<div class="desk-slogan">
+
+							<?php if ( is_user_logged_in() ){ ?>
+								<div class="desk-slogan log-in">
+							<?php } else { ?>
+								<div class="desk-slogan log-out">
+							<?php } ?>
 									<?php
 										echo do_action('wpml_add_language_selector');
 										echo do_shortcode(wp_kses_post($nz_ninzio['desk-slogan']));
