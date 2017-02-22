@@ -798,3 +798,19 @@ div.panel {
   transform: scale(1,1);
   }
 }
+
+/*tax*/
+.cart_totals .includes_tax .amount:before,
+.box-review .includes_tax .amount:before { content: '(Incluye ' }
+.cart_totals .includes_tax .amount:after,
+.box-review .includes_tax .amount:after { content: ' de impuesto en el envío)' }
+.cart_totals .includes_tax .amount,
+.box-review .includes_tax .amount {
+  color: #777777;
+  font-size: 13px;
+}
+.cart_totals .includes_tax,
+.box-review .includes_tax {
+  color: #fff;
+  font-size: 0px;
+}
