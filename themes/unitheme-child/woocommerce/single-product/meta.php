@@ -158,6 +158,14 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 		echo (!empty($electronico_numero_de_puertos_usb_20) ? '<span class="posted_in">Puertos USB 2.0: '.$electronico_numero_de_puertos_usb_20.'</span>' : '');
 		echo (!empty($electronico_estado) ? '<span class="posted_in">Estado: '.$electronico_estado.'</span>' : '');
 
+
+		$sucursal = get_post_meta($post->ID, 'sucursal', true);
+		$estado = get_post_meta($post->ID, 'estado', true);
+
+		echo "<br>";
+		echo (!empty($sucursal) ? '<span class="posted_in">Número de Sucursal: '.$sucursal.'</span>' : '');
+		echo (!empty($estado) ? '<span class="posted_in">Estado del artículo: '.$estado.'</span>' : '');
+
 	?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>

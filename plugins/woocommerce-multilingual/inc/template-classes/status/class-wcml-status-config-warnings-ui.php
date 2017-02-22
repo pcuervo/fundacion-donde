@@ -33,8 +33,7 @@ class WCML_Status_Config_Warnings_UI extends WPML_Templates_Factory {
             'st_lang' => $this->sitepress_settings['st']['strings_language'],
             'not_en_doc_page' => 'https://wpml.org/?page_id=355545',
             'strings' => array(
-                'conf' => __( 'Configuration warnings', 'woocommerce-multilingual' ),
-                'report' => __( 'Reporting miscelaneous configuration issues that can make WooCommerce Multilingual not run normally', 'woocommerce-multilingual' ),
+                'conf' => __( 'Configuration Warnings', 'woocommerce-multilingual' ),
                 'base_not_trnsl' => __( 'Your product permalink base is not translated to:', 'woocommerce-multilingual' ),
                 'trsl_urls' => __( 'Translate URLs', 'woocommerce-multilingual' ),
                 'def_and_st_not_en' => __( "Your site's default language is not English and the strings language is also not English.", 'woocommerce-multilingual' ),

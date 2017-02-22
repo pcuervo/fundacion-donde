@@ -414,6 +414,8 @@ footer{
 
 /*Box model*/
 .margin-top { margin-top: 20px; }
+.margin-bottom { margin-bottom: 20px; }
+.margin-bottom--large { margin-bottom: 40px; }
 
 .hidden { display: none!important; }
 /*WOOCOMMERCE*/
@@ -611,4 +613,12 @@ input[type=number]::-webkit-inner-spin-button,
     width: 50%;
     margin-left: 25%;
   }
+}
+
+/*Preguntas frecuentes*/
+.accordion {
+  cursor: pointer;
+}
+div.panel {
+    display: none;
 }

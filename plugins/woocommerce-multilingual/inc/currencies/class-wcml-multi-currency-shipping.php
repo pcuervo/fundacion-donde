@@ -12,13 +12,13 @@ class WCML_Multi_Currency_Shipping{
 
         $this->multi_currency =& $multi_currency;
 
-        add_filter('woocommerce_cart_shipping_method_full_label', array( $this, 'convert_shipping_cost'), 10, 2 );
-
         // shipping method cost settings
-        $rates = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}woocommerce_shipping_zone_methods WHERE method_id IN('flat_rate', 'local_pickup', 'free_shipping')" );
-        foreach( $rates as $method ){
-            $option_name = sprintf('woocommerce_%s_%d_settings', $method->method_id, $method->instance_id );
-            add_filter('option_' . $option_name, array($this, 'convert_shipping_method_cost_settings'));
+        if( version_compare( WC()->version, '2.6.0', '>=' ) ) {
+            $rates = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}woocommerce_shipping_zone_methods WHERE method_id IN('flat_rate', 'local_pickup', 'free_shipping')" );
+            foreach ( $rates as $method ) {
+                $option_name = sprintf( 'woocommerce_%s_%d_settings', $method->method_id, $method->instance_id );
+                add_filter( 'option_' . $option_name, array($this, 'convert_shipping_method_cost_settings') );
+            }
         }
 
         // Used for table rate shipping compatibility class
@@ -27,50 +27,28 @@ class WCML_Multi_Currency_Shipping{
 
         add_filter( 'woocommerce_evaluate_shipping_cost_args', array( $this, 'woocommerce_evaluate_shipping_cost_args') );
 
-        add_action( 'woocommerce_calculate_totals', array( $this, 'convert_shipping_totals' ) );
-
         add_filter( 'woocommerce_shipping_packages', array( $this, 'convert_shipping_taxes'), 10 );
 
+        add_filter( 'woocommerce_package_rates', array($this, 'convert_shipping_costs_in_package_rates'), 10, 2 );
 
         // Before WooCommerce 2.6
-        add_filter('option_woocommerce_free_shipping_settings', array( $this, 'adjust_min_amount_required' ) );
+        if( version_compare( WC()->version, '2.6.0', '<' ) ){
+            new WCML_Multi_Currency_Shipping_Legacy();
+        }
 
 
     }
 
-    /**
-     * @param $label string
-     * @param $method object
-     * @return string
-     *
-     */
-    public function convert_shipping_cost( $label, $method ){
+    public function convert_shipping_costs_in_package_rates( $rates, $package ){
 
-        if( empty( $method->_costs_converted ) ){
+	    $client_currency = $this->multi_currency->get_client_currency();
+	    foreach( $rates as $rate_id => $rate ){
+	    	if( isset( $rate->cost ) && $rate->cost ){
+			    $rate->cost = $this->multi_currency->prices->raw_price_filter( $rate->cost, $client_currency);
+		    }
+	    }
 
-            $client_currency = $this->multi_currency->get_client_currency();
-            $label = $method->get_label();
-
-            if ( $method->cost > 0 ) {
-                $method->cost = $this->multi_currency->prices->raw_price_filter( $method->cost, $client_currency);
-                if ( WC()->cart->tax_display_cart == 'excl' ) {
-                    $label .= ': ' . wc_price( $method->cost );
-                    if ( $method->get_shipping_tax() > 0 && WC()->cart->prices_include_tax ) {
-                        $label .= ' <small class="tax_label">' . WC()->countries->ex_tax_or_vat() . '</small>';
-                    }
-                } else {
-                    $label .= ': ' . wc_price( $method->cost + $method->get_shipping_tax() );
-                    if ( $method->get_shipping_tax() > 0 && ! WC()->cart->prices_include_tax ) {
-                        $label .= ' <small class="tax_label">' . WC()->countries->inc_tax_or_vat() . '</small>';
-                    }
-                }
-            }
-
-            $method->_costs_converted = true;
-
-        }
-
-        return $label;
+    	return $rates;
     }
 
     public function convert_shipping_method_cost_settings( $settings ){
@@ -78,7 +56,16 @@ class WCML_Multi_Currency_Shipping{
         $has_free_shipping_coupon = false;
         if ( $coupons = WC()->cart->get_coupons() ) {
             foreach ( $coupons as $code => $coupon ) {
-                if ( $coupon->is_valid() && $coupon->enable_free_shipping() ) {
+
+                if (
+                    $coupon->is_valid() &&
+                    (
+                        //backward compatibility for WC < 2.7
+                        method_exists( $coupon, 'get_free_shipping' ) ?
+                            $coupon->get_free_shipping() :
+                            $coupon->enable_free_shipping()
+                    )
+                ) {
                     $has_free_shipping_coupon = true;
                 }
             }
@@ -115,24 +102,17 @@ class WCML_Multi_Currency_Shipping{
         return $args;
     }
 
-    /**
-     * @param $cart WC_Cart (reference)
-     *
-     * converts the cart total and the cart tax total in the WC_Cart object on the checkout page
-     */
-    public function convert_shipping_totals( $cart ){
-        $cart->shipping_total     = $this->multi_currency->prices->raw_price_filter( $cart->shipping_total );
-    }
-
     public function convert_shipping_taxes( $packages ){
 
         foreach( $packages as $package_id => $package ){
-            foreach( $package['rates'] as $rate_id => $rate  ){
-                foreach( $rate->taxes as $tax_id => $tax){
+            if( isset( $package['rates'] ) ){
+                foreach( $package['rates'] as $rate_id => $rate  ){
+                    foreach( $rate->taxes as $tax_id => $tax){
 
-                    $packages[$package_id]['rates'][$rate_id]->taxes[$tax_id] =
-                        $this->multi_currency->prices->raw_price_filter( $tax );
+                        $packages[$package_id]['rates'][$rate_id]->taxes[$tax_id] =
+                            $this->multi_currency->prices->raw_price_filter( $tax );
 
+                    }
                 }
             }
         }
@@ -150,20 +130,11 @@ class WCML_Multi_Currency_Shipping{
 
     public function shipping_free_min_amount($price) {
 
-        $price = $this->multi_currency->prices->raw_price_filter($price, $this->multi_currency->get_client_currency());
+        $price = $this->multi_currency->prices->raw_price_filter( $price, $this->multi_currency->get_client_currency() );
 
         return $price;
 
     }
 
-    // Before WooCommerce 2.6
-    public function adjust_min_amount_required($options){
-
-        if( !empty( $options['min_amount'] ) ){
-            $options['min_amount'] = apply_filters( 'wcml_shipping_free_min_amount', $options['min_amount'] );
-        }
-
-        return $options;
-    }
 
 }

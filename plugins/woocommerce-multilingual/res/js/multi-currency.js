@@ -67,11 +67,9 @@ jQuery( function($){
             $('#multi_currency_independent').change(function(){
 
                 if($(this).attr('checked') == 'checked'){
-                    $('#currency-switcher').fadeIn();
-                    $('#multi-currency-per-language-details').fadeIn();
+                    $('#currency-switcher, #multi-currency-per-language-details, #online-exchange-rates').fadeIn();
                 }else{
-                    $('#multi-currency-per-language-details').fadeOut();
-                    $('#currency-switcher').fadeOut();
+                    $('#currency-switcher, #multi-currency-per-language-details, #online-exchange-rates').fadeOut();
                 }
 
             })
@@ -136,6 +134,11 @@ jQuery( function($){
                     });
 
                     WCML_Multi_Currency.currency_switcher_preview();
+
+                    if( $('.wcml-row-currency').length == 1 ){
+                        $('#online-exchange-rates-no-currencies').next().hide();
+                        $('#online-exchange-rates-no-currencies').show();
+                    }
                 },
                 done: function() {
                     ajaxLoader.remove();
@@ -172,7 +175,7 @@ jQuery( function($){
                 dataType: 'json',
                 data: parent.find('[name^="currency_options"]').serialize() + '&action=wcml_save_currency&wcml_nonce=' + jQuery('#wcml_save_currency_nonce').val(),
                 success: function(response){
-                    parent.dialog('close');
+                    parent.find('.wcml-dialog-close-button').trigger('click');
 
                     WCML_Multi_Currency.currency_switcher_preview();
 
@@ -202,6 +205,9 @@ jQuery( function($){
                             $(this).append('<option value="'+currency+'">'+currency+'</option>');
                         });
 
+                        //add to orders list
+                        $('#wcml_currencies_order').append('<li class="wcml_currencies_order_'+currency+' ui-sortable-handle" cur="'+currency+'">'+response.currency_name_formatted+'</li>');
+
                         var tr = $('#currency-delete-table tr.wcml-row-currency-del:last').clone();
                         tr.attr('id', 'currency_row_del_' + currency);
 
@@ -221,6 +227,11 @@ jQuery( function($){
                     $('#wcml_mc_options').before(response.currency_options);
 
                     $('#wcml_currency_options_code_ option[value="'+currency+'"]').remove();
+
+                    if( $('#online-exchange-rates-no-currencies').is(':visible') ){
+                        $('#online-exchange-rates-no-currencies').hide();
+                        $('#online-exchange-rates-no-currencies').next().show();
+                    }
                 }
 
             })
@@ -274,6 +285,10 @@ jQuery( function($){
             $('.default_currency select[rel="'+$(this).data('language')+'"]').append('<option value="'+$(this).data('currency')+'">'+$(this).data('currency')+'</option>');
             WCML_Multi_Currency.update_currency_lang($(this),1,0);
 
+            var title_alt = $(this).data( 'title-alt' );
+            $(this).data( 'title-alt', $(this).attr('title') );
+            $(this).attr('title', title_alt);
+
         },
 
         disable_currency_for_language: function(e){
@@ -299,6 +314,10 @@ jQuery( function($){
                 WCML_Multi_Currency.update_currency_lang($(this),0,0);
             }
             $('.default_currency select[rel="'+$(this).data('language')+'"] option[value="'+$(this).data('currency')+'"]').remove();
+
+            var title_alt = $(this).data( 'title-alt' );
+            $(this).data( 'title-alt', $(this).attr('title') );
+            $(this).attr('title', title_alt);
 
         },
 
@@ -469,8 +488,12 @@ jQuery( function($){
         },
 
         update_currency_switcher_style: function(e){
-            $(this).closest('ul').find('select').hide();
-            $(this).closest('li').find('select').show();
+
+            if( $(this).val() == 'list' ){
+                $('#wcml_curr_sel_orientation_list_wrap').show();
+            }else{
+                $('#wcml_curr_sel_orientation_list_wrap').hide();
+            }
             WCML_Multi_Currency.currency_switcher_preview();
         },
 

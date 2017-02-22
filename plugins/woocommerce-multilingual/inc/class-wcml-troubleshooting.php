@@ -14,6 +14,7 @@ class WCML_Troubleshooting{
         add_action('wp_ajax_trbl_update_count', array($this,'trbl_update_count'));
         add_action('wp_ajax_trbl_sync_categories', array($this,'trbl_sync_categories'));
         add_action('wp_ajax_trbl_duplicate_terms', array($this,'trbl_duplicate_terms'));
+        add_action('wp_ajax_trbl_fix_product_type_terms', array($this,'trbl_fix_product_type_terms'));
 
     }
 
@@ -128,7 +129,7 @@ class WCML_Troubleshooting{
             die('Invalid nonce');
         }
 
-        $page = isset($_POST['page'])?$_POST['page']:0;
+        $page = isset($_POST['page'])? intval( $_POST['page'] ) :0;
 
         global $woocommerce_wpml,$wpdb;
 
@@ -153,7 +154,7 @@ class WCML_Troubleshooting{
             die('Invalid nonce');
         }
 
-        $page = isset($_POST['page'])?$_POST['page']:0;
+        $page = isset($_POST['page'])? intval( $_POST['page'] ):0;
 
         global $wpdb,$sitepress;
 
@@ -212,14 +213,10 @@ class WCML_Troubleshooting{
                         }
                     }
 
-                    if( version_compare( ICL_SITEPRESS_VERSION, '3.1.8.2', '<=' ) ){
-                        $term_name = $term->name.' @'.$language['code'];
-                    }else{
-                        $term_name = $term->name;
-                        $slug = $term->name.'-'.$language['code'];
-                        $slug = WPML_Terms_Translations::term_unique_slug( $slug, $attr, $language['code'] );
-                        $term_args[ 'slug' ] = $slug;
-                    }
+                    $term_name = $term->name;
+                    $slug = $term->name.'-'.$language['code'];
+                    $slug = WPML_Terms_Translations::term_unique_slug( $slug, $attr, $language['code'] );
+                    $term_args[ 'slug' ] = $slug;
 
                     $new_term = wp_insert_term( $term_name , $attr, $term_args );
                     if ( $new_term && !is_wp_error( $new_term ) ) {
@@ -230,6 +227,19 @@ class WCML_Troubleshooting{
             }
 
         }
+
+        echo 1;
+
+        die();
+    }
+
+    function trbl_fix_product_type_terms(){
+        $nonce = filter_input( INPUT_POST, 'wcml_nonce', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+        if(!$nonce || !wp_verify_nonce($nonce, 'trbl_product_type_terms')){
+            die('Invalid nonce');
+        }
+
+        WCML_Install::check_product_type_terms();
 
         echo 1;
 
