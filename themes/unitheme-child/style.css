@@ -269,6 +269,7 @@ footer .footer-content .footer-info { text-transform: capitalize!important; }
 .no-margin-right { margin-right: 0px!important; }
 .margin-right { margin-right: 20px; }
 .margin-bottom--small { margin-bottom: 10px; }
+.margin-top-bottom { margin-bottom: 20px;  margin-top: 20px; }
 
 .no-padding--left { padding-left: 0px!important; }
 .pading-top-bottom { padding-top: 20px; padding-bottom: 20px; }
@@ -477,12 +478,30 @@ footer{
 
 .box-review input[name="payment_method"]:checked + label { color: #225f87; font-weight: bold; }
 
+.bg-notice {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  margin: 0px;
+  background-color: #008a60;
+  z-index: 1;
+}
+.bg-notice + .returning-user,
+.returning-user + .showlogin {
+  z-index: 1;
+  position: relative;
+  color: #fff!important;
+  font-size: 18px;
+}
+
   /*Lost-password*/
 @media (min-width: 768px ){.woocommerce-ResetPassword { width: 50%; margin-left: 25%; }}
 .woocommerce-ResetPassword .woocommerce-Button { float: right; }
 
 /*My account*/
-.woocommerce-account .box-account {
+.box-account {
   background-color: #018a5e;
   padding: 20px;
   border-radius: 15px;
@@ -813,4 +832,22 @@ div.panel {
 .box-review .includes_tax {
   color: #fff;
   font-size: 0px;
+}
+
+/*Factura*/
+#form-factura { padding: 30px 30px 60px 30px; }
+#form-factura label.no-margin,
+#form-factura label.no-margin input { margin-bottom: 0px; }
+#form-factura input { color: #3a3a3a }
+#form-factura input[type="submit"] {
+  float: right;
+  background-color: #fff;
+  color: #018a5e;
+ }
+ .wpcf7-not-valid-tip { color: #fff!important; }
+.wpcf7-response-output {
+  border: 0px!important;
+  color: #fff!important;
+  margin-top: 50px!important;
+  margin-bottom: 0px!important;
 }

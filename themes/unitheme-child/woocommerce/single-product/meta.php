@@ -129,6 +129,7 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 		$electronico_numero_de_puertos_usb_20 = get_post_meta($post->ID, '_electronico_text_numero_de_puertos_usb_20', true);
 		$electronico_numero_de_procesadores = get_post_meta($post->ID, '_electronico_text_numero_de_procesadores', true);
 		$electronico_estado = get_post_meta($post->ID, '_electronico_text_estado', true);
+		$estado = get_post_meta($post->ID, 'estado', true);
 
 		echo (!empty($electronico_marca) ? '<span class="posted_in">Marca: '.$electronico_marca.'</span>' : '');
 		echo (!empty($electronico_modelo) ? '<span class="posted_in">Modelo: '.$electronico_modelo.'</span>' : '');
@@ -156,16 +157,8 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 		echo (!empty($electronico_chip) ? '<span class="posted_in">Chip: '.$electronico_chip.'</span>' : '');
 		echo (!empty($electronico_ram) ? '<span class="posted_in">RAM: '.$electronico_ram.'</span>' : '');
 		echo (!empty($electronico_numero_de_puertos_usb_20) ? '<span class="posted_in">Puertos USB 2.0: '.$electronico_numero_de_puertos_usb_20.'</span>' : '');
-		echo (!empty($electronico_estado) ? '<span class="posted_in">Estado: '.$electronico_estado.'</span>' : '');
-
-
-		$sucursal = get_post_meta($post->ID, 'sucursal', true);
-		$estado = get_post_meta($post->ID, 'estado', true);
-
-		echo "<br>";
-		echo (!empty($sucursal) ? '<span class="posted_in">Número de Sucursal: '.$sucursal.'</span>' : '');
 		echo (!empty($estado) ? '<span class="posted_in">Estado del artículo: '.$estado.'</span>' : '');
-
+		echo (!empty($electronico_estado) ? '<span class="posted_in">Comentarios: '.$electronico_estado.'</span>' : '');
 	?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>

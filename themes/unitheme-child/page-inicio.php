@@ -33,7 +33,7 @@
 	<span data-direction="prev" class="controls prev slider-nav icon-arrow-left8"></span><span data-direction="next" class="controls next slider-nav icon-arrow-right8"></span>
 </div>
 
-<div class="container page-full-width">
+<div class="page-full-width">
 	<!-- content start -->
 	<div id="nz-content" class="content nz-clearfix padding-true">
 		<!-- post start -->
@@ -45,13 +45,15 @@
 				<div class="nz-section horizontal animate-false full-width-true " data-animation-speed="35000" data-parallax="false">
 					<div class="container">
 						<h2 class="[ color-primary ]">Novedades</h2>
-						<?php echo do_shortcode('[product_category per_page="4" columns="4" orderby="date" order="" category="novedades"]'); ?>
+						<?php echo do_shortcode('[recent_products per_page="4" columns="4"]'); ?>
 					</div>
 				</div>
 				<div class="nz-section horizontal animate-false full-width-true " data-animation-speed="35000" data-parallax="false">
 					<div class="container">
 						<h2 class="[ color-primary ]">Artículos destacados</h2>
 						<?php echo do_shortcode('[product_category per_page="4" columns="4" orderby="date" order="" category="articulos-destacados"]'); ?>
+						<?php //echo do_shortcode('[top_rated_products per_page="4"]'); ?>
+						<?php //echo do_shortcode('[featured_products per_page="4" columns="4"]'); ?>
 					</div>
 				</div>
 

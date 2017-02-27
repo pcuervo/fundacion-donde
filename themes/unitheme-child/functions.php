@@ -389,3 +389,39 @@ function wooc_save_extra_register_fields( $customer_id ) {
     }
 }
 add_action( 'woocommerce_created_customer', 'wooc_save_extra_register_fields' );
+
+
+/* email new account for admin*/
+add_filter( 'woocommerce_email_recipient_customer_new_account', 'your_email_recipient_filter_function', 10, 2);
+
+function your_email_recipient_filter_function($recipient, $object) {
+    $recipient = $recipient . ', tienda_en_linea@frd.org.mx';
+    return $recipient;
+}
+
+
+/*Easy password in register*/
+function wc_ninja_remove_password_strength() {
+  if ( wp_script_is( 'wc-password-strength-meter', 'enqueued' ) ) {
+    wp_dequeue_script( 'wc-password-strength-meter' );
+  }
+}
+add_action( 'wp_print_scripts', 'wc_ninja_remove_password_strength', 100 );
+
+
+/*Edit email New order*/
+add_action( 'woocommerce_email_before_order_table', 'add_order_email_instructions', 10, 2 );
+
+function add_order_email_instructions( $order, $sent_to_admin ) {
+
+  if ( ! $sent_to_admin ) {
+
+    if ( 'cod' == $order->payment_method ) {
+      // cash on delivery method
+      echo '<p><strong>Instructions:</strong> Full payment is due immediately upon delivery: <em>cash only, no exceptions</em>.</p>';
+    } else {
+      // other methods (ie credit card)
+      echo '<p><strong>Instructions:</strong> Please look for "Madrigal Electromotive GmbH" on your next credit card statement.</p>';
+    }
+  }
+}

@@ -7,6 +7,13 @@ var $=jQuery.noConflict();
         /*------------------------------------*\
             #GLOBAL
         \*------------------------------------*/
+        $(window).load(function(){
+            $( "#ship-to-different-address-checkbox" ).prop( "checked", false );
+            $( 'div.shipping_address' ).hide();
+
+            $( "<div class='bg-notice'></div>" ).insertBefore( ".returning-user" );
+        });
+
         $(window).ready(function(){
             footerBottom();
             jsAccordion();
