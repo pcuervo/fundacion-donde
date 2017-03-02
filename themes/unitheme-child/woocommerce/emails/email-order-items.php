@@ -19,10 +19,13 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-
+global $wpdb;
 foreach ( $items as $item_id => $item ) :
 	$_product     = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 	$item_meta    = new WC_Order_Item_Meta( $item, $_product );
+	$sku = get_post_meta( $_product->id, '_sku', true );
+	$num_sucursal = get_post_meta( $_product->id, 'sucursal', true );
+	$sucursal = $wpdb->get_var("select distinct p.post_title from $wpdb->posts p, $wpdb->postmeta pm where p.post_type = 'sucursal' and pm.post_id = p.id and pm.meta_key = 'numero_sucursal' and meta_value = '".$num_sucursal."';");
 
 	if ( apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 		?>
@@ -61,8 +64,8 @@ foreach ( $items as $item_id => $item ) :
 			?></td>
 			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;"><?php echo apply_filters( 'woocommerce_email_order_item_quantity', $item['qty'], $item ); ?></td>
 			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;"><?php echo $order->get_formatted_line_subtotal( $item ); ?></td>
-			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;">123456</td>
-			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;">2</td>
+			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;"><?php echo $sku; ?></td>
+			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;"><?php if(isset($sucursal)) { echo $sucursal; } else { echo $num_sucursal; } ?></td>
 		</tr>
 		<?php
 	}
