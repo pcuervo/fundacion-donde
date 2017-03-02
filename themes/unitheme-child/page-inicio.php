@@ -51,9 +51,8 @@
 				<div class="nz-section horizontal animate-false full-width-true " data-animation-speed="35000" data-parallax="false">
 					<div class="container">
 						<h2 class="[ color-primary ]">Artículos destacados</h2>
-						<?php echo do_shortcode('[product_category per_page="4" columns="4" orderby="date" order="" category="articulos-destacados"]'); ?>
 						<?php //echo do_shortcode('[top_rated_products per_page="4"]'); ?>
-						<?php //echo do_shortcode('[featured_products per_page="4" columns="4"]'); ?>
+						<?php echo do_shortcode('[featured_products per_page="4" columns="4"]'); ?>
 					</div>
 				</div>
 
