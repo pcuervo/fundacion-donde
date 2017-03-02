@@ -31,7 +31,7 @@ if ( ! $related = $product->get_related( $posts_per_page ) ) {
 }
 $terms = get_the_terms( $product->ID, 'product_cat' );
 $cat_name = $terms[0]->name;
-echo $cat_name;
+//echo $cat_name;
 
 	$args = array(
 		'post_type' => 'product',
