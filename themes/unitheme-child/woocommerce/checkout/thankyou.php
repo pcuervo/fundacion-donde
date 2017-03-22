@@ -58,14 +58,30 @@ if ( $order ) : ?>
 			<?php endif; ?>
 		</ul>
 		<div class="clear"></div>
+		<?php
+		    if ( 'cod' == $order->payment_method ) {
+		      // cash on delivery method
+		      echo '<p><strong>Instrucciones:</strong> El pago completo se debe realizar inmediatamente después de la entrega: <em> sólo en efectivo, sin excepciones </ em>.</p>';
+		    } else {
+		      // other methods (ie credit card)
+		      echo '<p><strong>Instrucciones:</strong> Por favor, busque "Madrigal Electromotive GmbH" en su próximo extracto de tarjeta de crédito.</p>';
+		    }
+	     ?>
 
+	     <p>Para aclaracioces llamar al <a href="tel:+5255555555" class="line-height--50 margin-right" title="número de teléfono">(55) 55555-55555</a></p>
 	<?php endif; ?>
 
 	<?php do_action( 'woocommerce_thankyou_' . $order->payment_method, $order->id ); ?>
 	<?php do_action( 'woocommerce_thankyou', $order->id ); ?>
+
+
 
 <?php else : ?>
 
 	<p class="woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), null ); ?></p>
 
 <?php endif; ?>
+
+	<div class="text-center">
+		<button class="color-light" onclick="tankyouPrint()">Imprimir</button>
+	</div>

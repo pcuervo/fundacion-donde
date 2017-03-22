@@ -89,4 +89,21 @@
 		<p>3) Se te enviará por mail el PDF y XML. Tu factura estará disponible dentro de los 20 días hábiles posteriores a la entrega.</p>
 	</div>
 </div>
+
+<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	    acc[i].onclick = function(){
+	        this.classList.toggle("active");
+	        var panel = this.nextElementSibling;
+	        if (panel.style.display === "block") {
+	            panel.style.display = "none";
+	        } else {
+	            panel.style.display = "block";
+	        }
+	    }
+	}
+</script>
 <?php get_footer( ); ?>

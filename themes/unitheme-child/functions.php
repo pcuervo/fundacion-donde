@@ -418,10 +418,12 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
 
     if ( 'cod' == $order->payment_method ) {
       // cash on delivery method
-      echo '<p><strong>Instructions:</strong> Full payment is due immediately upon delivery: <em>cash only, no exceptions</em>.</p>';
+      echo '<p><strong>Instrucciones:</strong> El pago completo se debe realizar inmediatamente después de la entrega: <em> sólo en efectivo, sin excepciones </em>.</p>';
+      echo '<p>Para aclaracioces llamar al <a href="tel:+5255555555" class="line-height--50 margin-right" title="número de teléfono">(55) 55555-55555</a></p>';
     } else {
       // other methods (ie credit card)
-      echo '<p><strong>Instructions:</strong> Please look for "Madrigal Electromotive GmbH" on your next credit card statement.</p>';
+      echo '<p><strong>Instrucciones:</strong> Por favor, busque "Madrigal Electromotive GmbH" en su próximo extracto de tarjeta de crédito.</p>';
+      echo '<p>Para aclaracioces llamar al <a href="tel:+5255555555" class="line-height--50 margin-right" title="número de teléfono">(55) 55555-55555</a></p>';
     }
   }
 }

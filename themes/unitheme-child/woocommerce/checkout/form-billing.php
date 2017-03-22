@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<div class="create-account">
 
-				<p><?php _e( 'Create an account by entering the information below. If you are a returning customer please login at the top of the page.', 'woocommerce' ); ?></p>
+				<p><?php _e( 'Puedes guardar tu información creando una cuenta. Si ya eres cliente por favor introduce tu nombre de usuario en la parte superior de la página.', 'woocommerce' ); ?></p>
 
 				<?php foreach ( $checkout->checkout_fields['account'] as $key => $field ) : ?>
 

@@ -157,8 +157,10 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 		echo (!empty($electronico_chip) ? '<span class="posted_in">Chip: '.$electronico_chip.'</span>' : '');
 		echo (!empty($electronico_ram) ? '<span class="posted_in">RAM: '.$electronico_ram.'</span>' : '');
 		echo (!empty($electronico_numero_de_puertos_usb_20) ? '<span class="posted_in">Puertos USB 2.0: '.$electronico_numero_de_puertos_usb_20.'</span>' : '');
-		echo (!empty($estado) ? '<span class="posted_in">Estado del artículo: '.$estado.'</span>' : '');
+
 		echo (!empty($electronico_estado) ? '<span class="posted_in">Comentarios: '.$electronico_estado.'</span>' : '');
+		echo "<br>";
+		echo (!empty($estado) ? '<span class="posted_in estado-articulo">Estado del artículo: '.$estado.'</span>' : '');
 	?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>

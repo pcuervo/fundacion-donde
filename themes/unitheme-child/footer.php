@@ -53,5 +53,11 @@
 } ?>
 <?php include(locate_template("includes/dynamic-scripts.php")); ?>
 <?php wp_footer(); ?>
+
+<script type="text/javascript">
+	function tankyouPrint() {
+		window.print();
+	}
+</script>
 </body>
 </html>

@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="[ col md-6 offsett-md3 ]">
 		<p>
 			<?php
-				echo sprintf( esc_attr__( 'Hello %s%s%s', 'woocommerce' ), '<strong>', esc_html( $current_user->display_name ), '</strong>', '<a href="' . esc_url( wc_get_endpoint_url( 'customer-logout', '', wc_get_page_permalink( 'myaccount' ) ) ) . '">', '</a>' );
+				echo sprintf( esc_attr__( 'Hola %s%s%s', 'woocommerce' ), '<strong>', esc_html( $current_user->display_name ), '</strong>', '<a href="' . esc_url( wc_get_endpoint_url( 'customer-logout', '', wc_get_page_permalink( 'myaccount' ) ) ) . '">', '</a>' );
 			?>
 		</p>
 
