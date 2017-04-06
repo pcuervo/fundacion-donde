@@ -964,3 +964,29 @@
 [06-Apr-2017 15:47:41 UTC] PHP Notice:  Undefined offset: 0 in C:\wamp\www\fundacion-donde\wp-content\plugins\csv-importer\class-ait-import.php on line 295
 [06-Apr-2017 15:47:44 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_menu_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
 [06-Apr-2017 15:47:44 UTC] PHP Notice:  tgmpa fue llamado con un argumento que está <strong>obsoleto</strong> desde la versión 2.4.0! The `parent_url_slug` config parameter was removed in TGMPA 2.4.0. In TGMPA 2.5.0 an alternative was (re-)introduced. Please adjust your configuration. For more information visit the website: http://tgmpluginactivation.com/configuration/#h-configuration-options. in C:\wamp\www\fundacion-donde\wp-includes\functions.php on line 3887
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:10:57 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:11:12 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:11:12 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:11:12 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:11:12 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:11:12 UTC] PHP Notice:  Undefined variable: product in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:11:12 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme\functions.php on line 966
+[06-Apr-2017 16:11:31 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme-child\functions.php on line 139
+[06-Apr-2017 16:11:31 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme-child\functions.php on line 139
+[06-Apr-2017 16:11:31 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme-child\functions.php on line 139
+[06-Apr-2017 16:11:31 UTC] PHP Notice:  Trying to get property of non-object in C:\wamp\www\fundacion-donde\wp-content\themes\unitheme-child\functions.php on line 139

@@ -590,7 +590,8 @@ class AitImport {
 						$attrs['post_status'] = $statusProductos;			
 						// insert or update
 						$post_id = wp_insert_post( $attrs, true );
-
+						update_post_meta( $post_id, '_visibility', 'visible' );
+						
 						if ( is_wp_error($post_id) ){
 							echo '<div class="error"><p>' . $post_id->get_error_message() . '</p></div>';
 						} else {
