@@ -373,7 +373,7 @@ class AitImport {
 				}
 			}
 
-			//VALIDAR QUE LA SUCURSAL EXISTA
+			//VALIDAR QUE EL ESTADO DEL PRODUCTO ESTE ENTRE LOS VALORES ACCEPTADOS
 			if($i == 1) {
 				if($data[$i] != 'Excelente' && $data[$i] != 'Muy bueno' && $data[$i] != 'Bueno') {
 					$respu .= 'La columna "estado" solo admite los valores "Excelente|Muy bueno|Bueno". Valor recibido ['.$data[$i].']<br>';
@@ -396,7 +396,7 @@ class AitImport {
 			    	$ok = false;
 			    }
 			}
-			if($i==18) {
+			if($i==17) {
 				//VALIDAR QUE SI EL AÑO NO ESTA VACIO, QUE CONTENGA UN VALOR NUMERICO
 			    if(!empty($data[$i]) && $data[$i] != '' ) {
 				    if(!is_numeric($data[$i])) {
@@ -433,8 +433,8 @@ class AitImport {
 					//VALIDACION PARA LA CATEGORIA Relojes
 					if($this->sanitize_txt($data[$i]) == 'Electronicos') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
-						if(!in_array($data[8], array('Celulares', 'celulares', 'Tablets', 'tablets', 'Pantallas', 'pantallas' ))) {
-							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "celulares|tablets|pantallas". Valor recibido ['.$this->sanitize_txt($data[8]).']';
+						if(!in_array($data[8], array('Celulares', 'celulares', 'Tablets', 'tablets', 'Pantallas', 'pantallas', 'Ipads', 'ipads', 'Camaras', 'camaras', 'Videojuegos', 'videojuegos', 'Laptops', 'laptops', 'Consolas', 'consolas' ))) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "celulares|tablets|pantallas|ipads|camaras|videojuegos|laptops|consolas". Valor recibido ['.$this->sanitize_txt($data[8]).']';
 							$ok = false;
 						}
 					}
@@ -551,7 +551,7 @@ class AitImport {
 						$ignore = true;
 						$attrs['ID'] = $existente_id;
 						$sku_existentes .= $sku.', ';
-						echo '<div class="error"><p><h5>Artículo ignorado por ya existir <strong>[SKU : '.$sku.' - Nombre : '.$data_row[3].']</strong></h5>'.$respues.'</p></div>';
+						echo '<div class="error"><p><h5>Artículo ignorado por ya existir <strong>[SKU : '.$sku.' - Nombre : '.$data_row[3].']</strong><code>Revise la papelera si no lo encuentra</code></h5>'.$respues.'</p></div>';
 					}
 
 					//VALIDAR DATOS DE ENTRADA
