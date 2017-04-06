@@ -1,0 +1,5 @@
+/* Print Styles */
+@media print {
+	header, footer, #breadcrumbs { display: none; }
+	body { background-color: #de2c47; }
+}
