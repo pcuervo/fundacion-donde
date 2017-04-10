@@ -202,12 +202,6 @@ function joya_options_product_tab_content() {
 				'type' 			=> 'text',
 			));
 
-			// Estado
-			woocommerce_wp_text_input( array(
-				'id'			=> '_joya_text_estado',
-				'label'			=> __( 'Estado', 'woocommerce' ),
-				'type' 			=> 'text',
-			));
 		?></div>
 
 	</div><?php
@@ -295,13 +289,7 @@ function reloj_options_product_tab_content() {
 				'type' 			=> 'text',
 			));
 
-			// Estado
-			woocommerce_wp_text_input( array(
-				'id'			=> '_reloj_text_estado',
-				'label'			=> __( 'Estado', 'woocommerce' ),
-				'type' 			=> 'text',
-			));
-
+			
 		?></div>
 
 	</div><?php
@@ -502,10 +490,30 @@ function electronico_options_product_tab_content() {
 				'type' 			=> 'text',
 			));
 
-			// Estado
+			// VIDEOJUEGOS
 			woocommerce_wp_text_input( array(
-				'id'			=> '_electronico_text_estado',
-				'label'			=> __( 'Estado', 'woocommerce' ),
+				'id'			=> 'videojuegos_consola',
+				'label'			=> __( 'Videojuegos Consola', 'woocommerce' ),
+				'type' 			=> 'text',
+			));
+			woocommerce_wp_text_input( array(
+				'id'			=> 'videojuegos_almacenamiento',
+				'label'			=> __( 'Videojuego Alamacenamiento', 'woocommerce' ),
+				'type' 			=> 'text',
+			));
+			woocommerce_wp_text_input( array(
+				'id'			=> 'videojuegos_controles_cantidad',
+				'label'			=> __( 'Videojuego Cantidad de controles', 'woocommerce' ),
+				'type' 			=> 'text',
+			));
+			woocommerce_wp_text_input( array(
+				'id'			=> 'videojuegos_juegos_incluidos',
+				'label'			=> __( 'Videojuegos Juegos incluidos', 'woocommerce' ),
+				'type' 			=> 'text',
+			));
+			woocommerce_wp_text_input( array(
+				'id'			=> 'videojuegos_cables',
+				'label'			=> __( 'Videojuegos Cables', 'woocommerce' ),
 				'type' 			=> 'text',
 			));
 		?></div>
@@ -557,9 +565,7 @@ function save_joya_option_field( $post_id ) {
 	if ( isset( $_POST['_joya_text_talla'] ) ) {
 		update_post_meta( $post_id, '_joya_text_talla', sanitize_text_field( $_POST['_joya_text_talla'] ) );
 	}
-	if ( isset( $_POST['_joya_text_estado'] ) ) {
-		update_post_meta( $post_id, '_joya_text_estado', sanitize_text_field( $_POST['_joya_text_estado'] ) );
-	}
+	
 
 }
 add_action( 'woocommerce_process_product_meta_simple_joya', 'save_joya_option_field' );
@@ -597,9 +603,7 @@ function save_reloj_option_field( $post_id ) {
 	if ( isset( $_POST['_reloj_text_caratula'] ) ) {
 		update_post_meta( $post_id, '_reloj_text_caratula', sanitize_text_field( $_POST['_reloj_text_caratula'] ) );
 	}
-	if ( isset( $_POST['_reloj_text_estado'] ) ) {
-		update_post_meta( $post_id, '_reloj_text_estado', sanitize_text_field( $_POST['_reloj_text_estado'] ) );
-	}
+	
 
 }
 add_action( 'woocommerce_process_product_meta_simple_reloj', 'save_reloj_option_field' );
@@ -686,10 +690,24 @@ function save_electronico_option_field( $post_id ) {
 	if ( isset( $_POST['_electronico_text_numero_de_procesadores'] ) ) {
 		update_post_meta( $post_id, '_electronico_text_numero_de_procesadores', sanitize_text_field( $_POST['_electronico_text_numero_de_procesadores'] ) );
 	}
-	if ( isset( $_POST['_electronico_text_estado'] ) ) {
-		update_post_meta( $post_id, '_electronico_text_estado', sanitize_text_field( $_POST['_electronico_text_estado'] ) );
+	
+	//VIDEOJUEGOS
+	if ( isset( $_POST['videojuegos_consola'] ) ) {
+		update_post_meta( $post_id, 'videojuegos_consola', sanitize_text_field( $_POST['videojuegos_consola'] ) );
 	}
-
+	if ( isset( $_POST['videojuegos_almacenamiento'] ) ) {
+		update_post_meta( $post_id, 'videojuegos_almacenamiento', sanitize_text_field( $_POST['videojuegos_almacenamiento'] ) );
+	}
+	if ( isset( $_POST['videojuegos_controles_cantidad'] ) ) {
+		update_post_meta( $post_id, 'videojuegos_controles_cantidad', sanitize_text_field( $_POST['videojuegos_controles_cantidad'] ) );
+	}
+	if ( isset( $_POST['videojuegos_juegos_incluidos'] ) ) {
+		update_post_meta( $post_id, 'videojuegos_juegos_incluidos', sanitize_text_field( $_POST['videojuegos_juegos_incluidos'] ) );
+	}
+	if ( isset( $_POST['videojuegos_cables'] ) ) {
+		update_post_meta( $post_id, 'videojuegos_cables', sanitize_text_field( $_POST['videojuegos_cables'] ) );
+	}
+	
 
 }
 
