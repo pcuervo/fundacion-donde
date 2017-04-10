@@ -964,3 +964,41 @@ div.panel {
 }
 
 
+
+.row .col.s6 {
+	width: 100%;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+/*toltip*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .btn {
+	color: #fff;
+	background-color: #018a5e;
+	padding: 10px;
+	border-radius: 5px;
+}
+.tooltip .btn:hover {
+	background-color: #049b6a;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100%;
+    background-color: #8ec63f;
+    color: #fff;
+    padding: 20px;
+    text-align: left;
+    position: absolute;
+    z-index: 1;
+    left: 0px; top: 35px;
+
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
