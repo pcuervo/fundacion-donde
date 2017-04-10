@@ -125,7 +125,9 @@ class AitImport {
 	 * @param    boolean    $network_wide    True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog.
 	 */
 	public static function activate( $network_wide ) {
-
+		$carga_csv = AitImport::get_instance();
+		$carga_csv->create_bulk_load_table();
+		$carga_csv->create_bulk_load_detail_table();
 	}
 
 	/**
@@ -136,8 +138,60 @@ class AitImport {
 	 * @param    boolean    $network_wide    True if WPMU superadmin uses "Network Deactivate" action, false if WPMU is disabled or plugin is deactivated on an individual blog.
 	 */
 	public static function deactivate( $network_wide ) {
-
+		global $wpdb;
+		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}bulk_load" );
+		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}bulk_load_detail" );
 	}
+
+	/**
+	 * Create table "bulk_load"
+	 */
+	private function create_bulk_load_table(){
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'bulk_load';
+		if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+			$charset_collate = $wpdb->get_charset_collate();
+			$sql = "CREATE TABLE $table_name (
+					  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+					  `date` datetime DEFAULT NULL,
+					  `file` varchar(500) DEFAULT NULL,
+					  `comentarios` varchar(500) DEFAULT NULL,
+					  `status` varchar(45) DEFAULT NULL,
+					  `ajuste` varchar(45) DEFAULT '0',
+					  PRIMARY KEY (`id`)
+					)
+					$charset_collate;";
+
+			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+			dbDelta( $sql );
+		}
+	}// create_bulk_load_table
+
+	/**
+	 * Create table "bulk_load_detail"
+	 */
+	private function create_bulk_load_detail_table(){
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'bulk_load_detail';
+		if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+			$charset_collate = $wpdb->get_charset_collate();
+			$sql = "CREATE TABLE $table_name (
+					  	`bulk_load_id` int(10) unsigned DEFAULT NULL,
+						`post_id` int(10) unsigned DEFAULT NULL,
+						`mid` varchar(100) DEFAULT NULL,
+						`upc` varchar(100) DEFAULT NULL,
+						`talla` varchar(45) DEFAULT NULL,
+						`cantidad` int(11) DEFAULT NULL,
+						`comentarios` varchar(500) DEFAULT NULL,
+						`status` varchar(3) DEFAULT NULL
+					)
+					$charset_collate;";
+
+			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+			dbDelta( $sql );
+		}
+	}// create_bulk_load_detail_table
 
 	/**
 	 * Load the plugin text domain for translation.
