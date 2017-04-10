@@ -1002,3 +1002,36 @@ div.panel {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+/*newsletter*/
+label[for="mc_mv_EMAIL"]{
+	display: none;
+}
+.mc_form_inside { position: relative; }
+.mc_signup_submit {
+	display: inline-block;
+	position: absolute;
+	bottom:-5px;
+	right: 0px;
+}
+.mc_signup_submit input {
+	padding: 0 15px;
+	height: 50px;
+}
+
+.updated strong {
+	color: transparent;
+	height: 75px;
+	overflow: hidden;
+	display: block;
+}
+.updated strong:before {
+	content: 'Tu mensaje ha sido enviado! Por favor confirma desde tu email';
+	color: #fff;
+}
+
+@media(min-width: 1025px){
+	#slider-home {
+		margin-top: -100px;
+	}
+}
