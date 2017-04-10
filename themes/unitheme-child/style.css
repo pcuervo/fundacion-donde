@@ -964,3 +964,74 @@ div.panel {
 }
 
 
+
+.row .col.s6 {
+	width: 100%;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+/*toltip*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .btn {
+	color: #fff;
+	background-color: #018a5e;
+	padding: 10px;
+	border-radius: 5px;
+}
+.tooltip .btn:hover {
+	background-color: #049b6a;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 100%;
+    background-color: #8ec63f;
+    color: #fff;
+    padding: 20px;
+    text-align: left;
+    position: absolute;
+    z-index: 1;
+    left: 0px; top: 35px;
+
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/*newsletter*/
+label[for="mc_mv_EMAIL"]{
+	display: none;
+}
+.mc_form_inside { position: relative; }
+.mc_signup_submit {
+	display: inline-block;
+	position: absolute;
+	bottom:-5px;
+	right: 0px;
+}
+.mc_signup_submit input {
+	padding: 0 15px;
+	height: 50px;
+}
+
+.updated strong {
+	color: transparent;
+	height: 75px;
+	overflow: hidden;
+	display: block;
+}
+.updated strong:before {
+	content: 'Tu mensaje ha sido enviado! Por favor confirma desde tu email';
+	color: #fff;
+}
+
+@media(min-width: 1025px){
+	#slider-home {
+		margin-top: -100px;
+	}
+}

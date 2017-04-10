@@ -129,25 +129,58 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- SEO -->
-	<meta name="keywords" content="fruta, verdura, orgánico, sustentable, canastas, productos, calidad">
-    <meta name="description" content="Pixan es un espacio incluyente, que da empleo y capacitación a la gente local y con capacidades diferentes, generando productos de alta calidad.">
+	<meta name="keywords" content="novedades, articulos destacados, envio gratis, descuentos, artículos nuevos y usados, cálidad, compra segura, promociones y novedades">
+    <meta name="description" content="<?php bloginfo('description'); ?>">
+
+    <meta name="robots" content="index, follow" />
+	<meta name="googlebot" content="index, follow" />
+
 	<!-- Facebook, Twitter metas -->
-	<meta property="og:title" content="Fundación Dondé">
-	<meta name="og:description" content="" />
+	<meta property="og:title" content="<?php bloginfo('name'); ?>">
+	<meta name="og:description" content="<?php bloginfo('description'); ?>" />
 	<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé">
 	<meta property="og:image:width" content="210" />
 	<meta property="og:image:height" content="110" />
 	<meta property="fb:app_id" content="1109660165770884" />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@FundacionDonde1" />
-	<meta name="twitter:title" content="Fundación Dondé" />
-	<meta name="twitter:description" content="" />
+	<meta name="twitter:title" content="<?php bloginfo('name'); ?>" />
+	<meta name="twitter:description" content="<?php bloginfo('description'); ?>" />
 	<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé" />
 	<!-- Compatibility -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="cleartype" content="on">
 	<!-- Sitemap Google Verify -->
 	<meta name="google-site-verification" content="4Bt7KHVG0kzwetxi_LnrYR8QUCkKFdSNGA4PU2hpaDs" />
+
+	<!-- Canonical URL -->
+	<link rel="canonical" href="<?php echo site_url(); ?>" />
+
+	<!-- Noscript -->
+	<noscript>Tu navegador no soporta JavaScript!</noscript>
+
+	<!-- Hotjar Tracking Code for https://tiendadonde.com -->
+	<script>
+		(function(h,o,t,j,a,r){
+		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+		h._hjSettings={hjid:469337,hjsv:5};
+		a=o.getElementsByTagName('head')[0];
+		r=o.createElement('script');r.async=1;
+		r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+		a.appendChild(r);
+		})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+	</script>
+
+	<!-- google analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-97012949-1', 'auto');
+		ga('send', 'pageview');
+	</script>
 
 	<!-- LINK TAGS -->
 	<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen, print" />
@@ -157,7 +190,7 @@
     <?php if(isset($nz_ninzio['favicon']['url'])): ?>
 	<link rel="shortcut icon" href="<?php echo $nz_ninzio['favicon']['url']; ?>" type="image/x-icon" />
 	<?php endif; ?>
-	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<title><?php bloginfo('name'); ?></title>
 	<?php include(locate_template("includes/dynamic-styles.php"));?>
 	<?php wp_head(); ?>
 </head>
@@ -219,7 +252,7 @@
 
 				<div class="header-content">
 
-					<nav class="header-menu mob-menu nz-clearfix">
+					<nav class="header-menu mob-menu nz-clearfix" itemscope>
 						<?php
 
 							$mobarg = array(
@@ -368,7 +401,7 @@
 
 							<?php endif ?>
 
-							<nav class="header-menu desk-menu nz-clearfix">
+							<nav class="header-menu desk-menu nz-clearfix" itemscope>
 								<?php
 									$arg = array(
 										'theme_location' => 'header-menu',

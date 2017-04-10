@@ -27,7 +27,7 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 
 ?>
 
-<h5>Lorem ipsum dolor sit</h5>
+<h5 class="[ hidden ]">Lorem ipsum dolor sit</h5>
 
 <div class="product_meta">
 
@@ -160,9 +160,26 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 
 		echo (!empty($electronico_estado) ? '<span class="posted_in">Comentarios: '.$electronico_estado.'</span>' : '');
 		echo "<br>";
-		echo (!empty($estado) ? '<span class="posted_in estado-articulo">Estado del artículo: '.$estado.'</span>' : '');
+		echo "<div class='[ row ] estado-articulo'>";
+			echo "<div class='[ col s6 ]'>";
+				echo (!empty($estado) ? '<span class="posted_in">Estado del artículo: '.$estado.'</span>' : '');
+			echo "</div>";
+			echo "<div class='[ col s6 ][ text-right ][ tooltip ]'><span class='btn'>¿Qué significa esto?</span>
+						<span class='tooltiptext'>";
+							if( $estado == "Nuevo" ) {
+								echo "Producto nuevo (sin uso)";
+							} elseif( $estado == "Excelente" ) {
+								echo "El artículo se encuentra en muy buenas condiciones físicas y presenta ligeros signos de uso. Sin golpes ni rayones en la pantalla o display, sin golpes, abolladuras ni rayones profundos en carcasa o cuerpo. ";
+							} elseif( $estado == "Bueno" ) {
+								echo "El artículo tiene detalles de uso evidentes a simple vista. Sin golpes ni rayones en la pantalla o display, se encuentran en buenas condiciones con signos de uso en carcasa y funciona correctamente. ";
+							}
+						echo "</span>";
+			echo "</div>";
+		echo "</div>";
+
 	?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
 
 </div>
+

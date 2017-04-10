@@ -1,47 +1,13 @@
 <?php get_header( ); ?>
-<div id="ninzio-slider" data-autoheight="true" data-arrow="false" data-parallax="false" data-fixed="false" data-transition="side-swing" data-layout="wide" data-height="650" data-mobile="false" data-autoplaydelay="9000" data-autoplay="true" data-bullets="false">
-	<div class="slider-loader hidden" style="display: none;">&nbsp;</div>
-	<div id="slider-arrow" data-target="#nz-content" class="i-separator animate nz-clearfix vis"><i class="icon-arrow-down2"></i></div>
-	<ul class="ninzio-slides">
-		<li class="post-61 ninzio-slider type-ninzio-slider status-publish hentry navOutNext" data-video="false" id="post-61">
-			<div class="slider-canvas container">
-				<div id="ninzio-layer-61-1" class="ninzio-layer none" data-direction="none" data-posx="0" data-posy="0">
-					<div class="layer-wrap" style="opacity: 1;">
-						<p><span class="[ color-light font-weight-bold font-size--xlarge ]">Anillos de compromiso</span></p>
-						<p><span class="[ color-light font-size--xlarge ]">al mejor precio</span></p>
-						<p><span class="[ color-light font-size--xlarge ]">y a un click de distancia</span></p>
-						<p>
-							<a class="button button-3d green medium rounded animate-false anim-type-ghost" href="#" target="_self"><span class="txt">VER MODELOS</span></a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</li>
-		<li class="post-194 ninzio-slider type-ninzio-slider status-publish hentry navInNext active" data-video="false" id="post-194">
-			<div class="slider-canvas container">
-				<div id="ninzio-layer-194-1" class="ninzio-layer none" data-direction="none" data-posx="0" data-posy="0">
-					<div class="layer-wrap" style="opacity: 1;">
-						<p><span class="[ color-light font-weight-bold font-size--xlarge ]">Lorem ipsum dolor sit</span></p>
-						<p><span class="[ color-light font-size--xlarge ]"">lorem ipsum dolor</span></p>
-						<p><span class="[ color-light font-size--xlarge ]"">dolore magna</span></p>
-						<a class="button button-3d green medium rounded animate-false anim-type-ghost" href="#" target="_self"><span class="txt">VER MODELOS</span></a>
-					</div>
-				</div>
-			</div>
-		</li>
-	</ul>
-	<span data-direction="prev" class="controls prev slider-nav icon-arrow-left8"></span><span data-direction="next" class="controls next slider-nav icon-arrow-right8"></span>
+<div id="slider-home">
+	<?php echo do_shortcode('[rev_slider alias="home"]'); ?>
 </div>
-
 <div class="page-full-width">
 	<!-- content start -->
 	<div id="nz-content" class="content nz-clearfix padding-true">
 		<!-- post start -->
 		<div id="post-39" class="post-39 page type-page status-publish hentry">
 			<section class="page-content nz-clearfix">
-				<div class="[ container ]">
-					<?php echo do_shortcode('[nz_rposts version="masonry" cat="home" columns="3"]'); ?>
-				</div>
 				<div class="nz-section horizontal animate-false full-width-true " data-animation-speed="35000" data-parallax="false">
 					<div class="container">
 						<h2 class="[ color-primary ]">Novedades</h2>
@@ -54,6 +20,9 @@
 						<?php //echo do_shortcode('[top_rated_products per_page="4"]'); ?>
 						<?php echo do_shortcode('[featured_products per_page="4" columns="4"]'); ?>
 					</div>
+				</div>
+				<div class="[ container ][ margin-bottom ]">
+					<?php echo do_shortcode('[nz_rposts version="masonry" cat="home" columns="3"]'); ?>
 				</div>
 
 				<div class="nz-section horizontal animate-false full-width-false [ bg-testimonials ]" data-img-width="1920" data-img-height="666" data-animation-speed="35000" data-parallax="false">

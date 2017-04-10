@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<p class="[ content-message ]">Envío asegurado a cualquier punto de la republica</p>
+	<p class="[ content-message ]">Envío asegurado a cualquier punto de la República</p>
 
 	<?php
 		/**
