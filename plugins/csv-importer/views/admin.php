@@ -56,6 +56,16 @@ $import = AitImport::get_instance();
 	if(isset($_POST["restaurar_detalle"]) && isset($_POST["bulk_id"]) && isset($_POST["post_id"]) && isset($_POST["cantidad"]) ) {
 		$import->restaurar_detalle($_POST["bulk_id"], $_POST["post_id"], $_POST["cantidad"]);
 	}
+
+	if(isset($_FILES["posts_csv_precios"]) && isset($_POST["type"])) {
+		$ext = explode('.', $_FILES["posts_csv_precios"]['name']);
+		if ($_FILES["posts_csv_precios"]["error"] > 0 || $ext[count($ext)-1] != 'csv') {
+			echo '<div class="error"><p>'.__('Incorrect CSV file').'. Por favor intente de nuevo con un archivo correcto.</p></div>';
+		} else {
+			$import->import_csv_precios($_POST["type"],$_FILES["posts_csv_precios"]['tmp_name']);
+		}
+		
+	}
 	?>
 	<!--
 	<div class="import-settings metabox-holder">
@@ -242,17 +252,79 @@ $import = AitImport::get_instance();
 				<form action="<?php echo AIT_IMPORT_PLUGIN_URL . 'load-report-undone.php'; ?>" method="post">
 					<input class="btn button button-primary" id="btnSendToSystem" type="submit" value="REPORTE DE CARGAS DESHECHAS">
 				</form>
-				<form action="<?php echo AIT_IMPORT_PLUGIN_URL . 'download.php'; ?>" method="post">
+				<br>
+				<div style="border: 1px solid; padding: 10px;">
 					
-					<h4><?php _e('Importar productos masivamente desde archivos CSV'); ?></h4>
+					<form action="<?php echo AIT_IMPORT_PLUGIN_URL . 'download.php'; ?>" method="post">
+						
+						<h4><?php _e('Importar productos masivamente desde archivos CSV'); ?></h4>
+						
 					
-				
-				</form>
+					</form>
 
-				<form action="admin.php?page=ait-import" method="post" enctype="multipart/form-data">
+					<form action="admin.php?page=ait-import" method="post" enctype="multipart/form-data">
+						
+						<h4><?php _e('Seleccione el archivo...'); ?></h4>
+						<div style="display:none;" >
+							Delimiter: <select name="delim" id="delim">
+		                                        <option value=",">,</option>
+		                                        <option value=";">;</option>
+		                     </select><br>
+
+							<input type="hidden" name="type" value="<?php echo $type->id; ?>">
+
+							<input type="radio" name="duplicate" value="1" checked="checked"> <?php _e("Rename item's name (slug) if item with name (slug) already exists"); ?> <br>
+							<input type="radio" name="duplicate" value="2"> <?php _e("Update old item's data if item with name (slug) already exists"); ?> <br>
+							<input type="radio" name="duplicate" value="3"> <?php _e("Ignore item if item with name (slug) already exists"); ?> <br>
+
+						</div>
+						<h4>Status de los productos <br>
+						<label>Publish</label><input type="radio" name="statusProductos" value="publish" checked="checked">
+						<label>Draft</label><input type="radio" name="statusProductos" value="draft"></h4>
+						<input type="number" name="porcentaje" min="0" max="100" value="0">% <label><strong>Porcentaje de incremento al precio de los artículos</strong></label><br>
+						<input type="file" name="posts_csv">
+						<input type="submit" value="<?php _e('Import from CSV'); ?>" class="upload button-primary">
+					</form>
+				</div>
+				<!-- AJUSTE DE PRECIOS MASIVOS -->
+				<div style="border: 1px solid; padding: 10px;">
+					<form  action="<?php echo AIT_IMPORT_PLUGIN_URL . 'download.php'; ?>" method="post">
+						
+						<h3>Actualización de precios masivos</h3>
+						
+						<table style="display: none;">
+							<tr>
+								<th><?php _e('Attribute'); ?></th>
+								<th><?php _e('Column name in CSV file'); ?></th>
+								<th><?php _e('Notice'); ?></th>
+							</tr>
+							
+							<!-- AGREGADOS EN HARDCODE PARA OBTENERE EL FORMATO REQUEIRDO POR EL CLIENTE -->
+							<tr>
+								<td><input type="checkbox" name="SKU" checked="checked"> SKU </td>
+								<td>SKU</td>
+								<td>Valor numerico</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="PRECIO" checked="checked"> PRECIO </td>
+								<td>PRECIO</td>
+								<td>Valor numerico</td>
+							</tr>
+							
+
+						</table>
+
+						<input type="hidden" name="ait-import-post-type" value="<?php echo $type->id; ?>">
+						<input type="hidden" name="ait-import-is-ait-type" value="yes">
+
+						<input type="submit" value="<?php _e('Descargar CSV de ejemplo para ajustar precios'); ?>" class="download button">
 					
-					<h4><?php _e('Seleccione el archivo...'); ?></h4>
-					<div style="display:none;" >
+					</form>
+
+					<form action="admin.php?page=ait-import" method="post" enctype="multipart/form-data">
+						
+						<h4>Actualizar precios</h4>
+						<div style="display:none;">
 						Delimiter: <select name="delim" id="delim">
 	                                        <option value=",">,</option>
 	                                        <option value=";">;</option>
@@ -263,17 +335,14 @@ $import = AitImport::get_instance();
 						<input type="radio" name="duplicate" value="1" checked="checked"> <?php _e("Rename item's name (slug) if item with name (slug) already exists"); ?> <br>
 						<input type="radio" name="duplicate" value="2"> <?php _e("Update old item's data if item with name (slug) already exists"); ?> <br>
 						<input type="radio" name="duplicate" value="3"> <?php _e("Ignore item if item with name (slug) already exists"); ?> <br>
-
-					</div>
-					<h4>Status de los productos <br>
-					<label>Publish</label><input type="radio" name="statusProductos" value="publish" checked="checked">
-					<label>Draft</label><input type="radio" name="statusProductos" value="draft"></h4>
-					<input type="number" name="porcentaje" min="0" max="100" value="0">% <label><strong>Porcentaje de incremento al precio de los artículos</strong></label><br>
-					<input type="file" name="posts_csv">
-					<input type="submit" value="<?php _e('Import from CSV'); ?>" class="upload button-primary">
-				</form>
-				
-
+						</div>
+						
+						<input type="file" name="posts_csv_precios">
+						<input type="submit" value="Actualizar precios" class="upload button-primary">
+						
+					
+					</form>
+				</div>
 				
 
 			</div>
