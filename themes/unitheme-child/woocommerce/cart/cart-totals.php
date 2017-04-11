@@ -34,6 +34,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<td data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
+		<tr class="cart-seguro">
+			<th>Costo por seguro y cargos adicionales</th>
+			<td data-title="seguro y cargos adicionales">$123.45</td>
+		</tr>
+
 		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
 			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
 				<th><?php wc_cart_totals_coupon_label( $coupon ); ?></th>

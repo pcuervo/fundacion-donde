@@ -13,6 +13,7 @@ define( 'THEMEPATH', get_template_directory_uri() . '/' );
 \*------------------------------------*/
 
 require_once( 'inc/pages.php' );
+require_once( 'inc/post-types.php' );
 
 
 	function additionals_functions() {
