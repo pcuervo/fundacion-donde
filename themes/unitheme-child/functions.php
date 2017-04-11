@@ -142,6 +142,23 @@ function custom_breadcrumbs() {
             }
 
             $custom_tax_name = get_queried_object()->name;
+
+            if( is_product_category(array( 'aretes', 'cadenas', 'dijes', 'pulseras', 'anillos', 'broqueles'))) {
+                echo '<li class="item-current item-archive"><a href="' . site_url('/categoria-producto/joyas') . '" class="bread-cat bread-custom-post-type-product">Joyas</a></li>';
+                echo '<li class="separator"> ' . $separator . ' </li>';
+            }
+
+           //if($custom_tax_name == 'Caballero' || $custom_tax_name == 'Dama') {
+           if( is_product_category(array('dama', 'caballero')) ) {
+                echo '<li class="item-current item-archive"><a href="' . site_url('/categoria-producto/relojes') . '" class="bread-cat bread-custom-post-type-product">Relojes</a></li>';
+                echo '<li class="separator"> ' . $separator . ' </li>';
+            }
+
+            if( is_product_category(array('celulares', 'pantallas', 'tablets')) ) {
+                echo '<li class="item-current item-archive"><a href="' . site_url('/categoria-producto/electronicos') . '" class="bread-cat bread-custom-post-type-product">Electrónicos</a></li>';
+                echo '<li class="separator"> ' . $separator . ' </li>';
+            }
+
             echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">' . $custom_tax_name . '</strong></li>';
 
         } else if ( is_single() ) {
@@ -191,6 +208,22 @@ function custom_breadcrumbs() {
                 $cat_link       = get_term_link($taxonomy_terms[0]->term_id, $custom_taxonomy);
                 $cat_name       = $taxonomy_terms[0]->name;
 
+            }
+
+            global $product;
+            if( has_term('aretes', 'product_cat') || has_term('cadenas', 'product_cat') || has_term('dijes', 'product_cat') || has_term('pulseras', 'product_cat') || has_term('broqueles', 'product_cat')) {
+                echo '<li class="item-current item-archive"><a href="' . site_url('/categoria-producto/joyas') . '" class="bread-cat bread-custom-post-type-product">Joyas</a></li>';
+                echo '<li class="separator"> ' . $separator . ' </li>';
+            }
+
+           if( has_term('dama', 'product_cat') || has_term('caballero', 'product_cat') ) {
+                echo '<li class="item-current item-archive"><a href="' . site_url('/categoria-producto/relojes') . '" class="bread-cat bread-custom-post-type-product">Relojes</a></li>';
+                echo '<li class="separator"> ' . $separator . ' </li>';
+            }
+
+            if( has_term('celulares', 'product_cat') || has_term('pantallas', 'product_cat') || has_term('tablets', 'product_cat')) {
+                echo '<li class="item-current item-archive"><a href="' . site_url('/categoria-producto/electronicos') . '" class="bread-cat bread-custom-post-type-product">Electrónicos</a></li>';
+                echo '<li class="separator"> ' . $separator . ' </li>';
             }
 
             // Check if the post is in a category
