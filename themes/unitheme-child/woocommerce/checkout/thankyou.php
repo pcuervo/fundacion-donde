@@ -68,7 +68,7 @@ if ( $order ) : ?>
 		    }
 	     ?>
 
-	     <p>Para aclaracioces llamar al <a href="tel:+5255555555" class="line-height--50 margin-right" title="número de teléfono">(55) 55555-55555</a></p>
+	     <p>Para aclaracioces llamar al <a href="tel:+018000036633" class="line-height--50 margin-right" title="número de teléfono">01 800 003 6633</a></p>
 	<?php endif; ?>
 
 	<?php do_action( 'woocommerce_thankyou_' . $order->payment_method, $order->id ); ?>

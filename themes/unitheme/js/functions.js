@@ -23,6 +23,9 @@ var $=jQuery.noConflict();
             footerBottom();
         });
 
+        $('#mc_signup_submit').on('click',function(e){
+            footerBottom();
+        });
     });
 })(jQuery);
 

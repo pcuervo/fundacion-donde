@@ -420,6 +420,7 @@ body { height: 100%; }
 footer{
   width: 100%;
   position: absolute!important; bottom: 0;
+  z-index: 1;
 }
 
 .header-complete{
@@ -1019,13 +1020,19 @@ label[for="mc_mv_EMAIL"]{
 	height: 50px;
 }
 
-.updated strong {
+.updated strong.mc_success_msg {
 	color: transparent;
 	height: 75px;
 	overflow: hidden;
 	display: block;
 }
-.updated strong:before {
+.updated strong.mc_error_msg {
+	display: block;
+	width: 155px;
+	overflow: hidden;
+	height: 25px;
+}
+.updated strong.mc_success_msg:before {
 	content: 'Tu mensaje ha sido enviado! Por favor confirma desde tu email';
 	color: #fff;
 }
