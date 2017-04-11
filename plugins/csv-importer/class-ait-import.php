@@ -179,9 +179,7 @@ class AitImport {
 			$sql = "CREATE TABLE $table_name (
 					  	`bulk_load_id` int(10) unsigned DEFAULT NULL,
 						`post_id` int(10) unsigned DEFAULT NULL,
-						`mid` varchar(100) DEFAULT NULL,
-						`upc` varchar(100) DEFAULT NULL,
-						`talla` varchar(45) DEFAULT NULL,
+						`sku` varchar(100) DEFAULT NULL,
 						`cantidad` int(11) DEFAULT NULL,
 						`comentarios` varchar(500) DEFAULT NULL,
 						`status` varchar(3) DEFAULT NULL
@@ -260,7 +258,8 @@ class AitImport {
 				__('Importar CSV', 'ait-import'),
 				'read',
 				$this->plugin_slug,
-				array( $this, 'display_plugin_admin_page' )
+				array( $this, 'display_plugin_admin_page' ),
+				'dashicons-nametag'
 			);
 		}
 
@@ -403,6 +402,215 @@ class AitImport {
         return $san_text;
     }
 
+    function deshacer_carga($bulk_id) {
+    	global $wpdb;
+    	$actu = true;
+    	$actu_detail = true;
+    	$bulk_detail = $wpdb->get_results("SELECT bld.* FROM ".$wpdb->prefix."bulk_load_detail bld WHERE bld.status = '1' and bld.bulk_load_id = ".$_POST["bulk_id"]);
+    	foreach ($bulk_detail as $detail) {
+    		$ventas = $wpdb->get_results("SELECT p.* FROM ".$wpdb->prefix."woocommerce_order_itemmeta p WHERE meta_key = '_product_id' and meta_value = ".$detail->post_id);
+
+    		$produ = get_post($detail->post_id);
+    		$meta_existe = get_post_meta($detail->post_id);
+			$stock = $meta_existe['_stock'][0] - $detail->cantidad;
+			update_post_meta( $detail->post_id, '_stock', $stock );
+			$papa_id = wp_get_post_parent_id( $detail->post_id );
+			//echo $detail->post_id.' ventas('.count($ventas).')<br>';
+			if(count($ventas) <= 0 && $stock <= 0) {
+				
+				wp_delete_post($detail->post_id);
+				echo '<div class="error"><p><h5>PRODUCTO ELIMINADO: <strong>['.$produ->post_title.' - SKU : '.$detail->sku.']</strong></h5>'.$respues.'</p></div>';
+				//ELIMINAR EL PADRE NI NO TIENE HIJOS
+				if($papa_id) {
+					$args = array(
+						'post_parent' => $papa_id,
+						'post_type'   => 'product_variation', 
+						'numberposts' => -1,
+						'post_status' => 'publish' 
+					);
+					$children = get_children( $args );
+					//echo "hijos del padre -> ".count($children).'<br>';
+					if(count($children) <= 0) {
+						wp_delete_post($papa_id);
+					}
+				}
+			}
+			else {
+				if($stock <= 0) {
+					update_post_meta( $detail->post_id, '_stock_status', 'outofstock' );
+
+					$enstock = false;
+					if($papa_id) {
+						$args = array(
+							'post_parent' => $papa_id,
+							'post_type'   => 'product_variation', 
+							'numberposts' => -1,
+							'post_status' => 'publish' 
+						);
+						$children = get_children( $args );
+						foreach ($children as $child ) {
+							$stock_hijo = get_post_meta( $child->ID, '_stock', true );
+							if($stock_hijo > 0) {
+								$enstock = true;
+								break;
+							}
+						}
+						if(!$enstock) {
+							update_post_meta( $papa_id, '_stock_status', 'outofstock' );
+						}
+					}
+				}
+				else {
+					if(count($ventas) <= 0) {
+						echo '<div class="success"><p><h5>EL PRODUCTO NO SE PUEDE ELIMINAR PORQUE YA SE REGISTRO EN AL MENOS UNA COMPRA: <strong>['.$produ->post_title.' - SKU : '.$detail->sku.']</strong></h5>'.$respues.'</p></div>';
+						$actu_detail = false;
+						$actu = false;
+					}
+					else {
+						update_post_meta( $detail->post_id, '_stock_status', 'instock' );
+						update_post_meta( $papa_id, '_stock_status', 'instock' );
+					}
+				}
+			}
+
+			if($actu_detail) {
+				$wpdb->update(
+							$wpdb->prefix . 'bulk_load_detail',
+							array( 'status' => '0' ),
+							array( 'bulk_load_id' => $bulk_id, 'post_id' => $detail->post_id ),
+							array( '%s' ),
+							array( '%d', '%d' )
+						);
+			}
+    	}
+
+    	if($actu) {
+	    	$wpdb->update(
+							$wpdb->prefix . 'bulk_load',
+							array( 'status' => '0' ),
+							array( 'id' => $bulk_id ),
+							array( '%s' ),
+							array( '%d' )
+						);
+	    }
+
+    }
+
+    function eliminar_detalle($bulk_id, $post_id, $cant) {
+    	global $wpdb;
+    	$meta_existe = get_post_meta($post_id);
+		$stock = $meta_existe['_stock'][0] - $cant;
+		update_post_meta( $post_id, '_stock', $stock );
+
+		$wpdb->update(
+					$wpdb->prefix . 'bulk_load_detail',
+					array( 'status' => '0' ),
+					array( 'bulk_load_id' => $bulk_id, 'post_id' => $post_id ),
+					array( '%s' ),
+					array( '%d', '%d' )
+				);
+    }
+
+    function restaurar_detalle($bulk_id, $post_id, $cant) {
+    	global $wpdb;
+    	$meta_existe = get_post_meta($post_id);
+		$stock = $meta_existe['_stock'][0] + $cant;
+		update_post_meta( $post_id, '_stock', $stock );
+
+		$wpdb->update(
+					$wpdb->prefix . 'bulk_load_detail',
+					array( 'status' => '1' ),
+					array( 'bulk_load_id' => $bulk_id, 'post_id' => $post_id ),
+					array( '%s' ),
+					array( '%d', '%d' )
+				);
+    }
+
+    public function validate_headers($data) {
+		$i = 0;
+		$ok = true;
+		$respu = '';
+		if($data[$i] != 'sucursal') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "sucursal"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'estado') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "estado"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'sku') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "sku"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'nombre') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "nombre"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'precio') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "precio"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'descripcion') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "descripcion"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'cantidad') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "cantidad"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'categoria') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "categoria"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'subcategoria') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "subcategoria"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'foto1') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "foto1"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'foto2') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "foto2"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'foto3') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "foto3"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'foto4') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "foto4"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'foto5') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "foto5"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($data[$i] != 'foto6') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "foto6"<br>';
+			$ok = false;
+		}
+		$i++;
+		if($ok) {
+			$respu .= "OK";
+		}
+		return $respu;
+	}
+
 	public function validate_row($data) {
 		global $wpdb;
 		$i = 0;
@@ -504,6 +712,26 @@ class AitImport {
 	}
 
 	/**
+	 * Insert an row at bulk_load_detail
+	 */
+	public function insert_row_detail($bulk_load_id, $post_id, $sku, $cantidad, $comentarios) {
+		global $wpdb;
+		$list_data = array(
+			'bulk_load_id'		=> $bulk_load_id,
+			'post_id'			=> $post_id,
+			'sku' 				=> $sku,
+			'cantidad' 			=> $cantidad,
+			'comentarios' 		=> $comentarios,
+			'status'			=> '1'
+		);
+		$wpdb->insert(
+			$wpdb->prefix . 'bulk_load_detail',
+			$list_data,
+			array( '%d', '%d', '%s', '%s', '%s', '%d', '%s', '%s' )
+		);
+	}
+
+	/**
 	 * Import items from CSV file
 	 *
 	 * @since 1.0.0
@@ -511,9 +739,12 @@ class AitImport {
 	 * @param  string $type      post type id
 	 * @param  sting $file      url to temp csv file
 	 * @param  string $duplicate how to handle duplicate items
+	 * @param  string $name 		name of the file uploaded
 	 * 
 	 */
-	public function import_csv($type, $file, $duplicate, $statusProductos, $porcentaje) {
+	public function import_csv($type, $file, $duplicate, $name, $statusProductos, $porcentaje) {
+
+		global $wpdb;
 
 		$encoding_id = intval( get_option( 'ait_import_plugin_encoding', '25' ) );
 		$encoding_list = mb_list_encodings();
@@ -552,6 +783,27 @@ class AitImport {
 					$header_line = 2;
 				}
 				if ($row == $header_line) {
+					$msj = $this->validate_headers($data_row);
+					if($msj != 'OK') {
+						echo '<div class="error"><p>Errores en las cabeceras del archivo, Por favor intente de nuevo con un archivo correcto. <a href="admin.php?page=ait-import" class="btn"> INTENTARLO DE NUEVO</a><br><strong>'.$msj.'</strong> </p></div>';
+						exit();
+					}
+
+					$bulk_load_id = 0;
+					$list_data = array(
+						'date'			=> current_time( 'mysql' ),
+						'file'			=> $name,
+						'comentarios' 	=> '',
+						'status'		=> '1',
+						'ajuste'		=> '0',
+					);
+					$wpdb->insert(
+						$wpdb->prefix . 'bulk_load',
+						$list_data,
+						array( '%s', '%s', '%s', '%s', '%s' )
+					);
+					$bulk_load_id = $wpdb->insert_id;
+
 					$cols = count($data_row);
 					for ($c=0; $c < $cols; $c++) {
 						if (in_array($data_row[$c],array_keys($post_type->default_options))){
@@ -741,6 +993,7 @@ class AitImport {
 									}
 									
 								}
+								$this->insert_row_detail($bulk_load_id, $post_id, $this->sanitize_txt($data_row[2]), $data_row[6], 'Nuevo articulo');
 								$img_galery = substr($img_galery, 0, -2);
 								update_post_meta( $post_id, '_product_image_gallery', $img_galery );
 							}
@@ -762,6 +1015,55 @@ class AitImport {
 			fclose($handle);
 			echo '<div class="updated"><p>' . $num_imported . __(' productos fueron importados exitosamente. ').'</p><p>'. $num_existente .  __(' productos tienen un SKU que ya exite y no fueron agregados. ').' Listado de SKUs ['.$sku_existentes.']</p><p>' . $num_ignored . __(' productos no fueron insertados por no cumplir la validación.') .' Listado de SKUs ['.$sku_invalidos.']</p></div>';
 		}		
+	}
+
+	public function import_csv_precios($type, $file) {
+
+		global $wpdb;
+		$header_line = 1;
+		$num_exitosos = 0;
+		$num_invalidos = 0;
+		$num_noencontrados = 0;
+		$sku_exitosos = '';
+		$sku_invalidos = '';
+		$sku_noencontrados = '';
+
+		if (($handle = fopen($file, "r")) !== FALSE) {
+			while (($data_row = fgetcsv($handle, 10000, ',', '"')) !== FALSE ) {
+				
+				if (isset($data_row[0]) && $data_row[0] != '' && isset($data_row[1]) && is_numeric($data_row[1]) && $data_row[1] != '' && $header_line > 1) {
+					$post_ids = $wpdb->get_results("SELECT pm.post_id FROM $wpdb->postmeta pm, $wpdb->posts p where pm.meta_key = '_sku' and pm.meta_value = '".$data_row[0]."' and (p.post_type = 'product' or p.post_type = 'product_variation') and p.post_status IN ('publish', 'draft') and pm.post_id = p.ID;");
+					
+					foreach ($post_ids as $post_id) {
+						if(isset($post_id) && is_numeric($post_id->post_id)) {
+						
+							update_post_meta( $post_id->post_id, '_price', $data_row[1] );
+							update_post_meta( $post_id->post_id, '_regular_price', $data_row[1] );
+							delete_transient( 'wc_var_prices_' . $post_id->post_id );
+							$num_exitosos++;
+							$sku_exitosos .= $data_row[0].', ';
+						}
+						else {
+							$num_noencontrados++;
+							$sku_noencontrados .= $data_row[0].', ';
+						}
+					}
+					
+				}
+				else {
+					if($header_line > 1) {
+						$num_invalidos++;
+						$sku_invalidos .= $data_row[0].', ';
+					}
+				}
+				$header_line++;
+			}
+			echo '<div class="updated"><p>' . $num_exitosos . __(' productos con precio actualizado exitosamente. ').' Listado de SKUs ['.$sku_exitosos.']</p><p>' . $num_invalidos . __(' productos no fueron actualizados por no cumplir la validación.') .' Listado de SKUs ['.$sku_invalidos.']</p><p>' . $num_noencontrados . __(' no encontrados. ').' Listado de SKUs ['.$sku_noencontrados.']</p></div>';
+		}
+		else {
+			echo '<div class="error"><p>Error al intentar leer el archivo. Por favor revisa el archivo e intentalo de nuevo.</p></div>';
+		}
+
 	}
 
 	/**
