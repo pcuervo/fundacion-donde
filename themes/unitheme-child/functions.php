@@ -456,7 +456,7 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
       echo '<p>Para aclaracioces llamar al <a href="tel:+018000036633" class="line-height--50 margin-right" title="número de teléfono">01 800 003 6633</a></p>';
     } else {
       // other methods (ie credit card)
-      echo '<p><strong>Instrucciones:</strong> Por favor, busque "Madrigal Electromotive GmbH" en su próximo extracto de tarjeta de crédito.</p>';
+      //echo '<p><strong>Instrucciones:</strong> Por favor, busque "Madrigal Electromotive GmbH" en su próximo extracto de tarjeta de crédito.</p>';
       echo '<p>Para aclaracioces llamar al <a href="tel:+018000036633" class="line-height--50 margin-right" title="número de teléfono">01 800 003 6633</a></p>';
     }
   }

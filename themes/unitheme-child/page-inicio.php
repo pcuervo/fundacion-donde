@@ -22,7 +22,43 @@
 					</div>
 				</div>
 				<div class="[ container ][ margin-bottom ]">
-					<?php echo do_shortcode('[nz_rposts version="masonry" cat="home" columns="3"]'); ?>
+					<?php //echo do_shortcode('[nz_rposts version="masonry" cat="home" columns="3"]'); ?>
+
+					<div id="nz-recent-posts-1" data-animate="false" data-bullets="true" data-autoplay="false" data-columns="3" class="lazy nz-recent-posts masonry grid_3 nz-clearfix in">
+						<div class="posts-inner shuffle" style="position: relative; overflow: hidden; height: 412px; transition: height 300ms ease-out;">
+						<?php
+						$banners_args = array(
+							'post_type' => 'post',
+							'posts_per_page' => 3,
+						);
+						$banners_query = new WP_Query( $banners_args );
+						if ( $banners_query->have_posts() ) :
+						while ( $banners_query->have_posts() ) : $banners_query->the_post(); ?>
+
+							<?php
+								global $post;
+								$post_slug = $post->post_name;
+								//echo $post_slug;
+							?>
+
+							<div class="post format- shuffle-item filtered" data-grid="ninzio_01" style="position: absolute; top: 0px; left: 0px; visibility: visible; transition: transform 300ms ease-out, opacity 300ms ease-out;">
+								<div class="post-wrap nz-clearfix">
+									<a class="nz-more" href="<?php echo site_url('categoria-producto/') . $post_slug ; ?>">
+										<div class="nz-thumbnail">
+											<img width="100%" src="<?php the_post_thumbnail_url('full'); ?>">
+											<div class="ninzio-overlay"></div>
+										</div>
+									</a>
+								</div>
+							</div>
+
+						<?php endwhile;
+							wp_reset_postdata();
+						else : ?>
+							<p><?php echo _e( 'Lo sentimos, por el momento no hay preguntas.' ); ?></p>
+						<?php endif; ?>
+						</div>
+					</div>
 				</div>
 
 				<div class="nz-section horizontal animate-false full-width-false [ bg-testimonials ]" data-img-width="1920" data-img-height="666" data-animation-speed="35000" data-parallax="false">

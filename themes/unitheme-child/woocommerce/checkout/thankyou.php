@@ -64,7 +64,7 @@ if ( $order ) : ?>
 		      echo '<p><strong>Instrucciones:</strong> El pago completo se debe realizar inmediatamente después de la entrega: <em> sólo en efectivo, sin excepciones </ em>.</p>';
 		    } else {
 		      // other methods (ie credit card)
-		      echo '<p><strong>Instrucciones:</strong> Por favor, busque "Madrigal Electromotive GmbH" en su próximo extracto de tarjeta de crédito.</p>';
+		      //echo '<p><strong>Instrucciones:</strong> Por favor, busque "Madrigal Electromotive GmbH" en su próximo extracto de tarjeta de crédito.</p>';
 		    }
 	     ?>
 
