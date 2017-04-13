@@ -963,7 +963,6 @@
 
         function nz_procut_thumb_cart_after() { ?>
                     <?php woocommerce_template_loop_add_to_cart(); ?>
-                    <!-- <a class="[ btn-comprar ]" href="<?php echo get_permalink( $product->ID ); ?>">COMPRAR</a> -->
                 </div>
             </div>
 

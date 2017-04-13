@@ -125,6 +125,11 @@
 .log-in .cuenta-logout,
 .log-out .cuenta-login { display: none; }
 
+@media(max-width:1024px ){
+	.logo.logo-mob { max-width: 200px; }
+	.logo.logo-mob img { max-width: 100%!important; }
+}
+
   /*Language*/
 #lang_sel ul ul {
   position: absolute;
@@ -1005,9 +1010,7 @@ div.panel {
 }
 
 /*newsletter*/
-label[for="mc_mv_EMAIL"]{
-	display: none;
-}
+
 .mc_form_inside { position: relative; }
 .mc_signup_submit {
 	display: inline-block;
@@ -1042,3 +1045,6 @@ label[for="mc_mv_EMAIL"]{
 		margin-top: -100px;
 	}
 }
+
+.mc_mv_EMAIL,
+.bg-testimonials { display: none; }

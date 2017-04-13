@@ -117,11 +117,7 @@
 
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html data-color="<?php echo $nz_color; ?>" class="no-js ie6 oldie btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 7]>    <html data-color="<?php echo $nz_color; ?>" class="no-js ie7 oldie btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 8]>    <html data-color="<?php echo $nz_color; ?>" class="no-js ie8 oldie btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 9]>    <html data-color="<?php echo $nz_color; ?>" class="no-js ie9 oldie btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if gt IE 9]><!--> <html data-color="<?php echo $nz_color; ?>" class="no-js btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <!--<![endif]-->
+	<html data-color="<?php echo $nz_color; ?>" class="no-js btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
 
 	<!-- META TAGS -->
@@ -136,11 +132,12 @@
 	<meta name="googlebot" content="index, follow" />
 
 	<!-- Facebook, Twitter metas -->
-	<meta property="og:title" content="<?php bloginfo('name'); ?>">
-	<meta name="og:description" content="<?php bloginfo('description'); ?>" />
+	<meta property="og:title" content="Tienda en línea de la Fundación Rafael Dondé">
+	<meta property="og:description" content="Encuentra artículos nuevos y seminuevos a los mejores precios. Joyas, relojes y electrónicos en las mejores condiciones. Compras seguras, envíos gratis y descuentos." />
 	<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé">
 	<meta property="og:image:width" content="210" />
 	<meta property="og:image:height" content="110" />
+	<meta property="og:type" content="company" />
 	<meta property="fb:app_id" content="1109660165770884" />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@FundacionDonde1" />
@@ -291,6 +288,8 @@
 				<?php if ($nz_desk_top == "true"): ?>
 
 					<div class="header-top">
+
+						<h1 class="[ hidden ]"><?php bloginfo('name'); ?></h1>
 
 						<div class="container nz-clearfix">
 
