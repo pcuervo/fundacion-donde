@@ -125,25 +125,56 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- SEO -->
-	<meta name="keywords" content="novedades, articulos destacados, envio gratis, descuentos, artículos nuevos y usados, cálidad, compra segura, promociones y novedades">
+	<meta name="keywords" content="joyas, relojes, eléctronicos, novedades, articulos destacados, envio gratis, envío express, descuentos, artículos nuevos y usados, cálidad, compra segura, promociones y novedades">
     <meta name="description" content="<?php bloginfo('description'); ?>">
 
     <meta name="robots" content="index, follow" />
 	<meta name="googlebot" content="index, follow" />
 
 	<!-- Facebook, Twitter metas -->
-	<meta property="og:title" content="Tienda en línea de la Fundación Rafael Dondé">
+	<?php if (is_single()) {  ?>
+		<?php global $post; ?>
+		<meta property="og:title" content="<?php echo get_the_title(); ?>">
+		<meta name="twitter:title" content="<?php echo get_the_title(); ?>" />
+		<?php if ( has_post_thumbnail() ) { ?>
+			<meta property="og:image" content="<?php the_post_thumbnail_url('full'); ?>">
+			<meta name="twitter:image" content="<?php the_post_thumbnail_url('full'); ?>" />
+		<?php } else { ?>
+			<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png">
+			<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" />
+		<?php } ?>
+	<?php } elseif (is_archive()) { ?>
+			<?php if (is_product_category(array( 'joyas','aretes','cadenas','dijes','pulseras','anillos'))) { ?>
+				<meta property="og:title" content="Joyería - <?php echo get_the_title(); ?>">
+				<meta name="twitter:title" content="Joyería - <?php echo get_the_title(); ?>" />
+				<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/joya.jpg">
+				<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/joya.jpg" />
+			<?php } elseif (is_product_category(array( 'relojes','dama','caballero','alta-relojeria'))) { ?>
+				<meta property="og:title" content="Relojería - <?php echo get_the_title(); ?>">
+				<meta name="twitter:title" content="Relojería - <?php echo get_the_title(); ?>" />
+				<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/reloj.jpg">
+				<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/reloj.jpg" />
+			<?php } else { ?>
+				<meta property="og:title" content="Electrónica - <?php echo get_the_title(); ?>">
+				<meta name="twitter:title" content="Electrónica - <?php echo get_the_title(); ?>" />
+				<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png">
+				<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" />
+			<?php } ?>
+	<?php } else { ?>
+		<meta property="og:title" content="Tienda en línea de la Fundación Rafael Dondé">
+		<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png"/>
+		<meta name="twitter:title" content="Tienda en línea de la Fundación Rafael Dondé" />
+		<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png"/>
+	<?php } ?>
 	<meta property="og:description" content="Encuentra artículos nuevos y seminuevos a los mejores precios. Joyas, relojes y electrónicos en las mejores condiciones. Compras seguras, envíos gratis y descuentos." />
-	<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé">
 	<meta property="og:image:width" content="210" />
 	<meta property="og:image:height" content="110" />
 	<meta property="og:type" content="company" />
 	<meta property="fb:app_id" content="1109660165770884" />
+	<meta name="twitter:description" content="Encuentra artículos nuevos y seminuevos a los mejores precios. Joyas, relojes y electrónicos en las mejores condiciones. Compras seguras, envíos gratis y descuentos." />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@FundacionDonde1" />
-	<meta name="twitter:title" content="<?php bloginfo('name'); ?>" />
-	<meta name="twitter:description" content="<?php bloginfo('description'); ?>" />
-	<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé" />
+
 	<!-- Compatibility -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="cleartype" content="on">

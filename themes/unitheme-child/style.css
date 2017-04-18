@@ -1046,5 +1046,10 @@ div.panel {
 	}
 }
 
-.mc_mv_EMAIL,
+label[for="mc_mv_EMAIL"]{
+	width: 0px;
+	height: 0px;
+	overflow: hidden;
+}
+
 .bg-testimonials { display: none; }

@@ -46,8 +46,8 @@ if ( ! class_exists( 'AWS_Markup' ) ) :
             $markup = '';
             $markup .= '<div class="aws-container" ' . $params_string . '>';
             $markup .= '<form class="aws-search-form" action="' . home_url() . '" method="get" role="search" >';
-            $markup .= '<label for="buscador"></label>';
-            $markup .= '<input id="buscador" type="text" name="s" value="' . get_search_query() . '" class="aws-search-field" placeholder="' . $placeholder . '" autocomplete="off" />';
+            $markup .= '<label for="buscador-aws"></label>';
+            $markup .= '<input id="buscador-aws" type="text" name="buscador-aws" value="' . get_search_query() . '" class="aws-search-field" placeholder="' . $placeholder . '" autocomplete="off" />';
             $markup .= '<input type="hidden" name="post_type" value="product">';
             $markup .= '<input type="hidden" name="type_aws" value="true">';
             $markup .= '<div class="aws-search-result" style="display: none;"></div>';

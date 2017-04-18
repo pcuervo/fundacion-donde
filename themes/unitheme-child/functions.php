@@ -453,11 +453,20 @@ function add_order_email_instructions( $order, $sent_to_admin ) {
     if ( 'cod' == $order->payment_method ) {
       // cash on delivery method
       echo '<p><strong>Instrucciones:</strong> El pago completo se debe realizar inmediatamente después de la entrega: <em> sólo en efectivo, sin excepciones </em>.</p>';
-      echo '<p>Para aclaracioces llamar al <a href="tel:+018000036633" class="line-height--50 margin-right" title="número de teléfono">01 800 003 6633</a></p>';
+      echo '<p>Para aclaraciones llamar al <a href="tel:+018000036633" class="line-height--50 margin-right" title="número de teléfono">01 800 003 6633</a></p>';
     } else {
       // other methods (ie credit card)
       //echo '<p><strong>Instrucciones:</strong> Por favor, busque "Madrigal Electromotive GmbH" en su próximo extracto de tarjeta de crédito.</p>';
-      echo '<p>Para aclaracioces llamar al <a href="tel:+018000036633" class="line-height--50 margin-right" title="número de teléfono">01 800 003 6633</a></p>';
+      echo '<p>Para aclaraciones llamar al <a href="tel:+018000036633" class="line-height--50 margin-right" title="número de teléfono">01 800 003 6633</a></p>';
     }
   }
+}
+
+
+//Share faceboock - twitter
+function atrib_imagen_destacada() {
+    global $post;
+    $thumbID = get_post_thumbnail_id( $post->ID );
+    $imgDestacada = wp_get_attachment_image_src( $thumbID, 'large' ); // thumbnail, medium, large o full
+    return $imgDestacada[0]; // 0 = ruta, 1 = altura, 2 = anchura, 3 = boolean
 }

@@ -45,7 +45,7 @@
 								<div class="post-wrap nz-clearfix">
 									<a class="nz-more" href="<?php echo site_url('categoria-producto/') . $post_slug ; ?>">
 										<div class="nz-thumbnail">
-											<img width="100%" src="<?php the_post_thumbnail_url('full'); ?>">
+											<img width="100%" src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php echo $post_slug; ?>">
 											<div class="ninzio-overlay"></div>
 										</div>
 									</a>
