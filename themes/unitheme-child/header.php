@@ -468,3 +468,20 @@
 					<?php custom_breadcrumbs(); ?>
 				</div>
 			<?php } ?>
+			<?php if ( is_archive() ) {  ?>
+				<!-- mensajes productos agregados -->
+				<div class="[ container ]">
+					<?php wc_print_notices(); ?>
+					<?php
+						add_filter( 'wc_add_to_cart_message', 'custom_add_to_cart_message' );
+						function custom_add_to_cart_message() {
+						    global $woocommerce;
+
+						        $return_to  = get_permalink(woocommerce_get_page_id('shop'));
+						        $message    = sprintf('<a href="%s" class="button wc-forwards">%s</a> %s', $return_to, __('Continue Shopping', 'woocommerce'), __('Product successfully added to your cart.', 'woocommerce') );
+						    return $message;
+						}
+					 ?>
+				</div>
+			<?php } ?>
+

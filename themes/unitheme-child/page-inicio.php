@@ -3,6 +3,12 @@
 	<?php echo do_shortcode('[rev_slider alias="home"]'); ?>
 </div>
 <div class="page-full-width">
+
+	<!-- mensajes productos agregados -->
+	<div class="[ container ]">
+		<?php wc_print_notices(); ?>
+	</div>
+
 	<!-- content start -->
 	<div id="nz-content" class="content nz-clearfix padding-true">
 		<!-- post start -->

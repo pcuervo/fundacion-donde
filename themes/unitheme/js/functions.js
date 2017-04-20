@@ -26,6 +26,11 @@ var $=jQuery.noConflict();
         $('#mc_signup_submit').on('click',function(e){
             footerBottom();
         });
+
+        // $('.payment_method_paypal *').on('click',function(e){
+        //     console.log('checando');
+        //     $('.mesage-openpay').addClass('hidden');
+        // });
     });
 })(jQuery);
 
