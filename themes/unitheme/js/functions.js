@@ -17,6 +17,7 @@ var $=jQuery.noConflict();
         $(window).ready(function(){
             footerBottom();
             jsAccordion();
+
         });
 
         $(window).on('resize', function(){

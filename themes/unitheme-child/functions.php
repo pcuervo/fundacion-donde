@@ -470,3 +470,19 @@ function atrib_imagen_destacada() {
     $imgDestacada = wp_get_attachment_image_src( $thumbID, 'large' ); // thumbnail, medium, large o full
     return $imgDestacada[0]; // 0 = ruta, 1 = altura, 2 = anchura, 3 = boolean
 }
+
+//label - placeholder checkout change
+// Hook in
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+     $fields['billing']['billing_address_2']['placeholder'] = 'Interior, habitación, unidad, etc (opcional)';
+     $fields['shipping']['shipping_address_2']['placeholder'] = 'Interior, habitación, unidad, etc (opcional)';
+     $fields['billing']['billing_state']['label'] = 'Estado';
+     $fields['shipping']['shipping_state']['label'] = 'Estado';
+     return $fields;
+}
+
+// Display 12 products per page.
+add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );

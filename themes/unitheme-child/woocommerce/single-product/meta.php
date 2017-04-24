@@ -159,7 +159,12 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 		echo (!empty($electronico_numero_de_puertos_usb_20) ? '<span class="posted_in">Puertos USB 2.0: '.$electronico_numero_de_puertos_usb_20.'</span>' : '');
 
 		echo (!empty($electronico_estado) ? '<span class="posted_in">Comentarios: '.$electronico_estado.'</span>' : '');
+
 		echo "<br>";
+		echo "<h2>Descripción del producto</h2>";
+		echo the_content();
+		echo "<br>";
+
 		echo "<div class='[ row ] estado-articulo'>";
 			echo "<div class='[ col s6 ]'>";
 				echo (!empty($estado) ? '<span class="posted_in">Estado del artículo: '.$estado.'</span>' : '');
@@ -169,9 +174,21 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 							if( $estado == "Nuevo" ) {
 								echo "Producto nuevo (sin uso)";
 							} elseif( $estado == "Excelente" ) {
-								echo "El artículo se encuentra en muy buenas condiciones físicas y presenta ligeros signos de uso. Sin golpes ni rayones en la pantalla o display, sin golpes, abolladuras ni rayones profundos en carcasa o cuerpo. ";
+								if (has_term( 'electronicos', 'product_cat' )) {
+									echo "El artículo se encuentra en muy buenas condiciones físicas y presenta ligeros signos de uso. Sin golpes ni rayones en la pantalla o display, sin golpes, abolladuras ni rayones profundos en carcasa o cuerpo.";
+								} elseif (has_term( 'relojes', 'product_cat' )) {
+									echo "El reloj se encuentra en muy buenas condiciones físicas y presenta ligeros signos de uso. Sin golpes, sin rayones profundos,  no abolladuras y  con todos sus componentes originales.";
+								} else {
+									echo "La pieza se encuentra en muy buenas condiciones físicas con ligeros signos de uso, sin abolladuras ni rayones profundos.  Sin grabados personalizados.";
+								}
 							} elseif( $estado == "Bueno" ) {
-								echo "El artículo tiene detalles de uso evidentes a simple vista. Sin golpes ni rayones en la pantalla o display, se encuentran en buenas condiciones con signos de uso en carcasa y funciona correctamente. ";
+								if (has_term( 'electronicos', 'product_cat' )) {
+									echo "El artículo tiene detalles de uso evidentes a simple vista. Sin golpes ni rayones en la pantalla o display, se encuentran en buenas condiciones con signos de uso en carcasa y funciona correctamente. ";
+								} elseif (has_term( 'relojes', 'product_cat' )) {
+									echo "El reloj tiene detalles de uso evidentes a simple vista. Sin golpes ni rayones en carátula, el pulso presenta uso pero no daños que comprometan la integridad del mismo. Con todos sus componentes originales.";
+								} else {
+									echo "La pieza se encuentra en buenas condiciones físicas con signos de uso, sin abolladuras ni rayones profundos.  Sin grabados personalizados.  Puede llegar a presentar alguna marca de calado.";
+								}
 							}
 						echo "</span>";
 			echo "</div>";

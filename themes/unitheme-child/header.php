@@ -280,7 +280,7 @@
 
 				<div class="header-content">
 
-					<nav class="header-menu mob-menu nz-clearfix" itemscope>
+					<nav class="header-menu mob-menu nz-clearfix <?php if ( is_user_logged_in( ) ){ echo "log-in"; } else { echo "log-out"; } ?>" itemscope>
 						<?php
 
 							$mobarg = array(
@@ -460,7 +460,7 @@
 			</header>
 		</div>
 
-		<div class="[ main-body ]">
+		<div class="[ main-body ] <?php if (is_page('ofertas')) { echo "content-ofertas";} ?>">
 			<div class="page-wrap">
 
 			<?php if ( !is_front_page() ) { ?>

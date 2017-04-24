@@ -588,7 +588,7 @@ class WC_Countries {
 			),
 			'state' => array(
 				'type'         => 'state',
-				'label'        => __( 'State / County', 'woocommerce' ),
+				'label'        => __( 'Estado', 'woocommerce' ),
 				'required'     => true,
 				'class'        => array( 'form-row-first', 'address-field' ),
 				'validate'     => array( 'state' ),
