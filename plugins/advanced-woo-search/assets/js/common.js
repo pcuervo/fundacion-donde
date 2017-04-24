@@ -34,6 +34,7 @@
 
                 if ( searchFor === '' ) {
                     $(d.resultBlock).html('');
+                    methods.hideLoader();
                     return;
                 }
 
@@ -44,11 +45,12 @@
 
                 if ( searchFor.length < d.minChars ) {
                     $(d.resultBlock).html('');
+                    methods.hideLoader();
                     return;
                 }
 
                 if ( d.showLoader ) {
-                    $searchForm.addClass('processing');
+                    methods.showLoader();
                 }
 
                 var data = {
@@ -87,7 +89,7 @@
                 var html = '<ul>';
 
 
-                if ( response.cats.length > 0 ) {
+                if ( ( typeof response.cats !== 'undefined' ) && response.cats.length > 0 ) {
 
                     $.each(response.cats, function (i, result) {
 
@@ -95,7 +97,7 @@
                         html += '<a class="aws_result_link" href="' + result.link + '" >';
                         html += '<span class="aws_result_content">';
                         html += '<span class="aws_result_title">';
-                        html += result.name + '(' + result.count + ')';
+                        html += result.name + ' (' + result.count + ')';
                         html += '</span>';
                         html += '</span>';
                         html += '</a>';
@@ -105,7 +107,7 @@
 
                 }
 
-                if ( response.tags.length > 0 ) {
+                if ( ( typeof response.tags !== 'undefined' ) && response.tags.length > 0 ) {
 
                     $.each(response.tags, function (i, result) {
 
@@ -113,7 +115,7 @@
                         html += '<a class="aws_result_link" href="' + result.link + '" >';
                         html += '<span class="aws_result_content">';
                         html += '<span class="aws_result_title">';
-                        html += result.name + '(' + result.count + ')';
+                        html += result.name + ' (' + result.count + ')';
                         html += '</span>';
                         html += '</span>';
                         html += '</a>';
@@ -123,7 +125,7 @@
 
                 }
 
-                if ( response.products.length > 0 ) {
+                if ( ( typeof response.products !== 'undefined' ) && response.products.length > 0 ) {
 
                     $.each(response.products, function (i, result) {
 
@@ -169,18 +171,27 @@
 
                 }
 
-                if ( response.cats.length <= 0 && response.tags.length <= 0 && response.products.length <= 0 ) {
+                if ( ( typeof response.cats !== 'undefined' ) && response.cats.length <= 0 && ( typeof response.tags !== 'undefined' ) && response.tags.length <= 0 && ( typeof response.products !== 'undefined' ) && response.products.length <= 0 ) {
                     html += '<li class="aws_result_item aws_no_result">' + translate.noresults + '</li>';
                 }
 
 
                 html += '</ul>';
 
-                $searchForm.removeClass('processing');
+                methods.hideLoader();
+
                 $(d.resultBlock).html( html );
 
                 $(d.resultBlock).show();
 
+            },
+
+            showLoader: function() {
+                $searchForm.addClass('processing');
+            },
+
+            hideLoader: function() {
+                $searchForm.removeClass('processing');
             },
 
             onFocus: function( event ) {

@@ -475,7 +475,8 @@ class WXRImporter extends \WP_Importer {
 		if ( $this->options['aggressive_url_search'] ) {
 			$this->replace_attachment_urls_in_content();
 		}
-		// $this->remap_featured_images();
+
+		$this->remap_featured_images();
 
 		$this->import_end();
 	}
@@ -1902,10 +1903,14 @@ class WXRImporter extends \WP_Importer {
 		$filesize = filesize( $upload['file'] );
 		$headers = wp_remote_retrieve_headers( $response );
 
-		if ( isset( $headers['content-length'] ) && $filesize !== (int) $headers['content-length'] ) {
-			unlink( $upload['file'] );
-			return new \WP_Error( 'import_file_error', __( 'Remote file is incorrect size', 'wordpress-importer' ) );
-		}
+		// OCDI fix!
+		// Smaller images with server compression do not pass this rule.
+		// More info here: https://github.com/proteusthemes/WordPress-Importer/pull/2
+		//
+		// if ( isset( $headers['content-length'] ) && $filesize !== (int) $headers['content-length'] ) {
+		// 	unlink( $upload['file'] );
+		// 	return new \WP_Error( 'import_file_error', __( 'Remote file is incorrect size', 'wordpress-importer' ) );
+		// }
 
 		if ( 0 === $filesize ) {
 			unlink( $upload['file'] );
@@ -2257,13 +2262,21 @@ class WXRImporter extends \WP_Importer {
 	 * Update _thumbnail_id meta to new, imported attachment IDs
 	 */
 	function remap_featured_images() {
-		// cycle through posts that have a featured image
-		foreach ( $this->featured_images as $post_id => $value ) {
-			if ( isset( $this->processed_posts[ $value ] ) ) {
-				$new_id = $this->processed_posts[ $value ];
+		if ( empty( $this->featured_images ) ) {
+			return;
+		}
 
-				// only update if there's a difference
+		$this->logger->info( esc_html__( 'Starting remapping of featured images', 'wordpress-importer' ) );
+
+		// Cycle through posts that have a featured image.
+		foreach ( $this->featured_images as $post_id => $value ) {
+			if ( isset( $this->mapping['post'][ $value ] ) ) {
+				$new_id = $this->mapping['post'][ $value ];
+
+				// Only update if there's a difference.
 				if ( $new_id !== $value ) {
+					$this->logger->info( sprintf( esc_html__( 'Remapping featured image ID %d to new ID %d for post ID %d', 'wordpress-importer' ), $value, $new_id, $post_id ) );
+
 					update_post_meta( $post_id, '_thumbnail_id', $new_id );
 				}
 			}
@@ -2343,6 +2356,8 @@ class WXRImporter extends \WP_Importer {
 		$exists_key = $data['guid'];
 
 		if ( $this->options['prefill_existing_posts'] ) {
+			// OCDI: fix for custom post types. The guids in the prefilled section are escaped, so these ones should be as well.
+			$exists_key = htmlentities( $exists_key );
 			return isset( $this->exists['post'][ $exists_key ] ) ? $this->exists['post'][ $exists_key ] : false;
 		}
 

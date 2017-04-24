@@ -58,10 +58,6 @@ msgstr ""
 msgid "Sale!"
 msgstr ""
 
-#: advanced-woo-search.php:114
-msgid "Nothing found"
-msgstr ""
-
 #: advanced-woo-search.php:127
 msgid "Settings"
 msgstr ""
@@ -100,12 +96,20 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: includes/class-aws-admin.php:295
-msgid "Available fields"
+#: includes/class-aws-admin.php:296
+msgid "Active sources"
 msgstr ""
 
-#: includes/class-aws-admin.php:311
-msgid "Drag&drop to enable"
+#: includes/class-aws-admin.php:297
+msgid "Change order by drag&drop"
+msgstr ""
+
+#: includes/class-aws-admin.php:316
+msgid "Deactivated sources"
+msgstr ""
+
+#: includes/class-aws-admin.php:317
+msgid "Excluded from search results"
 msgstr ""
 
 #: includes/options.php:9
@@ -137,6 +141,22 @@ msgstr ""
 
 #: includes/options.php:22
 msgid "Text for search field placeholder."
+msgstr ""
+
+#: includes/options.php:35
+msgid "Search"
+msgstr ""
+
+#: includes/options.php:40
+msgid "Nothing found text"
+msgstr ""
+
+#: includes/options.php:41
+msgid "Text when there is no search results."
+msgstr ""
+
+#: includes/options.php:43
+msgid "Nothing found"
 msgstr ""
 
 #: includes/options.php:29
@@ -258,9 +278,7 @@ msgid "Search in"
 msgstr ""
 
 #: includes/options.php:176
-msgid ""
-"Source of searching. Set the source of searching by drag&drop needed fields "
-"to the right area."
+msgid "Search source: Drag&drop sources order to change priority, or exclude by moving to deactivated sources."
 msgstr ""
 
 #. Name of the plugin

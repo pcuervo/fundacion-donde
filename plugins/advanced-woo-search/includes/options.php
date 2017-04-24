@@ -19,7 +19,7 @@ $options['general'][] = array(
 
 $options['general'][] = array(
     "name"  => __( "Search in", "aws" ),
-    "desc"  => __( "Source of searching. Set the source of searching by drag&drop needed fields to the right area.", "aws" ),
+    "desc"  => __( "Search source: Drag&drop sources order to change priority, or exclude by moving to deactivated sources.", "aws" ),
     "id"    => "search_in",
     "value" => "title,content,sku,excerpt",
     "choices" => array( "title", "content", "sku", "excerpt", "category", "tag" ),
@@ -32,7 +32,15 @@ $options['form'][] = array(
     "name"  => __( "Text for search field", "aws" ),
     "desc"  => __( "Text for search field placeholder.", "aws" ),
     "id"    => "search_field_text",
-    "value" => "Search",
+    "value" => __( "Search", "aws" ),
+    "type"  => "text"
+);
+
+$options['form'][] = array(
+    "name"  => __( "Nothing found text", "aws" ),
+    "desc"  => __( "Text when there is no search results.", "aws" ),
+    "id"    => "not_found_text",
+    "value" => __( "Nothing found", "aws" ),
     "type"  => "text"
 );
 

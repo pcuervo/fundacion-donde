@@ -3,8 +3,8 @@ Contributors: Mihail Barinov
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GSE37FC4Y7CEY
 Tags: widget, plugin, woocommerce, search, product search, woocommerce search, ajax search, live search, custom search, ajax, shortcode, better search, relevance search, relevant search, search by sku, search plugin, shop, store, wordpress search, wp ajax search, wp search, wp search plugin, sidebar, ecommerce, merketing, products, category search, instant-search, search highlight, woocommerce advanced search, woocommerce live search, WooCommerce Plugin, woocommerce product search
 Requires at least: 4.0
-Tested up to: 4.7.2
-Stable tag: 1.11
+Tested up to: 4.7.3
+Stable tag: 1.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,7 @@ Advanced Woo Search - powerful live search plugin for WooCommerce. Just start ty
 * **Terms search** - Search for product categories and tags
 * **Smart ordering** - Search results ordered by the priority of source where they were found
 * **Fast** - Nothing extra. Just what you need for proper work
+* Supports variable products
 
 = Premium Features =
 
@@ -34,8 +35,10 @@ Advanced Woo Search - powerful live search plugin for WooCommerce. Just start ty
 * **Filters**. Switch between tabs to show different search results
 * **Unlimited** amount of search form instances
 * **Anvanced settings page** with lot of options
+* **Smooth scroll** for search results
 * **Exclude** spicific products by its categories or tags from search results
 * Ability to specify **source of image** for search results: featured image, gallery, product content, product short description or set default image if there is no other images
+* Support for **WooCommerce Brands plugin**
 
 == Installation ==
 
@@ -57,12 +60,32 @@ Or insert this function inside php file ( often it used to insert form inside pa
 
 `echo do_shortcode( '[aws_search_form]' );`
 
+= Is this plugin compatible with latest version of Woocommerce? =
+
+Yep. This plugin is always compatible with the latest version of Woocommerce?
+
 == Screenshots ==
 
 1. Front-end view
 2. Plugin settings page
 
 == Changelog ==
+
+= 1.15 =
+* Exclude 'Out of stock' products from search
+* Fix bugs
+
+= 1.14 =
+* Fix number of search results on search page
+* Exclude draft products from search
+* Fix bugs
+
+= 1.13 =
+* Add support for variable products
+* Fix bugs
+
+= 1.12 =
+* Fix small bugs in search results output
 
 = 1.11 =
 * Fix issue with indexing large amount of products

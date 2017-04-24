@@ -99,7 +99,8 @@ if ( ! class_exists( 'AWS_Search_Page' ) ) :
 
             $new_posts = array();
 
-            $posts_array = aws_search( $query->query_vars['s'] );
+            $search_query = str_replace( array( '.', '`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '|', '+', '\\', '?', ';', ':', '"', ',', '<', '>', '{', '}', '/' ), '', $query->query_vars['s'] );
+            $posts_array = aws_search( $search_query );
 
             $query->found_posts = count( $posts_array['products'] );
             $query->max_num_pages = ceil( count( $posts_array['products'] ) / $query->get( 'posts_per_page' ) );

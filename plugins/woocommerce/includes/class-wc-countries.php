@@ -575,7 +575,7 @@ class WC_Countries {
 				'autocomplete' => 'address-line1',
 			),
 			'address_2' => array(
-				'placeholder'  => _x( 'Apartment, suite, unit etc. (optional)', 'placeholder', 'woocommerce' ),
+				'placeholder'  => _x( 'Interior, habitación, unidad, etc (opcional)', 'woocommerce' ),
 				'class'        => array( 'form-row-wide', 'address-field' ),
 				'required'     => false,
 				'autocomplete' => 'address-line2',

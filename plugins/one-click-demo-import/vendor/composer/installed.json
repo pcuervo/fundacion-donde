@@ -1,20 +1,20 @@
 [
     {
         "name": "proteusthemes/wp-content-importer-v2",
-        "version": "v0.4.3",
-        "version_normalized": "0.4.3.0",
+        "version": "v0.4.6",
+        "version_normalized": "0.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/proteusthemes/WordPress-Importer.git",
-            "reference": "12dec5c810950f7d58d5a11dd1420a57830a0b1f"
+            "reference": "e64018028c5a979cb7106c03b29f2a17a05d3710"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/12dec5c810950f7d58d5a11dd1420a57830a0b1f",
-            "reference": "12dec5c810950f7d58d5a11dd1420a57830a0b1f",
+            "url": "https://api.github.com/repos/proteusthemes/WordPress-Importer/zipball/e64018028c5a979cb7106c03b29f2a17a05d3710",
+            "reference": "e64018028c5a979cb7106c03b29f2a17a05d3710",
             "shasum": ""
         },
-        "time": "2017-02-05T08:20:49+00:00",
+        "time": "2017-03-26T16:14:12+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -41,7 +41,7 @@
             "wp"
         ],
         "support": {
-            "source": "https://github.com/proteusthemes/WordPress-Importer/tree/v0.4.3"
+            "source": "https://github.com/proteusthemes/WordPress-Importer/tree/v0.4.6"
         }
     }
 ]

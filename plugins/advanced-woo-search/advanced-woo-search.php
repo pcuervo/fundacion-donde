@@ -3,7 +3,7 @@
 /*
 Plugin Name: Advanced Woo Search
 Description: Advance ajax WooCommerce product search.
-Version: 1.11
+Version: 1.15
 Author: ILLID
 Text Domain: aws
 */
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'AWS_VERSION', '1.11' );
+define( 'AWS_VERSION', '1.15' );
 
 
 define( 'AWS_DIR', dirname( __FILE__ ) );
@@ -112,7 +112,7 @@ final class AWS_Main {
 		wp_enqueue_script( 'aws-script', AWS_URL . '/assets/js/common.js', array('jquery'), AWS_VERSION, true );
 		wp_localize_script( 'aws-script', 'aws_vars', array(
 			'sale'      => __( 'Sale!', 'aws' ),
-			'noresults' => __( 'Nothing found', 'aws' )
+			'noresults' => $this->get_settings( 'not_found_text' ) ? $this->get_settings( 'not_found_text' ) : __( 'Nothing found', 'aws' )
 		) );
 	}
 
@@ -138,7 +138,8 @@ final class AWS_Main {
      */
     public function get_settings( $name ) {
         $plugin_options = $this->data['settings'];
-        return $plugin_options[ $name ];
+		$return_value = isset( $plugin_options[ $name ] ) ? $plugin_options[ $name ] : '';
+        return $return_value;
     }
 
 }

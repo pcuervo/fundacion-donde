@@ -34,6 +34,8 @@ if ( ! class_exists( 'AWS_Table' ) ) :
             add_action( 'delete_term', array( &$this, 'term_changed' ), 10, 3 );
             add_action( 'edit_term', array( &$this, 'term_changed' ), 10, 3 );
 
+            add_action( 'woocommerce_variable_product_sync', array( &$this, 'variable_product_changed' ), 10, 2 );
+
             add_action( 'wp_ajax_aws-reindex', array( $this, 'reindex_table' ) );
 
             add_action( 'wp_ajax_aws-cancel-index', array( $this, 'cancel_reindex' ) );
@@ -82,6 +84,7 @@ if ( ! class_exists( 'AWS_Table' ) ) :
                 'posts_per_page'      => $posts_per_page,
                 'fields'              => 'ids',
                 'post_type'           => 'product',
+                'post_status'         => 'publish',
                 'offset'              => $index_meta['offset'],
                 'ignore_sticky_posts' => true,
                 'orderby'             => 'ID',
@@ -156,11 +159,11 @@ if ( ! class_exists( 'AWS_Table' ) ) :
             $charset_collate = $wpdb->get_charset_collate();
 
             $sql = "CREATE TABLE {$this->table_name} (
-                      id MEDIUMINT(20) NOT NULL DEFAULT 0,
+                      id BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
                       term VARCHAR(50) NOT NULL DEFAULT 0,
                       term_source VARCHAR(20) NOT NULL DEFAULT 0,
                       type VARCHAR(50) NOT NULL DEFAULT 0,
-                      count MEDIUMINT(20) NOT NULL DEFAULT 0
+                      count BIGINT(20) UNSIGNED NOT NULL DEFAULT 0
                 ) $charset_collate;";
 
             require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -192,15 +195,46 @@ if ( ! class_exists( 'AWS_Table' ) ) :
 //                    continue;
 //                }
 
-                $product = new WC_product( $id );
+                $product = wc_get_product( $id );
+
+                if ( $product->stock_status === 'outofstock' ) {
+                    continue;
+                }
 
                 $sku = $product->get_sku();
 
                 $title = apply_filters( 'the_title', get_the_title( $id ) );
                 $content = apply_filters( 'the_content', get_post_field( 'post_content', $id ) );
-                $excerpt = apply_filters( 'get_the_excerpt', get_post_field( 'post_excerpt', $id ) );
+                $excerpt = get_post_field( 'post_excerpt', $id );
                 $cat_names = $this->get_terms_names_list( $id, 'product_cat' );
                 $tag_names = $this->get_terms_names_list( $id, 'product_tag' );
+
+
+                // Get all child products if exists
+                if ( $product->is_type( 'variable' ) ) {
+
+                    if ( sizeof( $product->get_children() ) > 0 ) {
+
+                        foreach ( $product->get_children() as $child_id ) {
+
+                            $variation_product = new WC_Product_Variation( $child_id );
+
+                            $variation_sku = $variation_product->get_sku();
+                            $variation_desc = $variation_product->get_variation_description();
+
+                            if ( $variation_sku ) {
+                                $sku = $sku . ' ' . $variation_sku;
+                            }
+
+                            if ( $variation_desc ) {
+                                $content = $content . ' ' . $variation_desc;
+                            }
+
+                        }
+
+                    }
+
+                }
 
 
                 // WP 4.2 emoji strip
@@ -280,6 +314,7 @@ if ( ! class_exists( 'AWS_Table' ) ) :
                 'posts_per_page'  => -1,
                 'fields'          => 'ids',
                 'post_type'       => 'product',
+                'post_status'     => 'publish',
                 'no_found_rows'   => 1,
                 'include'         => $post_id
             ) );
@@ -298,6 +333,34 @@ if ( ! class_exists( 'AWS_Table' ) ) :
             if ( $taxonomy === 'product_cat' || $taxonomy === 'product_tag' ) {
                 do_action( 'aws_cache_clear' );
             }
+
+        }
+
+        /*
+         * Fires when products variations are changed
+         */
+        public function variable_product_changed( $product_id, $children ) {
+
+            global $wpdb;
+
+            if ( $this->is_table_not_exist() ) {
+                $this->create_table();
+            }
+
+            $wpdb->delete( $this->table_name, array( 'id' => $product_id ) );
+
+            $posts = get_posts( array(
+                'posts_per_page'  => -1,
+                'fields'          => 'ids',
+                'post_type'       => 'product',
+                'post_status'     => 'publish',
+                'no_found_rows'   => 1,
+                'include'         => $product_id
+            ) );
+
+            $this->fill_table( $posts );
+
+            $this->clear_cache();
 
         }
 

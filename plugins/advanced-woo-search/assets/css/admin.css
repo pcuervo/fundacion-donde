@@ -6,9 +6,11 @@
 }
 
 .sortable-title {
-    padding: 10px 0;
+    padding: 8px 0;
     margin-right: 10px;
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 17px;
 }
 
 .sti-sortable {
@@ -38,6 +40,7 @@
     border: 1px solid #C7C4C4;
     text-align: center;
     padding: 8px 0;
+    text-transform: capitalize;
 }
 
 .sti-sortable li.highlight {

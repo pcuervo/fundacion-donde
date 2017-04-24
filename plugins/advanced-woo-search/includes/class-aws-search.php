@@ -75,7 +75,7 @@ if ( ! class_exists( 'AWS_Search' ) ) :
 
             $show_cats     = AWS()->get_settings( 'show_cats' );
             $show_tags     = AWS()->get_settings( 'show_tags' );
-            $results_num   = AWS()->get_settings( 'results_num' );
+            $results_num   = $keyword ? 100 : AWS()->get_settings( 'results_num' );
             $search_in     = AWS()->get_settings( 'search_in' );
 
             $search_in_arr = explode( ',',  AWS()->get_settings( 'search_in' ) );
@@ -313,6 +313,7 @@ if ( ! class_exists( 'AWS_Search' ) ) :
                         $excerpt = ( $excerpt_source === 'excerpt' && $post_data->post_excerpt ) ? $post_data->post_excerpt : $post_data->post_content;
                         $excerpt = AWS_Helpers::html2txt( $excerpt );
                         $excerpt = str_replace('"', "'", $excerpt);
+                        $excerpt = strip_shortcodes( $excerpt );
                     }
 
                     if ( $mark_search_words === 'true'  ) {

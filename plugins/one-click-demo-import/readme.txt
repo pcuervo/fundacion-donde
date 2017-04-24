@@ -1,9 +1,9 @@
 === One Click Demo Import ===
 Contributors: capuderg, cyman, Prelc
-Tags: import, content, demo, data, widgets, settings
+Tags: import, content, demo, data, widgets, settings, redux, theme options
 Requires at least: 4.0.0
 Tested up to: 4.7
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv3 or later
 
 Import your demo content, widgets and theme settings with one click. Theme authors! Enable simple demo import for your theme demo data.
@@ -339,6 +339,14 @@ Please visit this [docs page](https://github.com/proteusthemes/one-click-demo-im
 3. Example of how the import page looks like, when no demo imports are predefined a.k.a manual import.
 
 == Changelog ==
+
+= 2.2.1 =
+
+*Release Date - 3 April 2017*
+
+* Fix image importing error for server compressed files,
+* Fix remapping of featured images,
+* Fix custom post type existing posts check (no more multiple imports for custom post types).
 
 = 2.2.0 =
 

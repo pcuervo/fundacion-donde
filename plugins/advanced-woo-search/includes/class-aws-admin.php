@@ -152,7 +152,7 @@ class AWS_Admin {
                     <tr valign="top">
                         <th scope="row"><?php echo $value['name']; ?></th>
                         <td>
-                            <input type="text" name="<?php echo $value['id']; ?>" class="regular-text" value="<?php echo stripslashes( $plugin_options[ $value['id'] ] ); ?>">
+                            <input type="text" name="<?php echo $value['id']; ?>" class="regular-text" value="<?php echo isset( $plugin_options[ $value['id'] ] ) ? stripslashes( $plugin_options[ $value['id'] ] ) : ''; ?>">
                             <br><span class="description"><?php echo $value['desc']; ?></span>
                         </td>
                     </tr>
@@ -292,12 +292,16 @@ class AWS_Admin {
 
                             <div class="sortable-container">
 
-                                <div class="sortable-title"><?php _e( 'Available fields', 'aws' ) ?></div>
+                                <div class="sortable-title">
+                                    <?php _e( 'Active sources', 'aws' ) ?><br>
+                                    <?php _e( 'Change order by drag&drop', 'aws' ) ?>
+                                </div>
 
-                                <ul id="sti-sortable1" class="sti-sortable disabled connectedSortable">
+                                <ul id="sti-sortable2" class="sti-sortable enabled connectedSortable">
                                     <?php
-                                    if ( count( $inactive_buttons ) > 0 ) {
-                                        foreach ($inactive_buttons as $button) {
+                                    if ( count( $active_buttons ) > 0 ) {
+                                        foreach ($active_buttons as $button) {
+                                            if ( ! $button ) continue;
                                             echo '<li id="' . $button . '" class="sti-btn sti-' . $button . '-btn">' . $button . '</li>';
                                         }
                                     }
@@ -308,13 +312,15 @@ class AWS_Admin {
 
                             <div class="sortable-container">
 
-                                <div class="sortable-title"><?php _e( 'Drag&drop to enable', 'aws' ) ?></div>
+                                <div class="sortable-title">
+                                    <?php _e( 'Deactivated sources', 'aws' ) ?><br>
+                                    <?php _e( 'Excluded from search results', 'aws' ) ?>
+                                </div>
 
-                                <ul id="sti-sortable2" class="sti-sortable enabled connectedSortable">
+                                <ul id="sti-sortable1" class="sti-sortable disabled connectedSortable">
                                     <?php
-                                    if ( count( $active_buttons ) > 0 ) {
-                                        foreach ($active_buttons as $button) {
-                                            if ( ! $button ) continue;
+                                    if ( count( $inactive_buttons ) > 0 ) {
+                                        foreach ($inactive_buttons as $button) {
                                             echo '<li id="' . $button . '" class="sti-btn sti-' . $button . '-btn">' . $button . '</li>';
                                         }
                                     }
