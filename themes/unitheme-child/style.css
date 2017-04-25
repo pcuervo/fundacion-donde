@@ -284,6 +284,7 @@ footer .footer-content .footer-info { text-transform: capitalize!important; }
 
 /*BOX MODEL*/
 .no-margin-right { margin-right: 0px!important; }
+.no-margin-bottom { margin-bottom: 0px!important; }
 .margin-right { margin-right: 20px; }
 .margin-bottom--small { margin-bottom: 10px; }
 .margin-top-bottom { margin-bottom: 20px;  margin-top: 20px; }
@@ -1190,3 +1191,21 @@ label .required {
 
 .content-ofertas div.container,
 .content-ofertas h2 { padding-left: 15px; padding-right: 15px; }
+
+.cuenta-creada {
+	background-color: #FDB813;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+	border-radius: 10px;
+	margin-bottom: 30px;
+}
+.cuenta-creada p {
+	color: #fff;
+	margin: 0px;
+	font-weight: 600;
+}
+.cuenta-creada h2 {
+	color: #fff;
+	margin-bottom: 5px;
+}

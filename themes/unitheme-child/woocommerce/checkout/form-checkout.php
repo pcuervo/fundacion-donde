@@ -31,6 +31,14 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 }
 
 ?>
+
+<?php if ( !is_user_logged_in() ){ ?>
+	<div class="[ cuenta-creada ]">
+		<h2>¡Bienvenido!</h2>
+		<p>Tu cuenta ha sido creada.<br>Por favor ingresa tus datos para finalizar con el proceso de compra.</p>
+	</div>
+<?php } ?>
+
 <p class="mesage-openpay hidden ">Asegurate de completar los datos de tu método de pago</p>
 
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">

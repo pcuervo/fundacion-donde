@@ -52,8 +52,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php if ( $checkout->enable_guest_checkout ) : ?>
 
-			<p class="form-row-wide create-account">
-				<input class="input-checkbox" id="createaccount" <?php checked( ( true === $checkout->get_value( 'createaccount' ) || ( true === apply_filters( 'woocommerce_create_account_default_checked', false ) ) ), true) ?> type="checkbox" name="createaccount" value="1" />
+			<p class="form-row-wide create-account [ no-margin-bottom ][ hidden ]">
+				<input class="input-checkbox" id="createaccount" <?php checked( ( true === $checkout->get_value( 'createaccount' ) || ( true === apply_filters( 'woocommerce_create_account_default_checked', false ) ) ), true) ?> type="checkbox" name="createaccount" value="1" checked/>
 				<label for="createaccount" class="checkbox [ inline--block ]"><?php _e( 'Create an account?', 'woocommerce' ); ?></label>
 			</p>
 
@@ -65,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<div class="create-account">
 
-				<p><?php _e( 'Puedes guardar tu información creando una cuenta. Si ya eres cliente por favor introduce tu nombre de usuario en la parte superior de la página.', 'woocommerce' ); ?></p>
+				<p><?php _e( 'Ingresa una contraseña para que puedas acceder más tarde a tu cuenta. Si ya eres cliente por favor introduce tu nombre de usuario en la parte superior de la página.', 'woocommerce' ); ?></p>
 
 				<?php foreach ( $checkout->checkout_fields['account'] as $key => $field ) : ?>
 
@@ -83,3 +83,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php endif; ?>
 </div>
+
