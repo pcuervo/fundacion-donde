@@ -678,25 +678,75 @@ class AitImport {
 				}
 				else {
 					if($data[$i] == 'Relojes') {
-						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
-						if(!in_array($data[8], array('Dama', 'dama', 'Caballero', 'caballero' ))) {
-							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "dama|caballero". Valor recibido ['.$data[8].']';
+						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDASF
+						$category = get_term_by('name', 'Relojes', 'product_cat');
+						//var_dump($category);
+						$args = array(
+					       'hierarchical' => 1,
+					       'show_option_none' => '',
+					       'hide_empty' => 0,
+					       'parent' => $category->term_id,
+					       'taxonomy' => 'product_cat'
+					    );
+					  	$subcats = get_categories($args);
+					  	$subsArray = array();
+					  	$subsText = '';
+					  	foreach ($subcats as $sub) {
+					  		$subsArray[] = $sub->name;
+					  		$subsText .= $sub->name.'|';
+					  	}
+					  	
+						if(!in_array($data[8], $subsArray)) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$data[8].']';
 							$ok = false;
 						}
 					}
 					//VALIDACION PARA LA CATEGORIA Relojes
 					if($data[$i] == 'Joyas') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
-						if(!in_array($data[8], array('Aretes', 'aretes', 'Cadenas', 'cadenas', 'Dijes', 'dijes', 'Pulseras', 'pulseras', 'Anillos', 'anillos', 'Broqueles', 'broqueles' )) ) {
-							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "aretes|cadenas|dijes|pulseras|anillos|broqueles". Valor recibido ['.$data[8].']';
+						$category = get_term_by('name', 'Joyas', 'product_cat');
+						//var_dump($category);
+						$args = array(
+					       'hierarchical' => 1,
+					       'show_option_none' => '',
+					       'hide_empty' => 0,
+					       'parent' => $category->term_id,
+					       'taxonomy' => 'product_cat'
+					    );
+					  	$subcats = get_categories($args);
+					  	$subsArray = array();
+					  	$subsText = '';
+					  	foreach ($subcats as $sub) {
+					  		$subsArray[] = $sub->name;
+					  		$subsText .= $sub->name.'|';
+					  	}
+						if(!in_array($data[8], $subsArray) ) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$data[8].']';
 							$ok = false;
 						}
 					}
 					//VALIDACION PARA LA CATEGORIA Relojes
+
 					if($this->sanitize_txt($data[$i]) == 'Electronicos') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
-						if(!in_array($data[8], array('Celulares', 'celulares', 'Tablets', 'tablets', 'Pantallas', 'pantallas', 'Ipads', 'ipads', 'Camaras', 'camaras', 'Videojuegos', 'videojuegos', 'Laptops', 'laptops', 'Consolas', 'consolas' ))) {
-							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "celulares|tablets|pantallas|ipads|camaras|videojuegos|laptops|consolas". Valor recibido ['.$this->sanitize_txt($data[8]).']';
+						$category = get_term_by('name', 'Electronicos', 'product_cat');
+						//var_dump($category);
+						$args = array(
+					       'hierarchical' => 1,
+					       'show_option_none' => '',
+					       'hide_empty' => 0,
+					       'parent' => $category->term_id,
+					       'taxonomy' => 'product_cat'
+					    );
+					  	$subcats = get_categories($args);
+					  	$subsArray = array();
+					  	$subsText = '';
+					  	foreach ($subcats as $sub) {
+					  		$subsArray[] = $sub->name;
+					  		$subsText .= $sub->name.'|';
+					  	}
+						if(!in_array($data[8], $subsArray)) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$this->sanitize_txt($data[8]).']';
 							$ok = false;
 						}
 					}
