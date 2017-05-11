@@ -77,6 +77,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			</div>
 
+			<?php if ( !is_user_logged_in() ){ ?>
+				<div class="[ cuenta-creada ][ hidden ]">
+					<h2>¡Bienvenido!</h2>
+					<p>Tu cuenta ha sido creada.<br>Por favor termina de ingresar tus datos para finalizar con el proceso de compra.</p>
+				</div>
+			<?php } ?>
+
 		<?php endif; ?>
 
 		<?php do_action( 'woocommerce_after_checkout_registration_form', $checkout ); ?>

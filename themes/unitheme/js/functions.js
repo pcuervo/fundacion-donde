@@ -28,6 +28,14 @@ var $=jQuery.noConflict();
             footerBottom();
         });
 
+
+        $('.create-account input#account_password').on('click',function(e){
+            setTimeout(function() {
+                $( '.cuenta-creada' ).removeClass( 'hidden' );
+            }, 2000);
+        });
+
+
         // $('.payment_method_paypal *').on('click',function(e){
         //     console.log('checando');
         //     $('.mesage-openpay').addClass('hidden');
