@@ -1024,15 +1024,23 @@ class AitImport {
 												}
 											break;
 										case 'foto1':
+												if(substr($data_row[$key], -4) != '.jpg' && substr($data_row[$key], -4) != '.png') {
+													$data_row[$key] .= '.jpg';
+												}
 												$ruta_imagen = $uploads_dir['url'].'/'.$data_row[$key];
 												$image_id = $this->pippin_get_image_id($ruta_imagen);
 												update_post_meta( $post_id, '_thumbnail_id', $image_id );
+												update_post_meta( $post_id, '_ruta', $ruta_imagen );
 												set_post_thumbnail( $post_id, $image_id );
 											break;											
 										default:
 												if($opt == 'foto2' || $opt == 'foto3' || $opt == 'foto4' || $opt == 'foto5' || $opt == 'foto6') {
+													if(substr($data_row[$key], -4) != '.jpg' && substr($data_row[$key], -4) != '.png') {
+														$data_row[$key] .= '.jpg';
+													}
 													$ruta_imagen = $uploads_dir['url'].'/'.$data_row[$key];
 													$image_id = $this->pippin_get_image_id($ruta_imagen);
+													update_post_meta( $post_id, $opt, $ruta_imagen );
 													$img_galery .= 	$image_id .', ';
 												}
 												else {
