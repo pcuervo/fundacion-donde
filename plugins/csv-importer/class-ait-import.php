@@ -14,6 +14,7 @@
  * @package AitImport
  * @author  AitThemes.com <info@ait-themes.com>
  */
+
 class AitImport {
 
 	/**
@@ -401,6 +402,7 @@ class AitImport {
         $san_text = filter_var($text, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH | FILTER_FLAG_STRIP_LOW ) ;
         return $san_text;
     }
+    
 
     function deshacer_carga($bulk_id) {
     	global $wpdb;
@@ -669,15 +671,33 @@ class AitImport {
 			}
 			if($i==7) {
 				//VALIDACION PARA LA CATEGORIA Relojes
+				//$cate = $data[$i];
 				$cate = $this->sanitize_txt($data[$i]);
 				
-				if(!in_array($cate, array('Relojes', 'Joyas', 'Electronicos'))) {
-				//if($cat != 'Relojes' && $cat != 'Joyas' && strpos($cate, 'Electr') !== FALSE $cat != 'Electrónicos') {
-					$respu .= 'La columna categoria solo admite los valores "Relojes|Joyas|Electrónicos". Valor recibido ['.$cate.']';
+				$catsText = '';
+				$catsArray = array();
+
+				$args = array(
+			       'hierarchical' => 1,
+			       'show_option_none' => '',
+			       'hide_empty' => 0,
+			       'parent' => 0,
+			       'taxonomy' => 'product_cat'
+			    );
+			  	$categorias = get_categories($args);
+				foreach ($categorias as $cat) {
+					if ($cat->category_parent == 0) {
+				  		$catsArray[] = $cat->slug;
+				  		$catsText .= $cat->slug.'|';
+				  	}
+			  	}
+			  	
+			  	if(!in_array($cate, $catsArray)) {
+			  		$respu .= 'La columna categoria solo admite los valores "'.$catsText.'". Valor recibido ['.$cate.']';
 					$ok = false;
 				}
 				else {
-					if($data[$i] == 'Relojes') {
+					if($data[$i] == 'Relojes' || $data[$i] == 'relojes') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDASF
 						$category = get_term_by('name', 'Relojes', 'product_cat');
 						//var_dump($category);
@@ -692,8 +712,8 @@ class AitImport {
 					  	$subsArray = array();
 					  	$subsText = '';
 					  	foreach ($subcats as $sub) {
-					  		$subsArray[] = $sub->name;
-					  		$subsText .= $sub->name.'|';
+					  		$subsArray[] = $sub->slug;
+					  		$subsText .= $sub->slug.'|';
 					  	}
 					  	
 						if(!in_array($data[8], $subsArray)) {
@@ -702,7 +722,7 @@ class AitImport {
 						}
 					}
 					//VALIDACION PARA LA CATEGORIA Relojes
-					if($data[$i] == 'Joyas') {
+					if($data[$i] == 'Joyas' || $data[$i] == 'joyas') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
 						$category = get_term_by('name', 'Joyas', 'product_cat');
 						//var_dump($category);
@@ -717,8 +737,8 @@ class AitImport {
 					  	$subsArray = array();
 					  	$subsText = '';
 					  	foreach ($subcats as $sub) {
-					  		$subsArray[] = $sub->name;
-					  		$subsText .= $sub->name.'|';
+					  		$subsArray[] = $sub->slug;
+					  		$subsText .= $sub->slug.'|';
 					  	}
 						if(!in_array($data[8], $subsArray) ) {
 							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$data[8].']';
@@ -727,7 +747,7 @@ class AitImport {
 					}
 					//VALIDACION PARA LA CATEGORIA Relojes
 
-					if($this->sanitize_txt($data[$i]) == 'Electronicos') {
+					if($this->sanitize_txt($data[$i]) == 'Electronicos' || $this->sanitize_txt($data[$i]) == 'electronicos' || $this->sanitize_txt($data[$i]) == 'Electrónicos') {
 						//VALIDAR QUE LAS SUBCATEGORIAS SEAN SOLO LAS PERMITIDAS
 						$category = get_term_by('name', 'Electronicos', 'product_cat');
 						//var_dump($category);
@@ -742,8 +762,8 @@ class AitImport {
 					  	$subsArray = array();
 					  	$subsText = '';
 					  	foreach ($subcats as $sub) {
-					  		$subsArray[] = $sub->name;
-					  		$subsText .= $sub->name.'|';
+					  		$subsArray[] = $sub->slug;
+					  		$subsText .= $sub->slug.'|';
 					  	}
 						if(!in_array($data[8], $subsArray)) {
 							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$this->sanitize_txt($data[8]).']';
