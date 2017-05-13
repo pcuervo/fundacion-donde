@@ -46,7 +46,7 @@ $import = AitImport::get_instance();
 	if(isset($_POST["deshacer"]) && isset($_POST["bulk_id"]) && isset($_POST["deshacer_confirmar"]) ) {
 		$import->deshacer_carga($_POST["bulk_id"]);
 	}
-
+	
 	// eliminar un registro de alguna de las cargas
 	if(isset($_POST["eliminar_detalle"]) && isset($_POST["bulk_id"]) && isset($_POST["post_id"]) && isset($_POST["cantidad"]) ) {
 		$import->eliminar_detalle($_POST["bulk_id"], $_POST["post_id"], $_POST["cantidad"]);
