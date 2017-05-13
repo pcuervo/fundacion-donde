@@ -156,7 +156,7 @@ $import = AitImport::get_instance();
 		}
 
 		if((isset($_POST["vercargas"])) || (isset($_POST["detalle"]) && isset($_POST["bulk_id"])) || (isset($_POST["eliminar_detalle"]) || isset($_POST["restaurar_detalle"])) || isset($_POST["deshacer"]) ){
-			$bulks = $wpdb->get_results("SELECT bl.*, (select count(bulk_load_id) from ".$wpdb->prefix."bulk_load_detail where bulk_load_id = bl.id) as registros FROM ".$wpdb->prefix."bulk_load bl WHERE bl.status = '1'");
+			$bulks = $wpdb->get_results("SELECT bl.*, (select count(bulk_load_id) from ".$wpdb->prefix."bulk_load_detail where bulk_load_id = bl.id) as registros FROM ".$wpdb->prefix."bulk_load bl WHERE bl.status = '1' order by bl.id desc");
 			
 			if(!empty( $bulks )) {
 				foreach ($bulks as $bulk) {
