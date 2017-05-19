@@ -93,15 +93,13 @@
 								<div class="col-inner">
 									<div class="nz-content-box nz-clearfix v1 fade" data-columns="1">
 										<div id="nz-box-1" class="border-active  nz-box active">
-											<a href="<?php echo home_url('/calidad-garantizada'); ?>">
-												<div class="box-icon-wrap">
-													<div class="box-icon icon-badge"></div>
-												</div>
-												<div class="box-data">
-													<h3 class="text-center color-primary">Calidad garantizada</h3>
-													<p class="p1 text-center">Todos nuestros artículos están revisados y<br> avalados con los más altos estándares de<br> calidad</p>
-												</div>
-											</a>
+											<div class="box-icon-wrap">
+												<div class="box-icon icon-badge"></div>
+											</div>
+											<div class="box-data">
+												<h3 class="text-center color-primary">Calidad garantizada</h3>
+												<p class="p1 text-center">Todos nuestros artículos están revisados y<br> avalados con los más altos estándares de<br> calidad</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -109,34 +107,30 @@
 							<div class="col col4  col-animate-false active" data-align="left" data-effect="fade-left">
 								<div class="col-inner">
 									<div class="nz-content-box nz-clearfix v1 fade" data-columns="1">
-										<a href="<?php echo home_url('/envio-express'); ?>">
-											<div id="nz-box-2" class="border-active  nz-box active">
-												<div class="box-icon-wrap">
-													<div class="box-icon icon-envio"></div>
-												</div>
-												<div class="box-data">
-													<h3 class="text-center color-primary">Envío express</h3>
-													<p class="p1 text-center">Entrega en cualquier punto de la república<br> en máximo 5 días hábiles</p>
-												</div>
+										<div id="nz-box-2" class="border-active  nz-box active">
+											<div class="box-icon-wrap">
+												<div class="box-icon icon-envio"></div>
 											</div>
-										</a>
+											<div class="box-data">
+												<h3 class="text-center color-primary">Envío express</h3>
+												<p class="p1 text-center">Entrega en cualquier punto de la república<br> en máximo 5 días hábiles</p>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 							<div class="col col4  col-animate-false active" data-align="left" data-effect="fade-left">
 								<div class="col-inner">
 									<div class="nz-content-box nz-clearfix v1 fade" data-columns="1">
-										<a href="<?php echo home_url('/envio-gratis'); ?>">
-											<div id="nz-box-3" class="border-active  nz-box active">
-												<div class="box-icon-wrap">
-													<div class="box-icon icon-envio-gratis"></div>
-												</div>
-												<div class="box-data">
-													<h3 class="text-center color-primary">Envío gratis</h3>
-													<p class="p1 text-center">Para artículos con precio mayor a<br> $1,000 dentro de la República Mexicana</p>
-												</div>
+										<div id="nz-box-3" class="border-active  nz-box active">
+											<div class="box-icon-wrap">
+												<div class="box-icon icon-envio-gratis"></div>
 											</div>
-										</a>
+											<div class="box-data">
+												<h3 class="text-center color-primary">Envío gratis</h3>
+												<p class="p1 text-center">Para artículos con precio mayor a<br> $1,000 dentro de la República Mexicana</p>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
