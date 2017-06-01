@@ -477,10 +477,19 @@ add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 
 // Our hooked in function - $fields is passed via the filter!
 function custom_override_checkout_fields( $fields ) {
-     $fields['billing']['billing_address_2']['placeholder'] = 'Interior, habitación, unidad, etc (opcional)';
-     $fields['shipping']['shipping_address_2']['placeholder'] = 'Interior, habitación, unidad, etc (opcional)';
-     $fields['billing']['billing_state']['label'] = 'Estado';
-     $fields['shipping']['shipping_state']['label'] = 'Estado';
+    $fields['billing']['billing_address_2']['placeholder'] = 'Interior, habitación, unidad, etc (opcional)';
+    $fields['shipping']['shipping_address_2']['placeholder'] = 'Interior, habitación, unidad, etc (opcional)';
+    $fields['billing']['billing_state']['label'] = 'Estado';
+    $fields['shipping']['shipping_state']['label'] = 'Estado';
+    $fields['billing']['billing_phone'] = array(
+        'label'        => __( 'Phone', 'woocommerce' ),
+        'required'     => true,
+        'type'         => 'tel',
+        'class'        => array( 'form-row-last' ),
+        'clear'        => true,
+        'validate'     => array( 'phone' ),
+        'autocomplete' => 'tel',
+    );
      return $fields;
 }
 

@@ -11,13 +11,16 @@ var $=jQuery.noConflict();
             $( "#ship-to-different-address-checkbox" ).prop( "checked", false );
             $( 'div.shipping_address' ).hide();
 
-            $( "<div class='bg-notice'></div>" ).insertBefore( ".returning-user" );
+           // $( "<div class='bg-notice'></div>" ).insertBefore( ".returning-user" );
+
+
         });
 
         $(window).ready(function(){
             footerBottom();
             jsAccordion();
 
+            $( '#billing_phone_field' ).addClass( 'validate-required' );
         });
 
         $(window).on('resize', function(){

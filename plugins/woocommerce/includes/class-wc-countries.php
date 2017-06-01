@@ -1020,7 +1020,7 @@ class WC_Countries {
 				);
 				$address_fields['billing_phone'] = array(
 					'label'        => __( 'Phone', 'woocommerce' ),
-					'required'     => true,
+					'required'     => false,
 					'type'         => 'tel',
 					'class'        => array( 'form-row-last' ),
 					'clear'        => true,

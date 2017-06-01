@@ -1209,3 +1209,7 @@ label .required {
 	color: #fff;
 	margin-bottom: 5px;
 }
+
+#billing_country_field label {
+	clear: both;
+}
