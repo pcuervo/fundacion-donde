@@ -33,7 +33,7 @@
                 }
 
                 if ( searchFor === '' ) {
-                    $(d.resultBlock).html('');
+                    $(d.resultBlock).html('').hide();
                     methods.hideLoader();
                     return;
                 }
@@ -73,7 +73,9 @@
 
                             methods.showResults( response );
 
-                            $(d.resultBlock).show();
+                            methods.showResultsBlock();
+
+                            methods.analytics( searchFor );
 
                         },
                         error: function (data, dummy) {
@@ -182,8 +184,13 @@
 
                 $(d.resultBlock).html( html );
 
-                $(d.resultBlock).show();
+                methods.showResultsBlock();
 
+            },
+
+            showResultsBlock: function() {
+                methods.resultLayout();
+                $(d.resultBlock).show();
             },
 
             showLoader: function() {
@@ -196,7 +203,7 @@
 
             onFocus: function( event ) {
                 if ( searchFor !== '' ) {
-                    $(d.resultBlock).show();
+                    methods.showResultsBlock();
                 }
             },
 
@@ -223,6 +230,16 @@
 
                 }
 
+            },
+
+            analytics: function( label ) {
+                if ( d.useAnalytics ) {
+                    try {
+                        ga('send', 'event', 'AWS search', 'AWS Search Term', label);
+                    }
+                    catch (error) {
+                    }
+                }
             }
 
         };
@@ -252,6 +269,7 @@
         self.data( pluginPfx, {
             minChars  : ( self.data('min-chars')   !== undefined ) ? self.data('min-chars') : 1,
             showLoader: ( self.data('show-loader') !== undefined ) ? self.data('show-loader') : true,
+            useAnalytics: ( self.data('use-analytics') !== undefined ) ? self.data('use-analytics') : false,
             instance: instance,
             resultBlock: '#aws-search-result-' + instance
         });
@@ -285,6 +303,12 @@
             methods.resultLayout();
         });
 
+
+        $(window).on( 'scroll', function(e) {
+            if ( $( d.resultBlock ).css('display') == 'block' ) {
+                methods.resultLayout();
+            }
+        });
 
     };
 

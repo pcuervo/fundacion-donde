@@ -77,6 +77,7 @@ if ( ! class_exists( 'AWS_Search' ) ) :
             $show_tags     = AWS()->get_settings( 'show_tags' );
             $results_num   = $keyword ? 100 : AWS()->get_settings( 'results_num' );
             $search_in     = AWS()->get_settings( 'search_in' );
+            $outofstock    = AWS()->get_settings( 'outofstock' );
 
             $search_in_arr = explode( ',',  AWS()->get_settings( 'search_in' ) );
 
@@ -90,10 +91,11 @@ if ( ! class_exists( 'AWS_Search' ) ) :
 
 
             $this->data['s'] = $s;
-            $this->data['results_num'] = $results_num ? $results_num : 10;
+            $this->data['results_num']  = $results_num ? $results_num : 10;
             $this->data['search_terms'] = array();
             $this->data['search_terms'] = array_unique( explode( ' ', $s ) );
-            $this->data['search_in'] = $search_in_arr;
+            $this->data['search_in']    = $search_in_arr;
+            $this->data['outofstock']   = $outofstock;
 
 
             $posts_ids = $this->query_index_table();
@@ -146,12 +148,18 @@ if ( ! class_exists( 'AWS_Search' ) ) :
 
             $search_in_arr    = $this->data['search_in'];
             $results_num      = $this->data['results_num'];
+            $outofstock       = $this->data['outofstock'];
+
+
+            $reindex_version = get_option( 'aws_reindex_version' );
 
             $query = array();
 
             $query['search'] = '';
             $query['source'] = '';
             $query['relevance'] = '';
+            $query['stock'] = '';
+            $query['visibility'] = '';
 
             $search_array = array();
             $source_array = array();
@@ -228,6 +236,17 @@ if ( ! class_exists( 'AWS_Search' ) ) :
             $query['source'] .= sprintf( ' AND ( %s )', implode( ' OR ', $source_array ) );
 
 
+            if ( $reindex_version && version_compare( $reindex_version, '1.16', '>=' ) ) {
+
+                if ( $outofstock !== 'true' ) {
+                    $query['stock'] .= " AND in_stock = 1";
+                }
+
+                $query['visibility'] .= " AND NOT visibility LIKE '%hidden%'";
+
+            }
+
+
             $sql = "SELECT
                     distinct ID,
                     {$query['relevance']} as relevance
@@ -237,11 +256,13 @@ if ( ! class_exists( 'AWS_Search' ) ) :
                     type = 'product'
                 {$query['source']}
                 {$query['search']}
+                {$query['stock']}
+                {$query['visibility']}
                 GROUP BY ID
                 ORDER BY
                     relevance DESC
 				LIMIT 0, {$results_num}
-		";
+		    ";
 
             $posts_ids = $this->get_posts_ids( $sql );
 
@@ -298,7 +319,7 @@ if ( ! class_exists( 'AWS_Search' ) ) :
 
                     $product = wc_get_product( $post_id );
 
-                    $post_data = $product->get_post_data();
+                    $post_data = get_post( $post_id );
 
                     $title = $product->get_title();
                     $title = AWS_Helpers::html2txt( $title );
@@ -345,9 +366,8 @@ if ( ! class_exists( 'AWS_Search' ) ) :
                         $sku = $product->get_sku();
                     }
 
-                    $categories = $product->get_categories( ',' );
-
-                    $tags = $product->get_tags( ',' );
+//                    $categories = $product->get_categories( ',' );
+//                    $tags = $product->get_tags( ',' );
 
                     $new_result = array(
                         'title'      => $title,
@@ -355,8 +375,6 @@ if ( ! class_exists( 'AWS_Search' ) ) :
                         'link'       => get_permalink( $post_id ),
                         'image'      => $image,
                         'price'      => $price,
-                        'categories' => $categories,
-                        'tags'       => $tags,
                         'on_sale'    => $on_sale,
                         'sku'        => $sku,
                         'post_data'  => $post_data

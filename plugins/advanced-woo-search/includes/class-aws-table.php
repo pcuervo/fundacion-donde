@@ -25,7 +25,7 @@ if ( ! class_exists( 'AWS_Table' ) ) :
 
             $this->table_name = $wpdb->prefix . AWS_INDEX_TABLE_NAME;
 
-            add_action( 'save_post', array( $this, 'update_table' ), 10, 3 );
+            add_action( 'wp_insert_post', array( $this, 'update_table' ), 10, 3 );
 
             add_action( 'aws_settings_saved', array( $this, 'clear_cache' ) );
             add_action( 'aws_cache_clear', array( $this, 'clear_cache' ) );
@@ -126,6 +126,9 @@ if ( ! class_exists( 'AWS_Table' ) ) :
                     delete_option( 'aws_index_meta' );
 
                     $this->clear_cache();
+
+                    update_option( 'aws_reindex_version', AWS_VERSION );
+
                 }
 
             } else {
@@ -163,7 +166,9 @@ if ( ! class_exists( 'AWS_Table' ) ) :
                       term VARCHAR(50) NOT NULL DEFAULT 0,
                       term_source VARCHAR(20) NOT NULL DEFAULT 0,
                       type VARCHAR(50) NOT NULL DEFAULT 0,
-                      count BIGINT(20) UNSIGNED NOT NULL DEFAULT 0
+                      count BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
+                      in_stock INT(11) NOT NULL DEFAULT 0,
+                      visibility VARCHAR(20) NOT NULL DEFAULT 0
                 ) $charset_collate;";
 
             require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -185,21 +190,10 @@ if ( ! class_exists( 'AWS_Table' ) ) :
                 $terms  = array();
                 $id     = $found_post_id;
 
-                $custom = get_post_custom( $id );
-
-                if ( isset( $custom['_visibility'] ) && $custom['_visibility'][0] == 'hidden' ) {
-                    continue;
-                }
-
-//                if ( isset( $custom['_stock_status'] ) && $custom['_stock_status'][0] == 'outofstock' ) {
-//                    continue;
-//                }
-
                 $product = wc_get_product( $id );
 
-                if ( $product->stock_status === 'outofstock' ) {
-                    continue;
-                }
+                $in_stock = ( $product->stock_status === 'outofstock' ) ? 0 : 1;
+                $visibility = $product->catalog_visibility ? $product->catalog_visibility : ( $product->visibility ? $product->visibility : 'visible' );
 
                 $sku = $product->get_sku();
 
@@ -211,7 +205,7 @@ if ( ! class_exists( 'AWS_Table' ) ) :
 
 
                 // Get all child products if exists
-                if ( $product->is_type( 'variable' ) ) {
+                if ( $product->is_type( 'variable' ) && class_exists( 'WC_Product_Variation' ) ) {
 
                     if ( sizeof( $product->get_children() ) > 0 ) {
 
@@ -220,7 +214,11 @@ if ( ! class_exists( 'AWS_Table' ) ) :
                             $variation_product = new WC_Product_Variation( $child_id );
 
                             $variation_sku = $variation_product->get_sku();
-                            $variation_desc = $variation_product->get_variation_description();
+
+                            $variation_desc = '';
+                            if ( method_exists( $variation_product, 'get_description' ) ) {
+                                $variation_desc = $variation_product->get_description();
+                            }
 
                             if ( $variation_sku ) {
                                 $sku = $sku . ' ' . $variation_sku;
@@ -262,8 +260,8 @@ if ( ! class_exists( 'AWS_Table' ) ) :
                         }
 
                         $value = $wpdb->prepare(
-                            "(%d, %s, %s, %s, %d)",
-                            $id, $term, $source, 'product', $count
+                            "(%d, %s, %s, %s, %d, %d, %s)",
+                            $id, $term, $source, 'product', $count, $in_stock, $visibility
                         );
 
                         $values[] = $value;
@@ -278,7 +276,7 @@ if ( ! class_exists( 'AWS_Table' ) ) :
                     $values = implode( ', ', $values );
 
                     $query  = "INSERT IGNORE INTO {$this->table_name}
-				              (`id`, `term`, `term_source`, `type`, `count`)
+				              (`id`, `term`, `term_source`, `type`, `count`, `in_stock`, `visibility`)
 				              VALUES $values
                     ";
 

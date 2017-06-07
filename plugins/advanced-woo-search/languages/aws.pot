@@ -281,6 +281,26 @@ msgstr ""
 msgid "Search source: Drag&drop sources order to change priority, or exclude by moving to deactivated sources."
 msgstr ""
 
+#: includes/options.php:30
+msgid "Show out-of-stock"
+msgstr ""
+
+#: includes/options.php:31
+msgid "Show out-of-stock products in search"
+msgstr ""
+
+#: includes/options.php:42
+msgid "Use Google Analytics"
+msgstr ""
+
+#: includes/options.php:42
+msgid "Use google analytics to track searches. You need google analytics to be installed on your site."
+msgstr ""
+
+#: includes/options.php:42
+msgid "Will send event with category - 'AWS search', action - 'AWS Search Term' and label of value of search term."
+msgstr ""
+
 #. Name of the plugin
 msgid "Advanced Woo Search"
 msgstr ""

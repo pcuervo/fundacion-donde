@@ -26,17 +26,19 @@ if ( ! class_exists( 'AWS_Markup' ) ) :
             }
 
 
-            $placeholder  = AWS()->get_settings( 'search_field_text' );
-            $min_chars    = AWS()->get_settings( 'min_chars' );
-            $show_loader  = AWS()->get_settings( 'show_loader' );
+            $placeholder   = AWS()->get_settings( 'search_field_text' );
+            $min_chars     = AWS()->get_settings( 'min_chars' );
+            $show_loader   = AWS()->get_settings( 'show_loader' );
+            $use_analytics = AWS()->get_settings( 'use_analytics' );
 
             $params_string = '';
 
             $params = array(
-                'data-url'          => admin_url('admin-ajax.php'),
-                'data-siteurl'      => home_url(),
-                'data-show-loader'  => $show_loader,
-                'data-min-chars'    => $min_chars,
+                'data-url'           => admin_url('admin-ajax.php'),
+                'data-siteurl'       => home_url(),
+                'data-show-loader'   => $show_loader,
+                'data-use-analytics' => $use_analytics,
+                'data-min-chars'     => $min_chars,
             );
 
             foreach( $params as $key => $value ) {

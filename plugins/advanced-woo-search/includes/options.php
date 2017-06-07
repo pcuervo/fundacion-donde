@@ -26,6 +26,29 @@ $options['general'][] = array(
     "type"  => "sortable"
 );
 
+$options['general'][] = array(
+    "name"  => __( "Show out-of-stock", "aws" ),
+    "desc"  => __( "Show out-of-stock products in search", "aws" ),
+    "id"    => "outofstock",
+    "value" => 'true',
+    "type"  => "radio",
+    'choices' => array(
+        'true'  => __( 'Show', 'aws' ),
+        'false'  => __( 'Hide', 'aws' ),
+    )
+);
+
+$options['general'][] = array(
+    "name"  => __( "Use Google Analytics", "aws" ),
+    "desc"  => __( "Use google analytics to track searches. You need google analytics to be installed on your site.", "aws" ) . '<br>' . __( "Will send event with category - 'AWS search', action - 'AWS Search Term' and label of value of search term.", "aws" ),
+    "id"    => "use_analytics",
+    "value" => 'false',
+    "type"  => "radio",
+    'choices' => array(
+        'true'  => __( 'On', 'aws' ),
+        'false'  => __( 'Off', 'aws' ),
+    )
+);
 
 // Search Form Settings
 $options['form'][] = array(

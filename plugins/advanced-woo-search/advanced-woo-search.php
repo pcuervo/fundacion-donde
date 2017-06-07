@@ -3,7 +3,7 @@
 /*
 Plugin Name: Advanced Woo Search
 Description: Advance ajax WooCommerce product search.
-Version: 1.15
+Version: 1.18
 Author: ILLID
 Text Domain: aws
 */
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'AWS_VERSION', '1.15' );
+define( 'AWS_VERSION', '1.18' );
 
 
 define( 'AWS_DIR', dirname( __FILE__ ) );
@@ -74,8 +74,6 @@ final class AWS_Main {
 
 		load_plugin_textdomain( 'aws', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
 
-        update_option( 'aws_plugin_ver', AWS_VERSION );
-
         $this->includes();
 
 	}
@@ -84,6 +82,7 @@ final class AWS_Main {
      * Include required core files used in admin and on the frontend.
      */
     public function includes() {
+        include_once( 'includes/class-aws-versions.php' );
         include_once( 'includes/class-aws-helpers.php' );
         include_once( 'includes/class-aws-admin.php' );
         include_once( 'includes/class-aws-table.php' );
@@ -160,12 +159,13 @@ function AWS() {
 /*
  * Check if WooCommerce is active
  */
-if ( aws_is_plugin_active('woocommerce/woocommerce.php') ) {
-	add_action( 'woocommerce_loaded', 'aws_init' );
-} else {
-	add_action( 'admin_notices', 'aws_install_woocommerce_admin_notice' );
+if ( ! aws_is_plugin_active( 'advanced-woo-search-pro/advanced-woo-search-pro.php' ) ) {
+    if ( aws_is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+        add_action( 'woocommerce_loaded', 'aws_init' );
+    } else {
+        add_action( 'admin_notices', 'aws_install_woocommerce_admin_notice' );
+    }
 }
-
 
 /*
  * Check whether the plugin is active by checking the active_plugins list.
@@ -182,7 +182,7 @@ function aws_is_plugin_active_for_network( $plugin ) {
     if ( !is_multisite() )
         return false;
 
-    $plugins = get_site_option( 'active_sitewide_plugins');
+    $plugins = get_site_option( 'active_sitewide_plugins' );
     if ( isset($plugins[$plugin]) )
         return true;
 
