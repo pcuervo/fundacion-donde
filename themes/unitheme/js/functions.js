@@ -19,6 +19,7 @@ var $=jQuery.noConflict();
         $(window).ready(function(){
             footerBottom();
             jsAccordion();
+            uncheckMethodPay();
 
             $( '#billing_phone_field' ).addClass( 'validate-required' );
         });
@@ -80,5 +81,13 @@ function jsAccordion(){
             }
         }
     }
+}
 
+function uncheckMethodPay(){
+    document.getElementById("payment_method_openpay_cards").checked = false;
+    $('div.payment_box.payment_method_openpay_cards').css('display','none');
+    setTimeout(function() {
+        document.getElementById("payment_method_openpay_cards").checked = false;
+        $('div.payment_box.payment_method_openpay_cards').css('display','none');
+    }, 2000);
 }
