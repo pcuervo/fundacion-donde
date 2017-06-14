@@ -184,6 +184,9 @@
 	<!-- Canonical URL -->
 	<link rel="canonical" href="<?php echo site_url(); ?>" />
 
+	<!-- API KEY -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0zox_xR6CvdiGjyrzQVcRBZI5_Sj6VIo&callback=initMap" type="text/javascript"></script>
+
 	<!-- Noscript -->
 	<noscript>Tu navegador no soporta JavaScript!</noscript>
 

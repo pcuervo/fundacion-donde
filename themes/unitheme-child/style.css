@@ -1214,3 +1214,14 @@ label .required {
 #billing_country_field label {
 	clear: both;
 }
+
+
+.checked-method-pay {
+	width: 200px;
+	height: 24px;
+	position: absolute;
+	// background-color: red;
+}
+.payment_method_cod .checked-method-pay {
+	display: block;
+}
