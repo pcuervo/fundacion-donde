@@ -11,9 +11,13 @@ namespace OCDI;
 
 <div class="ocdi  wrap  about-wrap">
 
-	<h1 class="ocdi__title  dashicons-before  dashicons-upload"><?php esc_html_e( 'One Click Demo Import', 'pt-ocdi' ); ?></h1>
-
+	<?php ob_start(); ?>
+		<h1 class="ocdi__title  dashicons-before  dashicons-upload"><?php esc_html_e( 'One Click Demo Import', 'pt-ocdi' ); ?></h1>
 	<?php
+	$plugin_title = ob_get_clean();
+
+	// Display the plugin title (can be replaced with custom title text through the filter below).
+	echo wp_kses_post( apply_filters( 'pt-ocdi/plugin_page_title', $plugin_title ) );
 
 	// Display warrning if PHP safe mode is enabled, since we wont be able to change the max_execution_time.
 	if ( ini_get( 'safe_mode' ) ) {
@@ -76,18 +80,18 @@ namespace OCDI;
 			</div>
 
 			<div class="ocdi__file-upload">
-				<h3><label for="widget-file-upload"><?php esc_html_e( 'Choose a WIE or JSON file for widget import:', 'pt-ocdi' ); ?></label> <span><?php esc_html_e( '(*optional)', 'pt-ocdi' ); ?></span></h3>
+				<h3><label for="widget-file-upload"><?php esc_html_e( 'Choose a WIE or JSON file for widget import:', 'pt-ocdi' ); ?></label></h3>
 				<input id="ocdi__widget-file-upload" type="file" name="widget-file-upload">
 			</div>
 
 			<div class="ocdi__file-upload">
-				<h3><label for="customizer-file-upload"><?php esc_html_e( 'Choose a DAT file for customizer import:', 'pt-ocdi' ); ?></label> <span><?php esc_html_e( '(*optional)', 'pt-ocdi' ); ?></span></h3>
+				<h3><label for="customizer-file-upload"><?php esc_html_e( 'Choose a DAT file for customizer import:', 'pt-ocdi' ); ?></label></h3>
 				<input id="ocdi__customizer-file-upload" type="file" name="customizer-file-upload">
 			</div>
 
 			<?php if ( class_exists( 'ReduxFramework' ) ) : ?>
 			<div class="ocdi__file-upload">
-				<h3><label for="redux-file-upload"><?php esc_html_e( 'Choose a JSON file for Redux import:', 'pt-ocdi' ); ?></label> <span><?php esc_html_e( '(*optional)', 'pt-ocdi' ); ?></span></h3>
+				<h3><label for="redux-file-upload"><?php esc_html_e( 'Choose a JSON file for Redux import:', 'pt-ocdi' ); ?></label></h3>
 				<input id="ocdi__redux-file-upload" type="file" name="redux-file-upload">
 				<div>
 					<label for="redux-option-name" class="ocdi__redux-option-name-label"><?php esc_html_e( 'Enter the Redux option name:', 'pt-ocdi' ); ?></label>
@@ -156,9 +160,12 @@ namespace OCDI;
 								<div class="ocdi__gl-item-image  ocdi__gl-item-image--no-image"><?php esc_html_e( 'No preview image.', 'pt-ocdi' ); ?></div>
 							<?php endif; ?>
 						</div>
-						<div class="ocdi__gl-item-footer">
-							<h4 class="ocdi__gl-item-title"><?php echo esc_html( $import_file['import_file_name'] ); ?></h4>
+						<div class="ocdi__gl-item-footer<?php echo ! empty( $import_file['preview_url'] ) ? '  ocdi__gl-item-footer--with-preview' : ''; ?>">
+							<h4 class="ocdi__gl-item-title" title="<?php echo esc_attr( $import_file['import_file_name'] ); ?>"><?php echo esc_html( $import_file['import_file_name'] ); ?></h4>
 							<button class="ocdi__gl-item-button  button  button-primary  js-ocdi-gl-import-data" value="<?php echo esc_attr( $index ); ?>"><?php esc_html_e( 'Import', 'pt-ocdi' ); ?></button>
+							<?php if ( ! empty( $import_file['preview_url'] ) ) : ?>
+								<a class="ocdi__gl-item-button  button" href="<?php echo esc_url( $import_file['preview_url'] ); ?>" target="_blank"><?php esc_html_e( 'Preview', 'pt-ocdi' ); ?></a>
+							<?php endif; ?>
 						</div>
 					</div>
 				<?php endforeach; ?>

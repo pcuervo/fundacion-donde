@@ -467,6 +467,7 @@ footer{
 
   /*Cart*/
 @media (min-width:768px){ input[name="update_cart"] { float: right; } }
+.woo_pp_cart_buttons_div { display: none; }
 
   /*Checkout*/
 @media (min-width:1024px){

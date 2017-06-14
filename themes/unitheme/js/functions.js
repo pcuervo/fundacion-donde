@@ -19,9 +19,10 @@ var $=jQuery.noConflict();
         $(window).ready(function(){
             footerBottom();
             jsAccordion();
-            uncheckMethodPay();
-
             $( '#billing_phone_field' ).addClass( 'validate-required' );
+            if ( $(".box-review").length > 0 ){
+                uncheckMethodPay();
+            }
         });
 
         $(window).on('resize', function(){
@@ -32,18 +33,19 @@ var $=jQuery.noConflict();
             footerBottom();
         });
 
+        $("input[type='radio']").change(function(){
+           console.log('cambio');
+        });
+
+        $("li, label, input[type='radio']").on('click',function(){
+           console.log('cambio');
+        });
 
         $('.create-account input#account_password').on('click',function(e){
             setTimeout(function() {
                 $( '.cuenta-creada' ).removeClass( 'hidden' );
             }, 2000);
         });
-
-
-        // $('.payment_method_paypal *').on('click',function(e){
-        //     console.log('checando');
-        //     $('.mesage-openpay').addClass('hidden');
-        // });
     });
 })(jQuery);
 
