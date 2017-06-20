@@ -150,12 +150,12 @@ function custom_breadcrumbs() {
             }
 
            //if($custom_tax_name == 'Caballero' || $custom_tax_name == 'Dama') {
-           if( is_product_category(array('dama', 'caballero')) ) {
+           if( is_product_category(array('dama', 'caballero', 'alta-relojeria')) ) {
                 echo '<li class="item-current item-archive"><a href="' . site_url('/categoria-producto/relojes') . '" class="bread-cat bread-custom-post-type-product">Relojes</a></li>';
                 echo '<li class="separator"> ' . $separator . ' </li>';
             }
 
-            if( is_product_category(array('celulares', 'pantallas', 'tablets')) ) {
+            if( is_product_category(array('celulares', 'tablets', 'ipads', 'videojuegos', 'camaras', 'laptops', 'electrodomesticos', 'pantallas')) ) {
                 echo '<li class="item-current item-archive"><a href="' . site_url('/categoria-producto/electronicos') . '" class="bread-cat bread-custom-post-type-product">Electrónicos</a></li>';
                 echo '<li class="separator"> ' . $separator . ' </li>';
             }

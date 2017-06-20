@@ -12,8 +12,6 @@ var $=jQuery.noConflict();
             $( 'div.shipping_address' ).hide();
 
            // $( "<div class='bg-notice'></div>" ).insertBefore( ".returning-user" );
-
-
         });
 
         $(window).ready(function(){
@@ -21,7 +19,7 @@ var $=jQuery.noConflict();
             jsAccordion();
             $( '#billing_phone_field' ).addClass( 'validate-required' );
             if ( $(".box-review").length > 0 ){
-                uncheckMethodPay();
+                textButtonPlay();
             }
         });
 
@@ -77,11 +75,11 @@ function jsAccordion(){
     }
 }
 
-function uncheckMethodPay(){
-    document.getElementById("payment_method_openpay_cards").checked = false;
-    $('div.payment_box.payment_method_openpay_cards').css('display','none');
-    setTimeout(function() {
-        document.getElementById("payment_method_openpay_cards").checked = false;
-        $('div.payment_box.payment_method_openpay_cards').css('display','none');
-    }, 2000);
+function textButtonPlay(){
+    if( $('.payment_box').is(':visible') ) {
+        console.log('visible');
+    }
+    else {
+        console.log('no visible');
+    }
 }
