@@ -29,6 +29,25 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 
 <h5 class="[ hidden ]">Lorem ipsum dolor sit</h5>
 
+<?php
+	$precio_normal = get_post_meta($post->ID, '_precio_tienda_donde', true);
+	//$precio_normal = get_post_meta($post->ID, '_precio_normal', true);
+	if (!empty($precio_normal)):
+ ?>
+	<div class="[ precio-comparativo ]">
+		<table class="[ width--100p ][ text-center ]">
+			<tr>
+				<th class="[ text-center ]">Precio Normal</th>
+				<th class="[ text-center ]">Precio Tienda Dondé</th>
+			</tr>
+			<tr>
+				<td>$<?php echo $precio_normal; ?>.00</td>
+				<td>$<?php echo $product->get_price(); ?>.00</td>
+			</tr>
+		</table>
+	</div>
+<?php endif; ?>
+
 <div class="product_meta">
 
 	<?php do_action( 'woocommerce_product_meta_start' ); ?>

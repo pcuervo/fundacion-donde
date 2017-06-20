@@ -99,6 +99,8 @@
 
 @media(min-width: 1025px){ .hidden-desktop {display: none!important;}}
 
+.width--100p { width: 100%; }
+
 /*HEADER*/
 
 .z-index--999 { z-index: 999; }
@@ -618,12 +620,54 @@ input[type=number]::-webkit-inner-spin-button,
 	display: none;
 }
 
+.single .price del .amount,
+.single .price ins .amount {
+	display: inline-block!important;
+}
+.single .price del .amount {
+	text-decoration:line-through;
+}
+.single .price ins .amount {
+	float: left;
+	margin-right: 10px;
+}
+.single .price ins + small { display: block; }
+
 /*Etiquetas*/
 
 .woocommerce .product .onsale {
   width: 100px;
   height: 40px;
   padding: 5px;
+}
+
+.images .ribbon,
+li .ribbon {
+    position: absolute;
+    background-color: #008a60;
+    color: #fff;
+    padding: 5px 20px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    z-index: 1;
+}
+
+.precio-comparativo {
+	border-top: 1px solid #e0e0e0;
+	padding: 20px 0;
+}
+.precio-comparativo table {
+	margin-bottom: 0px;
+}
+.precio-comparativo table tr th{
+	background-color: #8ec63f;
+	color: #fff;
+	border: 1px solid #e0e0e0;
+	width: 50%;
+	line-height: 14px;
+}
+.precio-comparativo table tr td {
+	border: 1px solid #e0e0e0;
 }
 
   /*General*/
