@@ -508,6 +508,7 @@ footer{
   padding: 30px;
   border: 5px solid #01a36f;
   border-radius: 10px;
+  position: relative;
 }
 .woocommerce #order_review .shop_table th,
 .woocommerce #order_review .shop_table td { border: 1px solid #018a5e; }
@@ -1269,3 +1270,22 @@ label .required {
 .payment_method_cod .checked-method-pay {
 	display: block;
 }
+
+/*Metodos de pago tiendas - Checkout*/
+// .wc_payment_methods input[type="radio"]:checked + label[for="payment_method_cod"]:after {
+//     content: 'Generar ficha de pago';
+//     background: #018a5e;
+//     color: #fff;
+//     position: absolute;
+//     bottom: 44px;
+//     right: 35px;
+//     z-index: 2;
+//     text-transform: uppercase;
+//     font-family: Open Sans;
+//     font-weight: 700;
+//     padding: 18px 40px;
+//     font-size: 14px;
+//     line-height: 24px;
+//     cursor: pointer;
+//     border-radius: 3px;
+// }
