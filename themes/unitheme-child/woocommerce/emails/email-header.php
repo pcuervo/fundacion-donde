@@ -40,9 +40,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 										<tr>
 											<td id="header_wrapper" style="padding: 20px 48px;">
 												<div id="template_header_image">
-													<p style="margin-top:0; margin-bottom: 0px; text-align: center;">
-														<img style="max-width: 230px;" src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo-1.png" alt="Logo Tienda Fundación Dondé" />
-													</p>
+													<?php
+														if ( $img = get_option( 'woocommerce_email_header_image' ) ) {
+															echo '<p style="margin-top:0; margin-bottom: 0px; text-align: center;"><img style="max-width: 230px;" src="' . esc_url( $img ) . '" alt="' . get_bloginfo( 'name', 'display' ) . '" /></p>';
+														}
+													?>
 												</div>
 											</td>
 										</tr>
