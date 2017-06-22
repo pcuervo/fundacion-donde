@@ -562,6 +562,11 @@ class AitImport {
 			$ok = false;
 		}
 		$i++;
+		if($data[$i] != 'precio_normal') {
+			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "precio_oferta"<br>';
+			$ok = false;
+		}
+		$i++;
 		if($data[$i] != 'descripcion') {
 			$respu .= 'Columna '.$i.' ('.$data[$i].') debe llamarse "descripcion"<br>';
 			$ok = false;
@@ -626,7 +631,7 @@ class AitImport {
 		for($i = 0; $i<=19; $i++) {
 			//VALIDAR CAMPOS OBLIGAROTIOS
 			$col = $i+1;
-			if(in_array($i, array(0,1,2,3,4,7,8,9,10 ))) {
+			if(in_array($i, array(0,1,2,3,4,8,9,10,11 ))) {
 				if(!isset($data[$i]) || empty($data[$i])) {
 					$respu .= 'La columna '.$col.' es obligatoria, no debe estar vacia.<br>';
 					$ok = false;
@@ -659,13 +664,13 @@ class AitImport {
 			}
 
 			//VALIDAR CAMPOS NUMERICOS
-			if(in_array($i, array(7))) {
+			if(in_array($i, array(8))) {
 				if($data[$i] < 0 || !is_numeric($data[$i])) {
 			    	$respu .= 'La columna '.$col.' debe tener un valor numerico mayor que 0.<br>';
 			    	$ok = false;
 			    }
 			}
-			if($i==18) {
+			if($i==19) {
 				//VALIDAR QUE SI EL AÑO NO ESTA VACIO, QUE CONTENGA UN VALOR NUMERICO
 			    if(!empty($data[$i]) && $data[$i] != '' ) {
 				    if(!is_numeric($data[$i])) {
@@ -674,7 +679,7 @@ class AitImport {
 				    }
 				}
 			}
-			if($i==8) {
+			if($i==9) {
 				//VALIDACION PARA LA CATEGORIA Relojes
 				//$cate = $data[$i];
 				$cate = $this->sanitize_txt($data[$i]);
@@ -721,8 +726,8 @@ class AitImport {
 					  		$subsText .= $sub->slug.'|';
 					  	}
 					  	
-						if(!in_array($data[9], $subsArray)) {
-							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$data[9].']';
+						if(!in_array($data[10], $subsArray)) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$data[10].']';
 							$ok = false;
 						}
 					}
@@ -745,8 +750,8 @@ class AitImport {
 					  		$subsArray[] = $sub->slug;
 					  		$subsText .= $sub->slug.'|';
 					  	}
-						if(!in_array($data[9], $subsArray) ) {
-							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$data[9].']';
+						if(!in_array($data[10], $subsArray) ) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$data[10].']';
 							$ok = false;
 						}
 					}
@@ -770,8 +775,8 @@ class AitImport {
 					  		$subsArray[] = $sub->slug;
 					  		$subsText .= $sub->slug.'|';
 					  	}
-						if(!in_array($data[9], $subsArray)) {
-							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$this->sanitize_txt($data[9]).']';
+						if(!in_array($data[10], $subsArray)) {
+							$respu .= 'La categoria "'.$data[$i].'" solo permite los valores "'.$subsText.'". Valor recibido ['.$this->sanitize_txt($data[10]).']';
 							$ok = false;
 						}
 					}
@@ -860,7 +865,7 @@ class AitImport {
 				if ($row == $header_line) {
 					$msj = $this->validate_headers($data_row);
 					if($msj != 'OK') {
-						echo '<div class="error"><p>Errores en las cabeceras del archivo, Por favor intente de nuevo con un archivo correcto. <a href="admin.php?page=ait-import" class="btn"> INTENTARLO DE NUEVO</a><br><strong>'.$msj.'</strong> </p></div>';
+						echo '<div class="error"><p>Errores DDD en las cabeceras del archivo, Por favor intente de nuevo con un archivo correcto. <a href="admin.php?page=ait-import" class="btn"> INTENTARLO DE NUEVO</a><br><strong>'.$msj.'</strong> </p></div>';
 						exit();
 					}
 
@@ -967,7 +972,7 @@ class AitImport {
 						}
 
 						$attrs['post_title'] = $this->sanitize_txt($data_row[3]); //columna 'nombre' del archivo csv
-						$attrs['post_content'] = $this->sanitize_txt($data_row[6]);	//columna 'descripcion' del archivo csv		
+						$attrs['post_content'] = $this->sanitize_txt($data_row[7]);	//columna 'descripcion' del archivo csv		
 						$attrs['post_status'] = $statusProductos;			
 						// insert or update
 						$post_id = wp_insert_post( $attrs, true );
@@ -1040,6 +1045,19 @@ class AitImport {
 													update_post_meta( $post_id, '_price', $precio_oferta );
 												}
 											break;
+										case 'precio_normal':
+												$opt = '_precio_normal';
+												if(is_numeric($data_row[$key]) && $data_row[$key] > 0) {
+													if($porcentaje > 0) {
+														$precio_normal = round($data_row[$key]*(1+$porcentaje/100),2);
+													}
+													else {
+														$precio_normal = $data_row[$key];
+													}
+													update_post_meta( $post_id, $opt, $precio_normal );
+													update_post_meta( $post_id, '_precio_normal', $precio_normal );
+												}
+											break;
 										case 'descripcion':
 												$opt = 'post_content';
 												update_post_meta( $post_id, $opt, $data_row[$key] );
@@ -1089,7 +1107,7 @@ class AitImport {
 									}
 									
 								}
-								$this->insert_row_detail($bulk_load_id, $post_id, $this->sanitize_txt($data_row[2]), $data_row[7], 'Nuevo articulo');
+								$this->insert_row_detail($bulk_load_id, $post_id, $this->sanitize_txt($data_row[2]), $data_row[8], 'Nuevo articulo');
 								$img_galery = substr($img_galery, 0, -2);
 								update_post_meta( $post_id, '_product_image_gallery', $img_galery );
 							}

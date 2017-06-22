@@ -30,8 +30,8 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 <h5 class="[ hidden ]">Lorem ipsum dolor sit</h5>
 
 <?php
-	$precio_normal = get_post_meta($post->ID, '_precio_tienda_donde', true);
-	//$precio_normal = get_post_meta($post->ID, '_precio_normal', true);
+	//$precio_normal = get_post_meta($post->ID, '_precio_tienda_donde', true);
+	$precio_normal = get_post_meta($post->ID, '_precio_normal', true);
 	if (!empty($precio_normal)):
  ?>
 	<div class="[ precio-comparativo ]">
