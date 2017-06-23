@@ -60,10 +60,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<td><?php wc_cart_totals_subtotal_html(); ?></td>
 		</tr>
 
-		<tr class="cart-seguro">
+		<!-- <tr class="cart-seguro">
 			<th>Costo por seguro y cargos adicionales</th>
 			<td data-title="seguro y cargos adicionales">$123.45</td>
-		</tr>
+		</tr> -->
 
 		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
 			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
