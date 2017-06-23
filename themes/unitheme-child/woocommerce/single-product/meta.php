@@ -191,7 +191,13 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 			echo "<div class='[ col s6 ][ text-right ][ tooltip ]'><span class='btn'>¿Qué significa esto?</span>
 						<span class='tooltiptext'>";
 							if( $estado == "Nuevo" ) {
-								echo "Producto nuevo (sin uso)";
+								if (has_term( 'electronicos', 'product_cat' )) {
+									echo "Articulo sin usar, en excelente estado de conservación, en algunos casos puede o no contener empaque original, con o sin accesorios.";
+								} elseif (has_term( 'relojes', 'product_cat' )) {
+									echo "Articulo sin usar, en excelente estado de conservación, en algunos casos puede o no contener empaque original.";
+								} else {
+									echo "Articulo sin usar, en excelente estado de conservación, sin marcas visibles de calado.";
+								}
 							} elseif( $estado == "Excelente" ) {
 								if (has_term( 'electronicos', 'product_cat' )) {
 									echo "El artículo se encuentra en muy buenas condiciones físicas y presenta ligeros signos de uso. Sin golpes ni rayones en la pantalla o display, sin golpes, abolladuras ni rayones profundos en carcasa o cuerpo.";

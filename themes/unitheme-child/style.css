@@ -634,6 +634,10 @@ input[type=number]::-webkit-inner-spin-button,
 }
 .single .price ins + small { display: block; }
 
+li.additional_information_tab {
+	border-right: 1px solid #e0e0e0!important;
+}
+
 /*Etiquetas*/
 
 .woocommerce .product .onsale {
