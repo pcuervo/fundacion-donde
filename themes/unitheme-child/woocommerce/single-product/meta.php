@@ -29,25 +29,6 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 
 <h5 class="[ hidden ]">Lorem ipsum dolor sit</h5>
 
-<?php
-	//$precio_normal = get_post_meta($post->ID, '_precio_tienda_donde', true);
-	$precio_normal = get_post_meta($post->ID, '_precio_normal', true);
-	if (!empty($precio_normal)):
- ?>
-	<div class="[ precio-comparativo ]">
-		<table class="[ width--100p ][ text-center ]">
-			<tr>
-				<th class="[ text-center ]">Precio Normal</th>
-				<th class="[ text-center ]">Precio Tienda Dondé</th>
-			</tr>
-			<tr>
-				<td>$<?php echo $precio_normal; ?>.00</td>
-				<td>$<?php echo $product->get_price(); ?>.00</td>
-			</tr>
-		</table>
-	</div>
-<?php endif; ?>
-
 <div class="product_meta">
 
 	<?php do_action( 'woocommerce_product_meta_start' ); ?>
@@ -191,7 +172,13 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 			echo "<div class='[ col s6 ][ text-right ][ tooltip ]'><span class='btn'>¿Qué significa esto?</span>
 						<span class='tooltiptext'>";
 							if( $estado == "Nuevo" ) {
-								echo "Producto nuevo (sin uso)";
+								if (has_term( 'electronicos', 'product_cat' )) {
+									echo "Articulo sin usar, en excelente estado de conservación, en algunos casos puede o no contener empaque original, con o sin accesorios.";
+								} elseif (has_term( 'relojes', 'product_cat' )) {
+									echo "Articulo sin usar, en excelente estado de conservación, en algunos casos puede o no contener empaque original.";
+								} else {
+									echo "Articulo sin usar, en excelente estado de conservación, sin marcas visibles de calado.";
+								}
 							} elseif( $estado == "Excelente" ) {
 								if (has_term( 'electronicos', 'product_cat' )) {
 									echo "El artículo se encuentra en muy buenas condiciones físicas y presenta ligeros signos de uso. Sin golpes ni rayones en la pantalla o display, sin golpes, abolladuras ni rayones profundos en carcasa o cuerpo.";

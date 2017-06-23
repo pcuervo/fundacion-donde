@@ -36,6 +36,10 @@ var $=jQuery.noConflict();
                 $( '.cuenta-creada' ).removeClass( 'hidden' );
             }, 2000);
         });
+
+        // $('label:after').click(function() {
+        //     console.log('click')
+        // });
     });
 })(jQuery);
 

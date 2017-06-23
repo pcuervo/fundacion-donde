@@ -100,6 +100,7 @@
 @media(min-width: 1025px){ .hidden-desktop {display: none!important;}}
 
 .width--100p { width: 100%; }
+.relative { position: relative; }
 
 /*HEADER*/
 
@@ -508,6 +509,7 @@ footer{
   padding: 30px;
   border: 5px solid #01a36f;
   border-radius: 10px;
+  position: relative;
 }
 .woocommerce #order_review .shop_table th,
 .woocommerce #order_review .shop_table td { border: 1px solid #018a5e; }
@@ -627,11 +629,18 @@ input[type=number]::-webkit-inner-spin-button,
 .single .price del .amount {
 	text-decoration:line-through;
 }
-.single .price ins .amount {
+.single .summary .price ins .amount {
 	float: left;
 	margin-right: 10px;
 }
+.single .related.products .price del {
+	display: block;
+}
 .single .price ins + small { display: block; }
+
+li.additional_information_tab {
+	border-right: 1px solid #e0e0e0!important;
+}
 
 /*Etiquetas*/
 
@@ -660,14 +669,18 @@ li .ribbon {
 	margin-bottom: 0px;
 }
 .precio-comparativo table tr th{
-	background-color: #8ec63f;
-	color: #fff;
-	border: 1px solid #e0e0e0;
+	color: #848484;
+	font-weight: 200;
 	width: 50%;
-	line-height: 14px;
+	font-size: 17px;
 }
+.precio-comparativo table tr th,
 .precio-comparativo table tr td {
-	border: 1px solid #e0e0e0;
+	padding: 0 0 5px 0;
+}
+.precio-comparativo td.relative span {
+	position: absolute;
+	top: 0px;
 }
 
   /*General*/
@@ -1268,4 +1281,27 @@ label .required {
 }
 .payment_method_cod .checked-method-pay {
 	display: block;
+}
+
+/*Metodos de pago tiendas - Checkout*/
+// .wc_payment_methods input[type="radio"]:checked + label[for="payment_method_cod"]:after {
+//     content: 'Generar ficha de pago';
+//     background: #018a5e;
+//     color: #fff;
+//     position: absolute;
+//     bottom: 44px;
+//     right: 35px;
+//     z-index: 2;
+//     text-transform: uppercase;
+//     font-family: Open Sans;
+//     font-weight: 700;
+//     padding: 18px 40px;
+//     font-size: 14px;
+//     line-height: 24px;
+//     cursor: pointer;
+//     border-radius: 3px;
+// }
+
+input#place_order:before {
+	content: 'ejemplo';
 }
