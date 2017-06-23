@@ -113,4 +113,28 @@ add_action('init', function(){
 		wp_insert_post( $page, true );
 	}
 
+	// misión
+	if( ! get_page_by_path('mision') ){
+		$page = array(
+			'post_author' => 1,
+			'post_status' => 'publish',
+			'post_title'  => 'Misión',
+			'post_name'   => 'mision',
+			'post_type'   => 'page'
+		);
+		wp_insert_post( $page, true );
+	}
+
+	// Visión
+	if( ! get_page_by_path('vision') ){
+		$page = array(
+			'post_author' => 1,
+			'post_status' => 'publish',
+			'post_title'  => 'Visión',
+			'post_name'   => 'vision',
+			'post_type'   => 'page'
+		);
+		wp_insert_post( $page, true );
+	}
+
 });
