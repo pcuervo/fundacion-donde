@@ -649,8 +649,8 @@ class AitImport {
 
 			//VALIDAR QUE EL ESTADO DEL PRODUCTO ESTE ENTRE LOS VALORES ACCEPTADOS
 			if($i == 1) {
-				if($data[$i] != 'Excelente' && $data[$i] != 'Muy bueno' && $data[$i] != 'Bueno') {
-					$respu .= 'La columna "estado" solo admite los valores "Excelente|Muy bueno|Bueno". Valor recibido ['.$data[$i].']<br>';
+				if($data[$i] != 'Excelente' && $data[$i] != 'Muy bueno' && $data[$i] != 'Bueno' && $data[$i] != 'Nuevo') {
+					$respu .= 'La columna "estado" solo admite los valores "Excelente|Muy bueno|Bueno|Nuevo". Valor recibido ['.$data[$i].']<br>';
 					$ok = false;
 				}
 			}
@@ -664,9 +664,9 @@ class AitImport {
 			}
 
 			//VALIDAR CAMPOS NUMERICOS
-			if(in_array($i, array(8))) {
+			if(in_array($i, array(4,8))) {
 				if($data[$i] < 0 || !is_numeric($data[$i])) {
-			    	$respu .= 'La columna '.$col.' debe tener un valor numerico mayor que 0.<br>';
+			    	$respu .= 'La columna '.$col.' debe tener un valor numerico mayor que 0.<br> Valor recibido ('.$data[$i].')';
 			    	$ok = false;
 			    }
 			}
