@@ -664,7 +664,7 @@ class AitImport {
 			}
 
 			//VALIDAR CAMPOS NUMERICOS
-			if(in_array($i, array(4,5,6,8))) {
+			if(in_array($i, array(4,8))) {
 				if($data[$i] < 0 || !is_numeric($data[$i])) {
 			    	$respu .= 'La columna '.$col.' debe tener un valor numerico mayor que 0.<br> Valor recibido ('.$data[$i].')';
 			    	$ok = false;

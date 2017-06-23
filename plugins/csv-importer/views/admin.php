@@ -13,6 +13,12 @@
 
 $import = AitImport::get_instance();
 
+function get_image_id($image_url) {
+    global $wpdb;
+    $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
+        return $attachment[0];
+}
+
 ?>
 <div class="wrap">
 	<?php screen_icon(); ?>
@@ -231,6 +237,160 @@ $import = AitImport::get_instance();
 				
 				
 			}
+		}
+
+		$no_img = $wpdb->get_results("select distinct(p.post_id) from fd_postmeta p where (p.meta_key = '_thumbnail_id' and (p.meta_value = '' OR p.meta_value is NULL)) and (select count(post_id) from fd_postmeta where meta_key = 'FOTO6' and post_id = p.post_id) = 1");
+		//$no_img = $wpdb->get_results("select distinct(pm.post_id), (select post_parent from fd_posts where id = pm.post_id) as parent, from fd_postmeta pm where (pm.meta_key = '_thumbnail_id' and (pm.meta_value = '' OR pm.meta_value is NULL)) OR (pm.meta_key = '_product_image_gallery' AND replace(replace(pm.meta_value, ',', ''), ' ', '') = '' ) ");
+
+		if(isset($_POST["buscarasignar"])) {
+			foreach ($no_img as $row) {
+				$img_galery = '';
+				//var_dump($row);
+				$meta = get_post_meta( $row->post_id );
+				//var_dump($meta);
+				if(isset($meta['_ruta']) && $meta['_ruta'] != '') {
+					$image_id = get_image_id($meta['_ruta']);
+					update_post_meta( $row->post_id, '_thumbnail_id', $image_id );
+				}
+				
+				if(isset($meta['htheme_meta_product_image_featured']) && $meta['htheme_meta_product_image_featured'] != '') {
+					//$image_id = get_image_id($meta['htheme_meta_product_image_featured']);
+					//update_post_meta( $row->post_id, '_thumbnail_id', $image_id );
+				}
+
+				if(isset($meta['FOTO1']) && $meta['FOTO1'] != '') {
+					$image_id = get_image_id($meta['FOTO1']);
+					$img_galery .= 	$image_id .', ';
+				}
+
+				if(isset($meta['FOTO2']) && $meta['FOTO2'] != '') {
+					$image_id = get_image_id($meta['FOTO2']);
+					$img_galery .= 	$image_id .', ';
+				}
+
+				if(isset($meta['FOTO3']) && $meta['FOTO3'] != '') {
+					$image_id = get_image_id($meta['FOTO3']);
+					$img_galery .= 	$image_id .', ';
+				}
+
+				if(isset($meta['FOTO4']) && $meta['FOTO4'] != '') {
+					$image_id = get_image_id($meta['FOTO4']);
+					$img_galery .= 	$image_id .', ';
+				}
+
+				if(isset($meta['FOTO5']) && $meta['FOTO5'] != '') {
+					$image_id = get_image_id($meta['FOTO5']);
+					$img_galery .= 	$image_id .', ';
+				}
+
+				if(isset($meta['FOTO6']) && $meta['FOTO6'] != '') {
+					$image_id = get_image_id($meta['FOTO6']);
+					$img_galery .= 	$image_id .', ';
+				}
+
+				$img_galery = substr($img_galery, 0, -2);
+				update_post_meta( $row->post_id, '_product_image_gallery', $img_galery );
+
+					/*
+					$args = array(
+						'post_parent' => $row->id,
+						'post_type'   => 'product_variation', 
+						'numberposts' => -1,
+						'post_status' => 'publish' 
+					);
+					$children = get_children( $args );
+					foreach ($children as $child ) {
+						$stock_hijo = get_post_meta( $child->ID, '_stock', true );
+						if($stock_hijo > 0) {
+							$enstock = true;
+							break;
+						}
+					}
+					*/
+				
+				
+				//break;
+			}
+		}
+
+		$no_img = $wpdb->get_results("select distinct(p.post_id) from fd_postmeta p where (p.meta_key = '_thumbnail_id' and (p.meta_value = '' OR p.meta_value is NULL)) and (select count(post_id) from fd_postmeta where meta_key = 'FOTO6' and post_id = p.post_id) = 1");
+		
+		if(!empty($no_img)) {
+			echo '<div class="error"><p>Existen '.count($no_img).' productos sin imagenes asignadas </p>
+					<form action="admin.php?page=ait-import" method="post">';
+			echo '<input class="btn button " id="" type="submit" value="BUSCAR Y ASIGNAR IMAGENES">';
+			echo '<input type="hidden" name="buscarasignar" >';
+			echo '</form>';
+			echo '</div>';
+
+			echo '<div class="import-custom-type metabox-holder">';		
+			echo '<div class="postbox">';
+			echo '<button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">Alternar panel: Actividad</span><span class="toggle-indicator" aria-hidden="true"></span></button>';
+			echo '<h3 class="hndle"><span>DETALLE DE LAS IMAGENES FALTANTES</span></h3>';
+			echo '<div class="inside">';
+			echo '<table style="width:100%;">';
+			echo '<thead>
+						<th width="25%" style="text-align:left;">Nombre</th>
+						<th width="5%" style="text-align:center;">MID</th>
+						<th width="10%" style="text-align:center;">Destacada</th>
+						<th width="10%" style="text-align:center;">FOTO1</th>
+						<th width="10%" style="text-align:center;">FOTO2</th>
+						<th width="10%" style="text-align:center;">FOTO3</th>
+						<th width="10%" style="text-align:center;">FOTO4</th>
+						<th width="10%" style="text-align:center;">FOTO5</th>
+						<th width="10%" style="text-align:center;">FOTO6</th>
+					</thead>';
+			echo '<tbody>';
+			foreach ($no_img as $detail) {
+				$produ = get_post($detail->post_id);
+				$stilo = '';
+				$meta_img = get_post_meta($detail->post_id);
+				//var_dump($meta_img);
+				//if($detail->status == '1') { $stilo = 'background-color:#dc3232'; }
+				//if($detail->status == '0') { $stilo = 'background-color:#ffb900'; }
+				//$link 
+				echo '<tr >';
+
+				if(isset($produ->post_title)) { echo '<td><a href="post.php?post='.$detail->post_id.'&action=edit"><small>'.$produ->post_title.'</small></td>'; } else { echo '<td>post_id = '.$detail->post_id.'</a></td>'; }
+				if(isset($meta_img['_sku'][0])) { echo '<td><small>'.$meta_img['_sku'][0] .'</small></td>'; } else { echo '<td>'.'-'.'</td>'; }
+
+				$image_id = get_image_id($meta_img['_ruta']);
+				if(isset($image_id) && is_numeric($image_id) && $image_id != 0) { $d = '<br><small style="color: green;">(OK)</small>'; }
+				else { $d = '<br><small style="color: red;">(NO SUBIDA AUN)</small>'; }
+				if(isset($meta_img['_ruta'][0])) { echo '<td><small>'.$meta_img['_ruta'][0].$d.'</small></td>'; } else { echo '<td>'. '-'.'</td>'; }
+
+				$image_id = get_image_id($meta_img['FOTO1']);
+				if(isset($image_id) && is_numeric($image_id) && $image_id != 0) { $d = '<br><small style="color: green;">(OK)</small>'; }
+				else { $d = '<br><small style="color: red;">(NO SUBIDA AUN)</small>'; }
+				if(isset($meta_img['FOTO1'][0])) { echo '<td><small>'.$meta_img['FOTO1'][0].$d.'</small></td>'; } else { echo '<td>'. '-'.'</td>'; }
+
+				$image_id = get_image_id($meta_img['FOTO2']);
+				if(isset($image_id) && is_numeric($image_id) && $image_id != 0) { $d = '<br><small style="color: green;">(OK)</small>'; }
+				else { $d = '<br><small style="color: red;">(NO SUBIDA AUN)</small>'; }
+				if(isset($meta_img['FOTO2'][0])) { echo '<td><small>'.$meta_img['FOTO2'][0].$d.'</small></td>'; } else { echo '<td>'. '-'.'</td>'; }
+
+				$image_id = get_image_id($meta_img['FOTO3']);
+				if(isset($image_id) && is_numeric($image_id) && $image_id != 0) { $d = '<br><small style="color: green;">(OK)</small>'; }
+				else { $d = '<br><small style="color: red;">(NO SUBIDA AUN)</small>'; }
+				if(isset($meta_img['FOTO3'][0])) { echo '<td><small>'.$meta_img['FOTO3'][0].$d.'</small></td>'; } else { echo '<td>'. '-'.'</td>'; }
+
+				$image_id = get_image_id($meta_img['FOTO4']);
+				if(isset($image_id) && is_numeric($image_id) && $image_id != 0) { $d = '<br><small style="color: green;">(OK)</small>'; }
+				else { $d = '<br><small style="color: red;">(NO SUBIDA AUN)</small>'; }
+				if(isset($meta_img['FOTO4'][0])) { echo '<td><small>'.$meta_img['FOTO4'][0].$d.'</small></td>'; } else { echo '<td>'. '-'.'</td>'; }
+
+				$image_id = get_image_id($meta_img['FOTO5']);
+				if(isset($image_id) && is_numeric($image_id) && $image_id != 0) { $d = '<br><small style="color: green;">(OK)</small>'; }
+				else { $d = '<br><small style="color: red;">(NO SUBIDA AUN)</small>'; }
+				if(isset($meta_img['FOTO5'][0])) { echo '<td><small>'.$meta_img['FOTO5'][0].$d.'</small></td>'; } else { echo '<td>'. '-'.'</td>'; }
+
+				$image_id = get_image_id($meta_img['FOTO6']);
+				if(isset($image_id) && is_numeric($image_id) && $image_id != 0) { $d = '<br><small style="color: green;">(OK)</small>'; }
+				else { $d = '<br><small style="color: red;">(NO SUBIDA AUN)</small>'; }
+				if(isset($meta_img['FOTO6'][0])) { echo '<td><small>'.$meta_img['FOTO6'][0].$d.'</small></td>'; } else { echo '<td>'. '-'.'</td>'; }
+				echo '</tr>';
+			}
+			echo '</tbody></table></div></div></div>';
 		}
 	?>
 	<?php
