@@ -259,7 +259,7 @@
 
 							<div class="logo logo-mob">
 								<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
-									<img style="max-width:<?php echo $nz_mob_logo_w; ?>px;max-height:<?php echo $nz_mob_logo_h; ?>px;" src="<?php echo $nz_mob_logo; ?>" alt="<?php bloginfo('name'); ?>">
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/favicon.png" alt="<?php bloginfo('name'); ?>">
 								</a>
 							</div>
 
@@ -275,6 +275,11 @@
 							<span>&nbsp;</span>
 							<span>&nbsp;</span>
 							<span>&nbsp;</span>
+						</div>
+
+						<div class="[ number-products ]">
+							<span class="icon-cart3"></span>
+							<span class="[ number ]"><?php echo sprintf ( _n( '%d', '%d', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ); ?></span>
 						</div>
 
 					</div>

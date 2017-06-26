@@ -133,8 +133,8 @@
 .log-out .cuenta-login { display: none; }
 
 @media(max-width:1024px ){
-	.logo.logo-mob { max-width: 237px; }
-	.logo.logo-mob img { max-width: 100%!important; }
+	.logo.logo-mob { max-width: 200px; }
+	.logo.logo-mob img { max-height: 55px; }
 }
 
   /*Language*/
@@ -1304,4 +1304,34 @@ label .required {
 
 input#place_order:before {
 	content: 'ejemplo';
+}
+
+.number-products {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+    margin-right: 10px;
+}
+.number-products span.number {
+    display: inline-block;
+    background-color: #8EC63F;
+    color: #fff;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-bottom: 0px;
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
+    position: relative;
+    top: -14px;
+    left: -8px;
+}
+.number-products span {
+	color: #fff;
+}
+
+.menu-toggle {
+
 }
