@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.8.x - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-06-13 08:05:00+0000\n"
+"PO-Revision-Date: 2017-06-16 17:22:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -225,6 +225,10 @@ msgstr "Aún más felicidad para el desarrollador %s"
 #: wp-admin/users.php:167 wp-admin/users.php:207
 msgid "Sorry, you are not allowed to delete users."
 msgstr "Lo siento, no tienes permisos para borrar usuarios."
+
+#: wp-admin/user-new.php:23 wp-admin/user-new.php:117
+msgid "Sorry, you are not allowed to create users."
+msgstr "Lo siento, no tienes permitido crear usuarios."
 
 #: wp-admin/customize.php:163
 msgid "The Customizer allows you to preview changes to your site before publishing them. You can navigate to different pages on your site within the preview. Edit shortcuts are shown for some editable elements."
@@ -466,9 +470,9 @@ msgstr "La búsqueda en los plugins instalados incluirá la de términos en el n
 msgid "Custom Logo"
 msgstr "Logotipo personalizado"
 
-#: wp-admin/user-new.php:23 wp-admin/user-new.php:117
-msgid "Sorry, you are not allowed to create users."
-msgstr "Lo siento, no tienes permisos para crear usuarios."
+#: wp-admin/users.php:317 wp-admin/users.php:348
+msgid "Sorry, you are not allowed to remove users."
+msgstr "Lo siento, no tienes permitido crear usuarios."
 
 #: wp-admin/user-new.php:16 wp-admin/user-new.php:56
 msgid "Sorry, you are not allowed to add users to this network."
@@ -657,10 +661,6 @@ msgstr "Esto reemplazará el contenido actual del editor con la última versión
 #: wp-admin/includes/template.php:1523
 msgid "Close media attachment panel"
 msgstr "Cierra el panel de adjuntar medios"
-
-#: wp-admin/users.php:317 wp-admin/users.php:348
-msgid "Sorry, you are not allowed to remove users."
-msgstr "Lo siento, no tienes permisos para borrar usuarios."
 
 #: wp-admin/includes/ms.php:1096
 msgid "Info"
@@ -3644,7 +3644,7 @@ msgstr "Por favor comprueba tu sitio ahora. Es posible que todo esté funcionand
 
 #: wp-admin/includes/class-wp-automatic-updater.php:680
 msgid "This means your site may be offline or broken. Don't panic; this can be fixed."
-msgstr "Esto significa que tu sitio puede estar roto o desconectado. No entre en pánico, esto puede ser arreglado."
+msgstr "Esto significa que tu sitio puede estar dañado o desconectado. No entres en pánico, esto puede ser arreglado."
 
 #: wp-admin/includes/class-wp-automatic-updater.php:678
 msgid "Your site at %1$s experienced a critical failure while trying to update to the latest version of WordPress, %2$s."
@@ -4831,7 +4831,7 @@ msgstr "Con toda probabilidad, tu alojamiento web te ha dado la información de 
 
 #: wp-admin/theme-editor.php:192
 msgid "This theme is broken."
-msgstr "Este tema está roto."
+msgstr "Este tema está dañado."
 
 #: wp-admin/custom-header.php:593
 msgid "Set as header"
@@ -5375,7 +5375,7 @@ msgstr "La imagen no puede ser procesada. Por favor, inténtalo otra vez."
 
 #: wp-admin/themes.php:168
 msgid "The active theme is broken. Reverting to the default theme."
-msgstr "El tema activo está roto. Volviendo al tema por defecto."
+msgstr "El tema activo está dañado. Volviendo al tema predeterminado."
 
 #: wp-admin/user-edit.php:281
 msgid "Show Toolbar when viewing site"

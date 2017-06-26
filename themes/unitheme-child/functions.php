@@ -122,7 +122,11 @@ function custom_breadcrumbs() {
         echo '<li class="item-home"><a class="bread-link bread-home" href="' . get_home_url() . '" title="' . $home_title . '">' . $home_title . '</a></li>';
         echo '<li class="separator separator-home"> ' . $separator . ' </li>';
 
-        if ( is_archive() && !is_tax() && !is_category() && !is_tag() ) {
+        if ( is_archive('ofertas') ) {
+
+            echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">Ofertas</strong></li>';
+
+        } else if ( is_archive() && !is_tax() && !is_category() && !is_tag() ) {
 
             echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">' . post_type_archive_title($prefix, false) . '</strong></li>';
 
@@ -481,6 +485,24 @@ function custom_override_checkout_fields( $fields ) {
     $fields['shipping']['shipping_address_2']['placeholder'] = 'Interior, habitación, unidad, etc (opcional)';
     $fields['billing']['billing_state']['label'] = 'Estado';
     $fields['shipping']['shipping_state']['label'] = 'Estado';
+    $fields['billing']['billing_company'] = array(
+        'placeholder'  => _x( 'Colonia', 'placeholder', 'woocommerce' ),
+        'required'     => true,
+        'type'         => 'text',
+        'class'        => array( 'form-row-last' ),
+        'clear'        => true,
+        'validate'     => array( 'colonia' ),
+        'autocomplete' => 'text',
+    );
+    $fields['shipping']['shipping_company'] = array(
+        'placeholder'  => _x( 'Colonia', 'placeholder', 'woocommerce' ),
+        'required'     => true,
+        'type'         => 'text',
+        'class'        => array( 'form-row-last' ),
+        'clear'        => true,
+        'validate'     => array( 'colonia' ),
+        'autocomplete' => 'text',
+    );
     $fields['billing']['billing_phone'] = array(
         'label'        => __( 'Phone', 'woocommerce' ),
         'required'     => true,
@@ -496,3 +518,14 @@ function custom_override_checkout_fields( $fields ) {
 // Display 12 products per page.
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
 
+
+/**
+* Change Proceed To Checkout Text in WooCommerce
+* Place this in your Functions.php file
+**/
+function woocommerce_button_proceed_to_checkout() {
+       $checkout_url = WC()->cart->get_checkout_url();
+       ?>
+       <a href="<?php echo $checkout_url; ?>" class="checkout-button button alt wc-forward"><?php _e( 'Check On Out', 'woocommerce' ); ?></a>
+       <?php
+     }
