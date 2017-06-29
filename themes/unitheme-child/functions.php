@@ -122,7 +122,11 @@ function custom_breadcrumbs() {
         echo '<li class="item-home"><a class="bread-link bread-home" href="' . get_home_url() . '" title="' . $home_title . '">' . $home_title . '</a></li>';
         echo '<li class="separator separator-home"> ' . $separator . ' </li>';
 
-        if ( is_archive() && !is_tax() && !is_category() && !is_tag() ) {
+        if ( is_archive('ofertas') ) {
+
+            echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">Ofertas</strong></li>';
+
+        } else if ( is_archive() && !is_tax() && !is_category() && !is_tag() ) {
 
             echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">' . post_type_archive_title($prefix, false) . '</strong></li>';
 
@@ -481,6 +485,24 @@ function custom_override_checkout_fields( $fields ) {
     $fields['shipping']['shipping_address_2']['placeholder'] = 'Interior, habitación, unidad, etc (opcional)';
     $fields['billing']['billing_state']['label'] = 'Estado';
     $fields['shipping']['shipping_state']['label'] = 'Estado';
+    $fields['billing']['billing_company'] = array(
+        'placeholder'  => _x( 'Colonia', 'placeholder', 'woocommerce' ),
+        'required'     => true,
+        'type'         => 'text',
+        'class'        => array( 'form-row-last' ),
+        'clear'        => true,
+        'validate'     => array( 'colonia' ),
+        'autocomplete' => 'text',
+    );
+    $fields['shipping']['shipping_company'] = array(
+        'placeholder'  => _x( 'Colonia', 'placeholder', 'woocommerce' ),
+        'required'     => true,
+        'type'         => 'text',
+        'class'        => array( 'form-row-last' ),
+        'clear'        => true,
+        'validate'     => array( 'colonia' ),
+        'autocomplete' => 'text',
+    );
     $fields['billing']['billing_phone'] = array(
         'label'        => __( 'Phone', 'woocommerce' ),
         'required'     => true,
@@ -498,89 +520,12 @@ add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 )
 
 
 /**
- * This code shows pagination for WooCommerce shortcodes when it's embeded on single pages.
- * Include into functions.php.
- */
-if ( ! is_admin() ) {
-// ---------------------- FRONTPAGE -------------------
-if ( defined('WC_VERSION') ) {
-// ---------------------- WooCommerce active -------------------
-
-    /**
-     * Set Pagination for shortcodes custom loop on single-pages.
-     * @uses $woocommerce_loop;
-     */
-    add_action( 'pre_get_posts', 'kli_wc_pre_get_posts_query' );
-    function kli_wc_pre_get_posts_query( $query ) {
-        global $woocommerce_loop;
-
-        // Get paged from main query only
-        // ! frontpage missing the post_type
-        if ( is_main_query() && ( $query->query['post_type'] == 'product' ) || ! isset( $query->query['post_type'] ) ){
-
-          if ( isset($query->query['paged']) ){
-            $woocommerce_loop['paged'] = $query->query['paged'];
-          }
-        }
-
-        if ( ! $query->is_post_type_archive || $query->query['post_type'] !== 'product' ){
-            return;
-        }
-
-        $query->is_paged = true;
-        $query->query['paged'] = $woocommerce_loop['paged'];
-        $query->query_vars['paged'] = $woocommerce_loop['paged'];
-    }
-
-    /** Prepare Pagination data for shortcodes on pages
-     * @uses $woocommerce_loop;
-     */
-    add_action( 'loop_end', 'kli_query_loop_end' );
-    function kli_query_loop_end( $query ) {
-
-        if ( ! $query->is_post_type_archive || $query->query['post_type'] !== 'product' ){
-            return;
-        }
-
-        // Cache data for pagination
-        global $woocommerce_loop;
-        $woocommerce_loop['pagination']['paged'] = $woocommerce_loop['paged'];
-        $woocommerce_loop['pagination']['found_posts'] = $query->found_posts;
-        $woocommerce_loop['pagination']['max_num_pages'] = $query->max_num_pages;
-        $woocommerce_loop['pagination']['post_count'] = $query->post_count;
-        $woocommerce_loop['pagination']['current_post'] = $query->current_post;
-    }
-    /**
-     * Pagination for shortcodes on single-pages
-     * @uses $woocommerce_loop;
-     */
-    add_action( 'woocommerce_after_template_part', 'kli_wc_shortcode_pagination' );
-    function kli_wc_shortcode_pagination( $template_name ) {
-        if ( ! ( $template_name === 'loop/loop-end.php' && is_page() ) ){
-            return;
-        }
-        global $wp_query, $woocommerce_loop;
-        if ( ! isset( $woocommerce_loop['pagination'] ) ){
-            return;
-        }
-        $wp_query->query_vars['paged'] = $woocommerce_loop['pagination']['paged'];
-        $wp_query->query['paged'] = $woocommerce_loop['pagination']['paged'];
-        $wp_query->max_num_pages = $woocommerce_loop['pagination']['max_num_pages'];
-        $wp_query->found_posts = $woocommerce_loop['pagination']['found_posts'];
-        $wp_query->post_count = $woocommerce_loop['pagination']['post_count'];
-        $wp_query->current_post = $woocommerce_loop['pagination']['current_post'];
-
-        // Custom pagination function or default woocommerce_pagination()
-        kli_woocommerce_pagination();
-    }
-    /**
-     * Custom pagination for WooCommerce instead the default woocommerce_pagination()
-     * @uses plugin Prime Strategy Page Navi, but added is_singular() on #line16
-     */
-    remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
-    add_action( 'woocommerce_after_shop_loop', 'kli_woocommerce_pagination', 10);
-    function kli_woocommerce_pagination() {
-        page_navi();
-    }
-}// END WOOCOMMERCE
-}// END FRONTPAGE
+* Change Proceed To Checkout Text in WooCommerce
+* Place this in your Functions.php file
+**/
+function woocommerce_button_proceed_to_checkout() {
+       $checkout_url = WC()->cart->get_checkout_url();
+       ?>
+       <a href="<?php echo $checkout_url; ?>" class="checkout-button button alt wc-forward"><?php _e( 'Check On Out', 'woocommerce' ); ?></a>
+       <?php
+     }

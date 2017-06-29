@@ -133,8 +133,8 @@
 .log-out .cuenta-login { display: none; }
 
 @media(max-width:1024px ){
-	.logo.logo-mob { max-width: 237px; }
-	.logo.logo-mob img { max-width: 100%!important; }
+	.logo.logo-mob { max-width: 200px; }
+	.logo.logo-mob img { max-height: 55px; }
 }
 
   /*Language*/
@@ -499,7 +499,7 @@ footer{
 
 .woocommerce-billing-fields p#billing_postcode_field { width: 50%; padding-right: 15px; }
 
-.woocommerce-billing-fields p#billing_company_field { display: none; }
+// .woocommerce-billing-fields p#billing_company_field { display: none; }
 
 .woocommerce-billing-fields p#billing_country_field .country_select,
 .woocommerce-billing-fields p#billing_state_field .state_select { height: 60px; line-height: 60px; }
@@ -547,6 +547,48 @@ footer{
 	padding: 20px!important;
 }
 .woocommerce-checkout .create-account p { color: #fff!important; }
+
+	/*Checkout*/
+@media(max-width: 1024px){
+	.woocommerce-info {
+		margin-bottom: 5px;
+		padding: 10px;
+	}
+	.woocommerce-billing-fields h3 {
+		margin-bottom: 0px;
+	}
+	.woocommerce-checkout input {
+		margin-bottom: 0px;
+		height: 35px;
+		padding: 0px 10px;
+		line-height: 35px;
+	}
+	.woocommerce-billing-fields p#billing_state_field .state_select {
+		line-height: 33px;
+		height: 33px;
+	}
+	.woocommerce-checkout .col-1,
+	.woocommerce-checkout .col-2,
+	.woocommerce-checkout .create-account,
+	.woocommerce-shipping-fields #ship-to-different-address {
+		margin-bottom: 0px!important;
+	}
+	.woocommerce-checkout .woocommerce {
+		padding-bottom: 10px;
+	}
+	.box-review {
+		padding: 10px;
+		margin-bottom: 0px;
+	}
+	.woocommerce-billing-fields p#billing_postcode_field {
+		width: 100%;
+		clear: both;
+	}
+	.woocommerce-checkout textarea {
+		margin-bottom: 0px;
+	}
+}
+
 
   /*Lost-password*/
 @media (min-width: 768px ){.woocommerce-ResetPassword { width: 50%; margin-left: 25%; }}
@@ -1304,4 +1346,34 @@ label .required {
 
 input#place_order:before {
 	content: 'ejemplo';
+}
+
+.number-products {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+    margin-right: 10px;
+}
+.number-products span.number {
+    display: inline-block;
+    background-color: #8EC63F;
+    color: #fff;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-bottom: 0px;
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
+    position: relative;
+    top: -14px;
+    left: -8px;
+}
+.number-products span {
+	color: #fff;
+}
+
+.menu-toggle {
+
 }
