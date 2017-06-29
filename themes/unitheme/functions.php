@@ -962,6 +962,7 @@
         }
 
         function nz_procut_thumb_cart_after() { ?>
+                    <?php woocommerce_template_loop_add_to_cart(); ?>
                 </div>
             </div>
 

@@ -5,17 +5,17 @@
 
 	add_filter("the_content", "ninzio_the_content_filter");
 	add_filter('widget_text', 'ninzio_the_content_filter');
-	 
+
 	function ninzio_the_content_filter($content) {
-	 
+
 		$block = join("|",array("nz_table","nz_dropcap","nz_highlight","nz_il","nz_btn","nz_fw","nz_sep","nz_icons","nz_gap","nz_youtube","nz_vimeo","nz_you","nz_vim","nz_colorbox"));
-	 
+
 		$rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
-			
+
 		$rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
-	 
+
 		return $rep;
-	 
+
 	}
 
 global $nz_ninzio;
@@ -46,7 +46,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 		$items = array();
 
-		for ($i=16; $i < 101; $i = $i + 2) { 
+		for ($i=16; $i < 101; $i = $i + 2) {
 			array_push($items, array('title'  => $i.'px','inline' => 'span','styles' => array('lineHeight' => $i.'px')));
 		};
 
@@ -66,14 +66,14 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 	add_filter("the_content", "nz_the_content_filter");
 	add_filter('widget_text', 'nz_the_content_filter');
-	 
+
 	function nz_the_content_filter($content) {
-	 
+
 		$block = join("|",array("nz_box"));
 		$rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
 		$rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
 		return $rep;
-	 
+
 	}
 
 /* COLORBOX
@@ -156,7 +156,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 		$output = '<span class="nz-highlight" '.$color.'>'.do_shortcode($content).'</span>';
 
-		return $output;  		
+		return $output;
 	}
 
 	add_shortcode('nz_highlight', 'nz_highlight');
@@ -183,17 +183,17 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 					break;
 			}
 		}
-			
+
 		$output = '<span class="nz-dropcap '.$type.'" '.$color.'>'.do_shortcode($content).'</span>';
 
-		return $output;  		
+		return $output;
 	}
 
 	add_shortcode('nz_dropcap', 'nz_dropcap');
 
 /*  ICON LIST
 /*====================================================================*/
-	
+
 	function nz_icon_list_fun($atts, $content = null, $tag) {
 
 		extract(shortcode_atts(
@@ -236,7 +236,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 				$output = $content;
 	            break;
 	    }
-	
+
 		return $output;
 
 	}
@@ -276,7 +276,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 			$link_to = $link;
 		}
 
-		
+
 
 		$before_img = '';
 		$after_img  = '';
@@ -360,7 +360,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  GALLERY SHORTCODE
 /*====================================================================*/
-	
+
 	remove_shortcode('gallery', 'gallery_shortcode');
 	add_shortcode('gallery', 'nz_gallery');
 
@@ -398,7 +398,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 			'exclude'    => '',
 			'link'       => ''
 		), $attr, 'gallery'));
-		
+
 		$columns = intval($columns);
 
 		if ($size == "medium" || $size == "thumbnail") {
@@ -441,7 +441,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 		}
 
 		$selector = "nz-gallery-{$instance}";
-		
+
 		$size_class = sanitize_html_class( $size );
 
 		$output = "<div id='$selector' class='nz-gallery galleryid-{$id}  gallery-size-{$size_class}' data-columns='".$columns."''>";
@@ -543,7 +543,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  SEPARATOR SHORTCODE
 /*====================================================================*/
-	
+
 	function nz_sep($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -581,7 +581,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  SOCIAL LINKS SHORTCODE
 /*====================================================================*/
-	
+
 	function nz_sl($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -607,7 +607,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 		}
 
 		$output .= '<div class="nz-sl social-links nz-clearfix '.$align.'">';
-		
+
 		foreach($atts as $social => $href) {
 			if($href && $social != 'target' && $social != 'align' && $social != 'link_color' && $social != 'link_back_color') {
 				if ($social == "email") {
@@ -628,7 +628,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  ICONS SHORTCODE
 /*====================================================================*/
-	
+
 	function nz_icons($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -658,10 +658,10 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  VIDEO EMBEDS
 /*====================================================================*/
-	
+
 	function nz_emb( $atts, $content = null, $tag ) {
 
-	    extract( 
+	    extract(
 	    	shortcode_atts(
     		array(
     			'id' 	=> '',
@@ -700,7 +700,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 	function nz_emb_slider( $atts, $content = null, $tag ) {
 
-	    extract( 
+	    extract(
 	    	shortcode_atts(
     		array(
     			'id' 	=> '',
@@ -736,10 +736,10 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  SOUNDCLOUD
 /*====================================================================*/
-	
+
 	function nz_soundcloud($atts) {
 
-		extract( 
+		extract(
 		 	shortcode_atts(
 			array(
 				'url'    => '',
@@ -760,7 +760,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 		if(isset($url) && !empty($url)){
 			$output .= '<div class="soundcloud"><iframe width="'.$width.'" height="'.$height.'" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url='.$url.'&amp;'.$params.'"></iframe></div>';
 		}
-	    
+
 		return $output;
 	}
 
@@ -768,7 +768,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  TWEETS
 /*====================================================================*/
-	
+
 	function nz_tweets($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -824,7 +824,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  MAILCHIMP SIGNUP
 /*====================================================================*/
-	
+
 	function nz_mailchimp($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -889,7 +889,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  TAGLINE
 /*====================================================================*/
-	
+
 	function nz_tagline($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -925,7 +925,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 		}
 
 		$output .= '<div id="nz-tagline-'.$id_counter.'">';
-		$output .= '<style scoped>'; 
+		$output .= '<style scoped>';
 			$output .= '#nz-tagline-'.$id_counter.' a {'.$styles.';}';
 			$output .= '#nz-tagline-'.$id_counter.' a:hover {'.$styles_hover.';}';
 		$output .= '</style>';
@@ -943,7 +943,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  SLIDER
 /*====================================================================*/
-	
+
 		function nz_media_slider($atts, $content = null) {
 
 			extract(shortcode_atts(
@@ -993,7 +993,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 						    	$output .='</div>';
 						    $output .='</div>';
 						}
-						
+
 						break;
 					case 'vimeo':
 
@@ -1021,7 +1021,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  TIMER
 /*====================================================================*/
-	
+
 	function nz_timer($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1077,7 +1077,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  ALERT MESSAGE
 /*====================================================================*/
-	
+
 	function nz_alert($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1100,7 +1100,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  GOOGLE MAP
 /*====================================================================*/
-	
+
 	function nz_gmap($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1141,7 +1141,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  ICON-PROGRESS-BAR
 /*====================================================================*/
-	
+
 	function nz_icon_progress($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1181,7 +1181,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 			$output .= '<div id="nz-icon-progress-'.$id_counter.'" class="nz-icon-progress '.$align.'" data-color="'.$data_color.'" data-active="'.$active.'">';
 			if(isset($inactive_color) && !empty($inactive_color)) {$output .= '<style scoped>#nz-icon-progress-'.$id_counter.' span {color:'.$inactive_color.';}</style>';}
 			if(isset($number) && !empty($number)){
-				for ($i=0; $i < $number; $i++) { 
+				for ($i=0; $i < $number; $i++) {
 					$output .= '<span class="icon '.$icon.'"></span>';
 				}
 			}
@@ -1196,7 +1196,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  PROGRESS-BAR
 /*====================================================================*/
-	
+
 	function nz_line($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1210,7 +1210,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 		$output = '';
 
-		if(!is_numeric($percentage) || $percentage < 0){$percentage = "";} 
+		if(!is_numeric($percentage) || $percentage < 0){$percentage = "";}
 		elseif ($percentage > 100) {$percentage = "100";}
 
 		if(isset($track_color) && !empty($track_color)) {$track_color = 'background-color:'.$track_color.';';}
@@ -1234,7 +1234,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  PROGRESS-CIRCLE
 /*====================================================================*/
-	
+
 	function nz_circle($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1253,7 +1253,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 		$color_styles = '';
 		$data_attr = '';
 
-		if(!is_numeric($percentage) || $percentage < 0){$percentage = "";} 
+		if(!is_numeric($percentage) || $percentage < 0){$percentage = "";}
 		elseif ($percentage > 100) {$percentage = "100";}
 
 
@@ -1297,7 +1297,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  COUNTER
 /*====================================================================*/
-	
+
 	function nz_count($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1362,7 +1362,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  CONTENT BOXES
 /*====================================================================*/
-	
+
 	function nz_content_box($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1454,7 +1454,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  TESTIMONIALS
 /*====================================================================*/
-	
+
 	function nz_testimonials($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1507,11 +1507,11 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 			if (isset($name) && !empty($name)) {
 				$output .= '<span class="name">'.$name.'</span>';
 			}
-				
+
 			if (isset($title) && !empty($title)) {
 				$output .= '<span class="title">'.$title.'</span>';
 			}
-							
+
 		$output .= '</li>';
 
 		return $output;
@@ -1520,7 +1520,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  CLIENTS
 /*====================================================================*/
-	
+
 	function nz_cl($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1658,7 +1658,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 								if(isset($title) && !empty($title)){
 									$output .= '<div class="title">'.$title.'</div>';
 								}
-								
+
 							$output .= '</div>';
 
 						$output .= '</div>';
@@ -1687,7 +1687,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  SLIDER
 /*====================================================================*/
-	
+
 	function nz_media($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1739,7 +1739,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 					    		$output .= '<iframe src="http://player.vimeo.com/video/'.$id.'" class="iframevideo" title="'.$description.'"></iframe>';
 					    	$output .='</div>';
 					    $output .='</div>';
-					} 
+					}
 					break;
 				case 'img':
 					if (isset($src) && !empty($src)) {
@@ -1839,7 +1839,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  PRICING TABLE
 /*====================================================================*/
-	
+
 	function nz_pricing_table($atts, $content = null, $tag) {
 
 		extract(shortcode_atts(
@@ -1949,7 +1949,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  CAROUSEL
 /*====================================================================*/
-	
+
 	function nz_carousel($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -1978,7 +1978,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  SLICK CAROUSEL
 /*====================================================================*/
-	
+
 	function nz_slick_carousel($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -2006,7 +2006,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 /*  SECTION SLIDER
 /*====================================================================*/
-	
+
 	function nz_ss($atts, $content = null) {
 
 		extract(shortcode_atts(
@@ -2164,7 +2164,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 					}
 
 					$output .= '<div class="posts-inner">';
-						
+
 					while($recent_posts->have_posts()) : $recent_posts->the_post();
 
 						$output .= '<div class="post format-'.get_post_format().'" data-grid="ninzio_01">';
@@ -2197,7 +2197,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 									}
 								}
 
-								
+
 
 								$output .= '<div class="post-body">';
 
@@ -2294,9 +2294,9 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 		if (isset($cat) && !empty($cat)) {
 
-			$recent_query_opt = array( 
-				'orderby'            => 'date', 
-				'post_type'          => 'portfolio', 
+			$recent_query_opt = array(
+				'orderby'            => 'date',
+				'post_type'          => 'portfolio',
 				'posts_per_page'     => $posts_number,
 				'tax_query'          => array(
 					array(
@@ -2309,57 +2309,57 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 			);
 
 			$args = array(
-			    'orderby'           => 'name', 
+			    'orderby'           => 'name',
 			    'order'             => 'ASC',
-			    'hide_empty'        => true, 
-			    'exclude'           => array(), 
-			    'exclude_tree'      => array(), 
+			    'hide_empty'        => true,
+			    'exclude'           => array(),
+			    'exclude_tree'      => array(),
 			    'include'           => explode(',',$cat),
-			    'number'            => '', 
-			    'fields'            => 'all', 
-			    'slug'              => '', 
+			    'number'            => '',
+			    'fields'            => 'all',
+			    'slug'              => '',
 			    'parent'            => '',
-			    'hierarchical'      => false, 
-			    'child_of'          => 0, 
-			    'get'               => '', 
+			    'hierarchical'      => false,
+			    'child_of'          => 0,
+			    'get'               => '',
 			    'name__like'        => '',
 			    'description__like' => '',
-			    'pad_counts'        => false, 
-			    'offset'            => '', 
-			    'search'            => '', 
+			    'pad_counts'        => false,
+			    'offset'            => '',
+			    'search'            => '',
 			    'cache_domain'      => 'core'
 			);
 
 		} else {
 
-			$recent_query_opt = array( 
-				'orderby'            => 'date', 
-				'post_type'          => 'portfolio', 
+			$recent_query_opt = array(
+				'orderby'            => 'date',
+				'post_type'          => 'portfolio',
 				'posts_per_page'     => $posts_number
 			);
 
 			$args = array(
-			    'orderby'           => 'name', 
+			    'orderby'           => 'name',
 			    'order'             => 'ASC',
-			    'hide_empty'        => true, 
-			    'exclude'           => array(), 
-			    'exclude_tree'      => array(), 
+			    'hide_empty'        => true,
+			    'exclude'           => array(),
+			    'exclude_tree'      => array(),
 			    'include'           => array(),
-			    'number'            => '', 
-			    'fields'            => 'all', 
-			    'slug'              => '', 
+			    'number'            => '',
+			    'fields'            => 'all',
+			    'slug'              => '',
 			    'parent'            => '',
-			    'hierarchical'      => false, 
-			    'child_of'          => 0, 
-			    'get'               => '', 
+			    'hierarchical'      => false,
+			    'child_of'          => 0,
+			    'get'               => '',
 			    'name__like'        => '',
 			    'description__like' => '',
-			    'pad_counts'        => false, 
-			    'offset'            => '', 
-			    'search'            => '', 
+			    'pad_counts'        => false,
+			    'offset'            => '',
+			    'search'            => '',
 			    'cache_domain'      => 'core'
 			);
-			
+
 		}
 
 		$recent_portfolio = new WP_Query($recent_query_opt);
@@ -2398,17 +2398,17 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 										array_push($classes, '"'.$term->slug.'"');
 									}
 								}
-								
+
 								$output .= '<div class="mix post nz-clearfix" data-groups=\'['.implode(', ',$classes).']\' data-grid="ninzio_01">';
 
 									$output .= '<div class="post-body">';
 
 										$output .= '<div class="nz-thumbnail">';
-											
+
 											if (has_post_thumbnail()) {
 												$output .= get_the_post_thumbnail( $post->ID, $size );
 											}
-											
+
 											$output .='<a href="'.get_permalink().'">';
 												$output .= '<div class="ninzio-overlay"></div>';
 											$output .= '</a>';
@@ -2452,7 +2452,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 
 	add_action('admin_head', 'ninzio_add_tinymce_button');
 
-	function ninzio_register_tinymce_plugins($buttons) {  
+	function ninzio_register_tinymce_plugins($buttons) {
 		array_push(
 			$buttons,
 			'nz_table',
@@ -2465,8 +2465,8 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 			'nz_gap',
 			'nz_youtube',
 			'nz_vimeo'
-		);  
-		return $buttons;  
+		);
+		return $buttons;
 	}
 
 	function ninzio_add_tinymce_plugins($plugin_array) {
@@ -2487,7 +2487,7 @@ $nz_color = (isset($nz_ninzio['main-color']) && $nz_ninzio['main-color']) ? $nz_
 	   return $plugin_array;
 	}
 
-	function ninzio_add_tinymce_button() { 
+	function ninzio_add_tinymce_button() {
 		if(!current_user_can('edit_posts') && !current_user_can('edit_pages') ) {return;}
 		if (get_user_option('rich_editing') == 'true') {
 			add_filter("mce_external_plugins", "ninzio_add_tinymce_plugins");

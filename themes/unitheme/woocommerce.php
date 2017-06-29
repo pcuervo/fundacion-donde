@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <?php
-	
+
 	global $nz_ninzio;
 	$nz_rh_styles     = "";
     $nz_rh_pstyles    = "";
@@ -16,14 +16,14 @@
     $nz_parallax            = ($nz_ninzio['shop-parallax'] && $nz_ninzio['shop-parallax']  == 1) ? "true" : "false";
 
     $nz_rh_styles .= 'height:'.$nz_rh_height.'px;';
-    
+
     if (!empty($nz_back_color)) {
         $nz_rh_styles .= 'background-color:'.$nz_back_color.';';
     }
 
     if (!empty($nz_back_img)) {
     	if ($nz_parallax == "true") {
-            
+
             $nz_back_img_repeat     = "no-repeat";
             $nz_back_img_position   = "center top";
             $nz_back_img_attachment = "scroll";
@@ -66,7 +66,7 @@
             <div class="parallax-container" style="<?php echo $nz_rh_pstyles; ?>">&nbsp;</div>
         <?php endif ?>
 		<div class="container nz-clearfix">
-       
+
             <?php if (is_product_category() || is_product_tag()): ?>
                 <div class="page-title-content">
                     <h1 class="archive-title-heading">
@@ -99,7 +99,7 @@
 							echo '<section class="main-content right">';
 								woocommerce_content();
 							echo '</section>';
-							
+
 						} elseif ($nz_shop_sidebar == "right") {
 
 							echo '<section class="main-content left">';

@@ -37,7 +37,7 @@
 				ninzio_thumbnail($nz_blog_layout, $post->ID);
 			}
 		}
-	}	
+	}
 ?>
 <?php if (has_post_format('image')): ?>
 	<?php if (!empty($nz_img_url)): ?>
@@ -61,11 +61,11 @@
 			<?php if (!empty($nz_audio_mp3) || !empty($nz_audio_ogg) || !empty($nz_audio_embed)): ?>
 
 				<div class="post-audio media">
-					<?php 
+					<?php
 						if(!empty($nz_audio_embed) && empty($nz_audio_ogg) && empty($nz_audio_mp3)) {
 							echo "<div class='post-audio-embed'>".$nz_audio_embed."</div>";
 						} elseif (!empty($nz_audio_ogg) || !empty($nz_audio_mp3)) {
-							echo do_shortcode('[audio mp3="'.$nz_audio_mp3.'" ogg="'.$nz_audio_ogg.'"][/audio]'); 
+							echo do_shortcode('[audio mp3="'.$nz_audio_mp3.'" ogg="'.$nz_audio_ogg.'"][/audio]');
 						}
 					?>
 				</div>
@@ -88,7 +88,7 @@
 		<?php endif ?>
 
 		<?php if ($nz_rh == "false"): ?>
-			
+
 			<?php if ( '' != get_the_title() ): ?>
 				<h1 class="post-title"><?php the_title(); ?></h1>
 			<?php endif; ?>
@@ -116,7 +116,7 @@
 			<?php if ( '' != get_the_content() ): ?>
 				<div class="post-content nz-clearfix">
 					<?php
-						the_content(); 
+						the_content();
 						$defaults = array(
 							'before'           => '<div id="page-links">',
 							'after'            => '</div>',

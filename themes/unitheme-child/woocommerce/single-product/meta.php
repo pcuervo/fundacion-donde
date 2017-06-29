@@ -27,6 +27,8 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 
 ?>
 
+<h5 class="[ hidden ]">Lorem ipsum dolor sit</h5>
+
 <div class="product_meta">
 
 	<?php do_action( 'woocommerce_product_meta_start' ); ?>
@@ -127,6 +129,7 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 		$electronico_numero_de_puertos_usb_20 = get_post_meta($post->ID, '_electronico_text_numero_de_puertos_usb_20', true);
 		$electronico_numero_de_procesadores = get_post_meta($post->ID, '_electronico_text_numero_de_procesadores', true);
 		$electronico_estado = get_post_meta($post->ID, '_electronico_text_estado', true);
+		$estado = get_post_meta($post->ID, 'estado', true);
 
 		echo (!empty($electronico_marca) ? '<span class="posted_in">Marca: '.$electronico_marca.'</span>' : '');
 		echo (!empty($electronico_modelo) ? '<span class="posted_in">Modelo: '.$electronico_modelo.'</span>' : '');
@@ -154,10 +157,52 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 		echo (!empty($electronico_chip) ? '<span class="posted_in">Chip: '.$electronico_chip.'</span>' : '');
 		echo (!empty($electronico_ram) ? '<span class="posted_in">RAM: '.$electronico_ram.'</span>' : '');
 		echo (!empty($electronico_numero_de_puertos_usb_20) ? '<span class="posted_in">Puertos USB 2.0: '.$electronico_numero_de_puertos_usb_20.'</span>' : '');
-		echo (!empty($electronico_estado) ? '<span class="posted_in">Estado: '.$electronico_estado.'</span>' : '');
+
+		echo (!empty($electronico_estado) ? '<span class="posted_in">Comentarios: '.$electronico_estado.'</span>' : '');
+
+		echo "<br>";
+		echo "<h2>Descripción del producto</h2>";
+		echo the_content();
+		echo "<br>";
+
+		echo "<div class='[ row ] estado-articulo'>";
+			echo "<div class='[ col s6 ]'>";
+				echo (!empty($estado) ? '<span class="posted_in">Estado del artículo: '.$estado.'</span>' : '');
+			echo "</div>";
+			echo "<div class='[ col s6 ][ text-right ][ tooltip ]'><span class='btn'>¿Qué significa esto?</span>
+						<span class='tooltiptext'>";
+							if( $estado == "Nuevo" ) {
+								if (has_term( 'electronicos', 'product_cat' )) {
+									echo "Articulo sin usar, en excelente estado de conservación, en algunos casos puede o no contener empaque original, con o sin accesorios.";
+								} elseif (has_term( 'relojes', 'product_cat' )) {
+									echo "Articulo sin usar, en excelente estado de conservación, en algunos casos puede o no contener empaque original.";
+								} else {
+									echo "Articulo sin usar, en excelente estado de conservación, sin marcas visibles de calado.";
+								}
+							} elseif( $estado == "Excelente" ) {
+								if (has_term( 'electronicos', 'product_cat' )) {
+									echo "El artículo se encuentra en muy buenas condiciones físicas y presenta ligeros signos de uso. Sin golpes ni rayones en la pantalla o display, sin golpes, abolladuras ni rayones profundos en carcasa o cuerpo.";
+								} elseif (has_term( 'relojes', 'product_cat' )) {
+									echo "El reloj se encuentra en muy buenas condiciones físicas y presenta ligeros signos de uso. Sin golpes, sin rayones profundos,  no abolladuras y  con todos sus componentes originales.";
+								} else {
+									echo "La pieza se encuentra en muy buenas condiciones físicas con ligeros signos de uso, sin abolladuras ni rayones profundos.  Sin grabados personalizados.";
+								}
+							} elseif( $estado == "Bueno" ) {
+								if (has_term( 'electronicos', 'product_cat' )) {
+									echo "El artículo tiene detalles de uso evidentes a simple vista. Sin golpes ni rayones en la pantalla o display, se encuentran en buenas condiciones con signos de uso en carcasa y funciona correctamente. ";
+								} elseif (has_term( 'relojes', 'product_cat' )) {
+									echo "El reloj tiene detalles de uso evidentes a simple vista. Sin golpes ni rayones en carátula, el pulso presenta uso pero no daños que comprometan la integridad del mismo. Con todos sus componentes originales.";
+								} else {
+									echo "La pieza se encuentra en buenas condiciones físicas con signos de uso, sin abolladuras ni rayones profundos.  Sin grabados personalizados.  Puede llegar a presentar alguna marca de calado.";
+								}
+							}
+						echo "</span>";
+			echo "</div>";
+		echo "</div>";
 
 	?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
 
 </div>
+

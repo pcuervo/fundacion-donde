@@ -1,9 +1,9 @@
 === One Click Demo Import ===
-Contributors: capuderg, cyman
-Tags: import, content, demo, data, widgets, settings
+Contributors: capuderg, cyman, Prelc
+Tags: import, content, demo, data, widgets, settings, redux, theme options
 Requires at least: 4.0.0
-Tested up to: 4.5
-Stable tag: 1.2.0
+Tested up to: 4.7
+Stable tag: 2.3.0
 License: GPLv3 or later
 
 Import your demo content, widgets and theme settings with one click. Theme authors! Enable simple demo import for your theme demo data.
@@ -12,17 +12,27 @@ Import your demo content, widgets and theme settings with one click. Theme autho
 
 The best feature of this plugin is, that theme authors can define import files in their themes and so all you (the user of the theme) have to do is click on the "Import Demo Data" button.
 
-**How do theme author define these files?** The answer is in the FAQ section.
+> **Are you a theme author?**
+>
+> Setup One Click Demo Imports for your theme and your users will thank you for it!
+>
+> [Follow this easy guide on how to setup this plugin for your themes!](http://proteusthemes.github.io/one-click-demo-import/)
+>
+> Also [sign up to the newsletter](http://proteusthemes.github.io/one-click-demo-import/#ocdi-newsletter-signup), so we can inform you about any updates, changes or improvements.
+
+> **Are you a theme user?**
+>
+> Contact the author of your theme and [let them know about this plugin](http://proteusthemes.github.io/one-click-demo-import/theme-users.html). Theme authors can make any theme compatible with this plugin in 15 minutes and make it much more user-friendly.
+>
+> "[Where can I find the contact of the theme author?](http://proteusthemes.github.io/one-click-demo-import/theme-users.html)"
 
 This plugin will create a submenu page under Appearance with the title **Import demo data**.
 
-If the theme you are using does not have any predefined import files, then you will be presented with three file upload inputs. First one is required and you will have to upload a demo content XML file, for the actual demo import. The second one is optional and will ask you for a WIE or JSON file for widgets import. You create that file using the [Widget Importer & Exporter](https://wordpress.org/plugins/widget-importer-exporter/) plugin. The third one is also optional and will import the customizer settings, select the DAT file which you can generate from [Customizer Export/Import](https://wordpress.org/plugins/customizer-export-import/) plugin (the customizer settings will be imported only if the export file was created from the same theme).
+If the theme you are using does not have any predefined import files, then you will be presented with three file upload inputs. First one is required and you will have to upload a demo content XML file, for the actual demo import. The second one is optional and will ask you for a WIE or JSON file for widgets import. You create that file using the [Widget Importer & Exporter](https://wordpress.org/plugins/widget-importer-exporter/) plugin. The third one is also optional and will import the customizer settings, select the DAT file which you can generate from [Customizer Export/Import](https://wordpress.org/plugins/customizer-export-import/) plugin (the customizer settings will be imported only if the export file was created from the same theme). The final one is optional as well and will import your Redux framework settings. You can generate the export json file with the [Redux framework](https://wordpress.org/plugins/redux-framework/) plugin.
 
 This plugin is using the improved WP import 2.0 that is still in development and can be found here: https://github.com/humanmade/WordPress-Importer.
 
-All progress of this plugin's work is logged in a log file in the default WP upload directory, together with the demo content and widgets import files used in the importing process.
-
-NOTE: This plugin is still a work in progress!
+All progress of this plugin's work is logged in a log file in the default WP upload directory, together with the demo import files used in the importing process.
 
 NOTE: There is no setting to "connect" authors from the demo import file to the existing users in your WP site (like there is in the original WP Importer plugin). All demo content will be imported under the current user.
 
@@ -67,26 +77,72 @@ function ocdi_import_files() {
 	return array(
 		array(
 			'import_file_name'           => 'Demo Import 1',
+			'categories'                 => array( 'Category 1', 'Category 2' ),
 			'import_file_url'            => 'http://www.your_domain.com/ocdi/demo-content.xml',
 			'import_widget_file_url'     => 'http://www.your_domain.com/ocdi/widgets.json',
 			'import_customizer_file_url' => 'http://www.your_domain.com/ocdi/customizer.dat',
+			'import_redux'               => array(
+				array(
+					'file_url'    => 'http://www.your_domain.com/ocdi/redux.json',
+					'option_name' => 'redux_option_name',
+				),
+			),
 			'import_preview_image_url'   => 'http://www.your_domain.com/ocdi/preview_import_image1.jpg',
 			'import_notice'              => __( 'After you import this demo, you will have to setup the slider separately.', 'your-textdomain' ),
+			'preview_url'                => 'http://www.your_domain.com/my-demo-1',
 		),
 		array(
 			'import_file_name'           => 'Demo Import 2',
+			'categories'                 => array( 'New category', 'Old category' ),
 			'import_file_url'            => 'http://www.your_domain.com/ocdi/demo-content2.xml',
 			'import_widget_file_url'     => 'http://www.your_domain.com/ocdi/widgets2.json',
 			'import_customizer_file_url' => 'http://www.your_domain.com/ocdi/customizer2.dat',
+			'import_redux'               => array(
+				array(
+					'file_url'    => 'http://www.your_domain.com/ocdi/redux.json',
+					'option_name' => 'redux_option_name',
+				),
+				array(
+					'file_url'    => 'http://www.your_domain.com/ocdi/redux2.json',
+					'option_name' => 'redux_option_name_2',
+				),
+			),
 			'import_preview_image_url'   => 'http://www.your_domain.com/ocdi/preview_import_image2.jpg',
 			'import_notice'              => __( 'A special note for this import.', 'your-textdomain' ),
+			'preview_url'                => 'http://www.your_domain.com/my-demo-2',
 		),
 	);
 }
 add_filter( 'pt-ocdi/import_files', 'ocdi_import_files' );
 `
 
-You can set content import, widgets, and customizer import files. You can also define a preview image, which will be used only when multiple demo imports are defined, so that the user will see the difference between imports.
+You can set content import, widgets, customizer and Redux framework import files. You can also define a preview image, which will be used only when multiple demo imports are defined, so that the user will see the difference between imports. Categories can be assigned to each demo import, so that they can be filtered easily. The preview URL will display the "Preview" button in the predefined demo item, which will open this URL in a new tab and user can view how the demo site looks like.
+
+= How to automatically assign "Front page", "Posts page" and menu locations after the importer is done? =
+
+You can do that, with the `pt-ocdi/after_import` action hook. The code would look something like this:
+
+`
+function ocdi_after_import_setup() {
+	// Assign menus to their locations.
+	$main_menu = get_term_by( 'name', 'Main Menu', 'nav_menu' );
+
+	set_theme_mod( 'nav_menu_locations', array(
+			'main-menu' => $main_menu->term_id,
+		)
+	);
+
+	// Assign front page and posts page (blog page).
+	$front_page_id = get_page_by_title( 'Home' );
+	$blog_page_id  = get_page_by_title( 'Blog' );
+
+	update_option( 'show_on_front', 'page' );
+	update_option( 'page_on_front', $front_page_id->ID );
+	update_option( 'page_for_posts', $blog_page_id->ID );
+
+}
+add_action( 'pt-ocdi/after_import', 'ocdi_after_import_setup' );
+`
 
 = What about using local import files (from theme folder)? =
 
@@ -97,19 +153,39 @@ function ocdi_import_files() {
 	return array(
 		array(
 			'import_file_name'             => 'Demo Import 1',
+			'categories'                   => array( 'Category 1', 'Category 2' ),
 			'local_import_file'            => trailingslashit( get_template_directory() ) . 'ocdi/demo-content.xml',
 			'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'ocdi/widgets.json',
 			'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'ocdi/customizer.dat',
+			'local_import_redux'           => array(
+				array(
+					'file_path'   => trailingslashit( get_template_directory() ) . 'ocdi/redux.json',
+					'option_name' => 'redux_option_name',
+				),
+			),
 			'import_preview_image_url'     => 'http://www.your_domain.com/ocdi/preview_import_image1.jpg',
 			'import_notice'                => __( 'After you import this demo, you will have to setup the slider separately.', 'your-textdomain' ),
+			'preview_url'                  => 'http://www.your_domain.com/my-demo-1',
 		),
 		array(
 			'import_file_name'             => 'Demo Import 2',
+			'categories'                   => array( 'New category', 'Old category' ),
 			'local_import_file'            => trailingslashit( get_template_directory() ) . 'ocdi/demo-content2.xml',
 			'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'ocdi/widgets2.json',
 			'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'ocdi/customizer2.dat',
+			'local_import_redux'           => array(
+				array(
+					'file_path'   => trailingslashit( get_template_directory() ) . 'ocdi/redux.json',
+					'option_name' => 'redux_option_name',
+				),
+				array(
+					'file_path'   => trailingslashit( get_template_directory() ) . 'ocdi/redux2.json',
+					'option_name' => 'redux_option_name_2',
+				),
+			),
 			'import_preview_image_url'     => 'http://www.your_domain.com/ocdi/preview_import_image2.jpg',
 			'import_notice'                => __( 'A special note for this import.', 'your-textdomain' ),
+			'preview_url'                  => 'http://www.your_domain.com/my-demo-2',
 		),
 	);
 }
@@ -189,6 +265,63 @@ function ocdi_plugin_page_setup( $default_settings ) {
 add_filter( 'pt-ocdi/plugin_page_setup', 'ocdi_plugin_page_setup' );
 `
 
+= How to do something before the content import executes? =
+
+In version 2.0.0 there is a new action hook: `pt-ocdi/before_content_import`, which will let you hook before the content import starts. An example of the code would look like this:
+
+`
+function ocdi_before_content_import( $selected_import ) {
+	if ( 'Demo Import 1' === $selected_import['import_file_name'] ) {
+		// Here you can do stuff for the "Demo Import 1" before the content import starts.
+		echo "before import 1";
+	}
+	else {
+		// Here you can do stuff for all other imports before the content import starts.
+		echo "before import 2";
+	}
+}
+add_action( 'pt-ocdi/before_content_import', 'ocdi_before_content_import' );
+`
+
+= How can I enable the `customize_save*` wp action hooks in the customizer import? =
+
+It's easy, just add this to your theme:
+
+`add_action( 'pt-ocdi/enable_wp_customize_save_hooks', '__return_true' );`
+
+This will enable the following WP hooks when importing the customizer data: `customize_save`, `customize_save_*`, `customize_save_after`.
+
+
+= How to configure the multi grid layout import popup confirmation? =
+
+If you want to disable the popup confirmation modal window, use this filter:
+
+`add_filter( 'pt-ocdi/enable_grid_layout_import_popup_confirmation', '__return_false' );`
+
+If you want to just change some options for the jQuery modal window we use for the popup confirmation, then use this filter:
+
+`
+function my_theme_ocdi_confirmation_dialog_options ( $options ) {
+	return array_merge( $options, array(
+		'width'       => 300,
+		'dialogClass' => 'wp-dialog',
+		'resizable'   => false,
+		'height'      => 'auto',
+		'modal'       => true,
+	) );
+}
+add_filter( 'pt-ocdi/confirmation_dialog_options', 'my_theme_ocdi_confirmation_dialog_options', 10, 1 );
+`
+
+= How can I disable the ProteusThemes branding notice after successful demo import? =
+
+You can disable the branding notice with a WP filter. All you need to do is add this bit of code to your theme:
+
+`add_filter( 'pt-ocdi/disable_pt_branding', '__return_true' );`
+
+and the notice will not be displayed.
+
+
 = I can't activate the plugin, because of a fatal error, what can I do? =
 
 *Update: since version 1.2.0, there is now a admin error notice, stating that the minimal PHP version required for this plugin is 5.3.2.*
@@ -197,9 +330,9 @@ You want to activate the plugin, but this error shows up:
 
 *Plugin could not be activated because it triggered a fatal error*
 
-This happens, because your hosting server is using a very old version of PHP. This plugin requires PHP version of at least **5.3.x**, but we recommend version *5.6.x*. Please contact your hosting company and ask them to update the PHP version for your site.
+This happens, because your hosting server is using a very old version of PHP. This plugin requires PHP version of at least **5.3.x**, but we recommend version *5.6.x* or better yet *7.x*. Please contact your hosting company and ask them to update the PHP version for your site.
 
-= Issues with the import, that we can fix in the plugin =
+= Issues with the import, that we can't fix in the plugin =
 
 Please visit this [docs page](https://github.com/proteusthemes/one-click-demo-import/blob/master/docs/import-problems.md), for more answers to issues with importing data.
 
@@ -210,6 +343,79 @@ Please visit this [docs page](https://github.com/proteusthemes/one-click-demo-im
 3. Example of how the import page looks like, when no demo imports are predefined a.k.a manual import.
 
 == Changelog ==
+
+= 2.3.0 =
+
+*Release Date - 28 May 2017*
+
+* Add preview button option to the predefined demo import items,
+* Add custom JS event trigger when the import process is completed,
+* Add custom filter for plugin page title,
+* Remove content import as a required import. Now you can make separate imports for customizer, widgets or redux options.
+* Fix custom menu widgets imports, the menus will now be set correctly.
+
+= 2.2.1 =
+
+*Release Date - 3 April 2017*
+
+* Fix image importing error for server compressed files,
+* Fix remapping of featured images,
+* Fix custom post type existing posts check (no more multiple imports for custom post types).
+
+= 2.2.0 =
+
+*Release Date - 5 February 2017*
+
+* Add ProteusThemes branding notice after successful import,
+* Fix after import error reporting (duplicate errors were shown),
+* Fix some undefined variables in the plugin, causing PHP notices.
+
+= 2.1.0 =
+
+*Release Date - 8 January 2017*
+
+* Add grid layout import confirmation popup options filter,
+* Fix term meta data double import,
+* Fix WooCommerce product attributes import.
+
+= 2.0.2 =
+
+*Release Date - 13 December 2016*
+
+* Fix issue with customizer options import
+
+= 2.0.1 =
+
+*Release Date - 12 December 2016*
+
+* Fix issue with some browsers (Safari and IE) not supporting some FormData methods.
+
+= 2.0.0 =
+
+*Release Date - 10 December 2016*
+
+* Add new layout for multiple predefined demo imports (a grid layout instead of the dropdown selector),
+* Add support for Redux framework import,
+* Change the code structure of the plugin (plugin rewrite, namespaces, autoloading),
+* Now the whole import (content, widgets, customizer, redux) goes through even if something goes wrong in the content import (before content import errors blocked further import),
+* Add `pt-ocdi/before_content_import` action hook, that theme authors can use to hook into before the content import starts,
+* Fix frontend error reporting through multiple AJAX calls,
+* Fix post formats (video/quote/gallery,...) not importing,
+* Fix customizer import does not save some options (because of the missing WP actions - these can be enabled via a filter, more in the FAQ section).
+
+= 1.4.0 =
+
+*Release Date - 29 October 2016*
+
+* Add support for WP term meta data in content importer,
+* Fix the issue of having both plugins (OCDI and the new WP importer v2) activated at the same time.
+
+= 1.3.0 =
+
+*Release Date - 1 October 2016*
+
+* Import/plugin page re-design. Updated the plugin page styles to match WordPress (thanks to Oliver Juhas).
+
 
 = 1.2.0 =
 

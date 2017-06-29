@@ -117,11 +117,7 @@
 
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html data-color="<?php echo $nz_color; ?>" class="no-js ie6 oldie btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 7]>    <html data-color="<?php echo $nz_color; ?>" class="no-js ie7 oldie btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 8]>    <html data-color="<?php echo $nz_color; ?>" class="no-js ie8 oldie btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if IE 9]>    <html data-color="<?php echo $nz_color; ?>" class="no-js ie9 oldie btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <![endif]-->
-<!--[if gt IE 9]><!--> <html data-color="<?php echo $nz_color; ?>" class="no-js btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <!--<![endif]-->
+	<html data-color="<?php echo $nz_color; ?>" class="no-js btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
 
 	<!-- META TAGS -->
@@ -129,34 +125,103 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- SEO -->
-	<meta name="keywords" content="fruta, verdura, orgánico, sustentable, canastas, productos, calidad">
-    <meta name="description" content="Pixan es un espacio incluyente, que da empleo y capacitación a la gente local y con capacidades diferentes, generando productos de alta calidad.">
+	<meta name="keywords" content="joyas, relojes, eléctronicos, novedades, articulos destacados, envio gratis, envío express, descuentos, artículos nuevos y usados, cálidad, compra segura, promociones y novedades">
+    <meta name="description" content="<?php bloginfo('description'); ?>">
+
+    <meta name="robots" content="index, follow" />
+	<meta name="googlebot" content="index, follow" />
+
 	<!-- Facebook, Twitter metas -->
-	<meta property="og:title" content="Fundación Dondé">
-	<meta name="og:description" content="" />
-	<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé">
+	<?php if (is_single()) {  ?>
+		<?php global $post; ?>
+		<meta property="og:title" content="<?php echo get_the_title(); ?>">
+		<meta name="twitter:title" content="<?php echo get_the_title(); ?>" />
+		<?php if ( has_post_thumbnail() ) { ?>
+			<meta property="og:image" content="<?php the_post_thumbnail_url('full'); ?>">
+			<meta name="twitter:image" content="<?php the_post_thumbnail_url('full'); ?>" />
+		<?php } else { ?>
+			<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png">
+			<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" />
+		<?php } ?>
+	<?php } elseif (is_archive()) { ?>
+			<?php if (is_product_category(array( 'joyas','aretes','cadenas','dijes','pulseras','anillos'))) { ?>
+				<meta property="og:title" content="Joyería - <?php echo get_the_title(); ?>">
+				<meta name="twitter:title" content="Joyería - <?php echo get_the_title(); ?>" />
+				<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/joya.jpg">
+				<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/joya.jpg" />
+			<?php } elseif (is_product_category(array( 'relojes','dama','caballero','alta-relojeria'))) { ?>
+				<meta property="og:title" content="Relojería - <?php echo get_the_title(); ?>">
+				<meta name="twitter:title" content="Relojería - <?php echo get_the_title(); ?>" />
+				<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/reloj.jpg">
+				<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/reloj.jpg" />
+			<?php } else { ?>
+				<meta property="og:title" content="Electrónica - <?php echo get_the_title(); ?>">
+				<meta name="twitter:title" content="Electrónica - <?php echo get_the_title(); ?>" />
+				<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png">
+				<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" />
+			<?php } ?>
+	<?php } else { ?>
+		<meta property="og:title" content="Tienda en línea de la Fundación Rafael Dondé">
+		<meta property="og:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png"/>
+		<meta name="twitter:title" content="Tienda en línea de la Fundación Rafael Dondé" />
+		<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png"/>
+	<?php } ?>
+	<meta property="og:description" content="Encuentra artículos nuevos y seminuevos a los mejores precios. Joyas, relojes y electrónicos en las mejores condiciones. Compras seguras, envíos gratis y descuentos." />
 	<meta property="og:image:width" content="210" />
 	<meta property="og:image:height" content="110" />
+	<meta property="og:type" content="company" />
 	<meta property="fb:app_id" content="1109660165770884" />
+	<meta name="twitter:description" content="Encuentra artículos nuevos y seminuevos a los mejores precios. Joyas, relojes y electrónicos en las mejores condiciones. Compras seguras, envíos gratis y descuentos." />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@FundacionDonde1" />
-	<meta name="twitter:title" content="Fundación Dondé" />
-	<meta name="twitter:description" content="" />
-	<meta name="twitter:image" content="<?php echo get_stylesheet_directory_uri(); ?>/images/share-fdonde.png" alt="logo fundación dondé" />
+
 	<!-- Compatibility -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="cleartype" content="on">
 	<!-- Sitemap Google Verify -->
 	<meta name="google-site-verification" content="4Bt7KHVG0kzwetxi_LnrYR8QUCkKFdSNGA4PU2hpaDs" />
 
+	<!-- Canonical URL -->
+	<link rel="canonical" href="<?php echo site_url(); ?>" />
+
+	<!-- API KEY -->
+<!-- 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0zox_xR6CvdiGjyrzQVcRBZI5_Sj6VIo&callback=initMap" type="text/javascript"></script>
+ -->
+	<!-- Noscript -->
+	<noscript>Tu navegador no soporta JavaScript!</noscript>
+
+	<!-- Hotjar Tracking Code for https://tiendadonde.com -->
+	<script>
+		(function(h,o,t,j,a,r){
+		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+		h._hjSettings={hjid:469337,hjsv:5};
+		a=o.getElementsByTagName('head')[0];
+		r=o.createElement('script');r.async=1;
+		r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+		a.appendChild(r);
+		})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+	</script>
+
+	<!-- google analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-97012949-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
 	<!-- LINK TAGS -->
-	<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen, print" />
+	<link type="text/css" rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/print.css" media="print" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	<?php if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' ); ?>
     <?php if(isset($nz_ninzio['favicon']['url'])): ?>
 	<link rel="shortcut icon" href="<?php echo $nz_ninzio['favicon']['url']; ?>" type="image/x-icon" />
 	<?php endif; ?>
-	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<title><?php bloginfo('name'); ?></title>
 	<?php include(locate_template("includes/dynamic-styles.php"));?>
 	<?php wp_head(); ?>
 </head>
@@ -218,7 +283,7 @@
 
 				<div class="header-content">
 
-					<nav class="header-menu mob-menu nz-clearfix">
+					<nav class="header-menu mob-menu nz-clearfix <?php if ( is_user_logged_in( ) ){ echo "log-in"; } else { echo "log-out"; } ?>" itemscope>
 						<?php
 
 							$mobarg = array(
@@ -258,10 +323,17 @@
 
 					<div class="header-top">
 
+						<h1 class="[ hidden ]"><?php bloginfo('name'); ?></h1>
+
 						<div class="container nz-clearfix">
 
 							<?php if ($nz_ninzio['desk-slogan']): ?>
-								<div class="desk-slogan">
+
+							<?php if ( is_user_logged_in() ){ ?>
+								<div class="desk-slogan log-in">
+							<?php } else { ?>
+								<div class="desk-slogan log-out">
+							<?php } ?>
 									<?php
 										echo do_action('wpml_add_language_selector');
 										echo do_shortcode(wp_kses_post($nz_ninzio['desk-slogan']));
@@ -362,7 +434,7 @@
 
 							<?php endif ?>
 
-							<nav class="header-menu desk-menu nz-clearfix">
+							<nav class="header-menu desk-menu nz-clearfix" itemscope>
 								<?php
 									$arg = array(
 										'theme_location' => 'header-menu',
@@ -391,5 +463,28 @@
 			</header>
 		</div>
 
-		<div class="[ main-body ]">
+		<div class="[ main-body ] <?php if (is_page('ofertas')) { echo "content-ofertas";} ?>">
 			<div class="page-wrap">
+
+			<?php if ( !is_front_page() ) { ?>
+				<div class="container">
+					<?php custom_breadcrumbs(); ?>
+				</div>
+			<?php } ?>
+			<?php if ( is_archive() ) {  ?>
+				<!-- mensajes productos agregados -->
+				<div class="[ container ]">
+					<?php wc_print_notices(); ?>
+					<?php
+						add_filter( 'wc_add_to_cart_message', 'custom_add_to_cart_message' );
+						function custom_add_to_cart_message() {
+						    global $woocommerce;
+
+						        $return_to  = get_permalink(woocommerce_get_page_id('shop'));
+						        $message    = sprintf('<a href="%s" class="button wc-forwards">%s</a> %s', $return_to, __('Continue Shopping', 'woocommerce'), __('Product successfully added to your cart.', 'woocommerce') );
+						    return $message;
+						}
+					 ?>
+				</div>
+			<?php } ?>
+

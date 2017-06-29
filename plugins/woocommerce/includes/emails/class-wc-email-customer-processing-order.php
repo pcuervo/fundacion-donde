@@ -27,12 +27,13 @@ class WC_Email_Customer_Processing_Order extends WC_Email {
 		$this->customer_email   = true;
 		$this->title            = __( 'Processing order', 'woocommerce' );
 		$this->description      = __( 'This is an order notification sent to customers containing order details after payment.', 'woocommerce' );
-		$this->heading          = __( 'Thank you for your order', 'woocommerce' );
+		$this->heading          = __( 'Felicidades por tu compra', 'woocommerce' );
 		$this->subject          = __( 'Your {site_title} order receipt from {order_date}', 'woocommerce' );
 		$this->template_html    = 'emails/customer-processing-order.php';
 		$this->template_plain   = 'emails/plain/customer-processing-order.php';
 
 		// Triggers for this email
+		add_action( 'woocommerce_order_status_on-hold_to_processing_notification', array( $this, 'trigger' ) );
 		add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'trigger' ) );
 
 		// Call parent constructor

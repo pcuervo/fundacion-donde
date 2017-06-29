@@ -575,7 +575,7 @@ class WC_Countries {
 				'autocomplete' => 'address-line1',
 			),
 			'address_2' => array(
-				'placeholder'  => _x( 'Apartment, suite, unit etc. (optional)', 'placeholder', 'woocommerce' ),
+				'placeholder'  => _x( 'Interior, habitación, unidad, etc (opcional)', 'woocommerce' ),
 				'class'        => array( 'form-row-wide', 'address-field' ),
 				'required'     => false,
 				'autocomplete' => 'address-line2',
@@ -588,7 +588,7 @@ class WC_Countries {
 			),
 			'state' => array(
 				'type'         => 'state',
-				'label'        => __( 'State / County', 'woocommerce' ),
+				'label'        => __( 'Estado', 'woocommerce' ),
 				'required'     => true,
 				'class'        => array( 'form-row-first', 'address-field' ),
 				'validate'     => array( 'state' ),
@@ -1020,7 +1020,7 @@ class WC_Countries {
 				);
 				$address_fields['billing_phone'] = array(
 					'label'        => __( 'Phone', 'woocommerce' ),
-					'required'     => true,
+					'required'     => false,
 					'type'         => 'tel',
 					'class'        => array( 'form-row-last' ),
 					'clear'        => true,
