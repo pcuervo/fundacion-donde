@@ -117,7 +117,7 @@
 
 ?>
 <!DOCTYPE html>
-	<html data-color="<?php echo $nz_color; ?>" class="no-js btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>> <!--<![endif]-->
+	<html data-color="<?php echo $nz_color; ?>" class="no-js btn-<?php echo $nz_button_shape; ?> btn-<?php echo $nz_button_style; ?> <?php echo $blank_class; ?>" <?php language_attributes(); ?>  prefix="og: http://ogp.me/ns#"> <!--<![endif]-->
 <head>
 
 	<!-- META TAGS -->
@@ -174,6 +174,9 @@
 	<meta name="twitter:description" content="Encuentra artículos nuevos y seminuevos a los mejores precios. Joyas, relojes y electrónicos en las mejores condiciones. Compras seguras, envíos gratis y descuentos." />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@FundacionDonde1" />
+
+	<!-- Google+ -->
+	<link rel="publisher" href="https://plus.google.com/+FundacionDonde">
 
 	<!-- Compatibility -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

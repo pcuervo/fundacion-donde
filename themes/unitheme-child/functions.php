@@ -516,16 +516,9 @@ function custom_override_checkout_fields( $fields ) {
 }
 
 // Display 12 products per page.
-add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
-
-
-/**
-* Change Proceed To Checkout Text in WooCommerce
-* Place this in your Functions.php file
-**/
-function woocommerce_button_proceed_to_checkout() {
-       $checkout_url = WC()->cart->get_checkout_url();
-       ?>
-       <a href="<?php echo $checkout_url; ?>" class="checkout-button button alt wc-forward"><?php _e( 'Check On Out', 'woocommerce' ); ?></a>
-       <?php
-     }
+// add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 12;' ), 20 );
+add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
+function new_loop_shop_per_page( $cols ) {
+  $cols = 12;
+  return $cols;
+}
