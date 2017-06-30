@@ -127,8 +127,8 @@
 												<div class="box-icon icon-envio-gratis"></div>
 											</div>
 											<div class="box-data">
-												<h3 class="text-center color-primary">Envío gratis</h3>
-												<p class="p1 text-center">Para artículos con precio mayor a<br> $1,000 dentro de la República Mexicana</p>
+												<h3 class="text-center color-primary">Fundación Dondé</h3>
+												<p class="p1 text-center">Con tu compra ayudamos a miles de niños mexicanos</p>
 											</div>
 										</div>
 									</div>
