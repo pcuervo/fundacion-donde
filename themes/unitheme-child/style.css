@@ -684,6 +684,16 @@ li.additional_information_tab {
 	border-right: 1px solid #e0e0e0!important;
 }
 
+.nivo-lightbox-title-wrap {
+	display: none!important;
+}
+@media(min-width: 480px){
+	.single-product-image .thumbnails > a {
+		width: 25%;
+	}
+}
+
+
 /*Etiquetas*/
 
 .woocommerce .product .onsale {
