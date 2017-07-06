@@ -107,7 +107,7 @@ function custom_breadcrumbs() {
     $home_title         = 'Inicio';
 
     // If you have any custom post types with custom taxonomies, put the taxonomy name below (e.g. product_cat)
-    $custom_taxonomy    = 'product_cat';
+    $custom_taxonomy    = 'categoria-producto';
 
     // Get the query & post information
     global $post,$wp_query;
@@ -122,7 +122,8 @@ function custom_breadcrumbs() {
         echo '<li class="item-home"><a class="bread-link bread-home" href="' . get_home_url() . '" title="' . $home_title . '">' . $home_title . '</a></li>';
         echo '<li class="separator separator-home"> ' . $separator . ' </li>';
 
-        if ( is_archive('ofertas') ) {
+        $url_search = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        if ( strpos($url_search,'ofertas') ) {
 
             echo '<li class="item-current item-archive"><strong class="bread-current bread-archive">Ofertas</strong></li>';
 
@@ -153,7 +154,6 @@ function custom_breadcrumbs() {
                 echo '<li class="separator"> ' . $separator . ' </li>';
             }
 
-           //if($custom_tax_name == 'Caballero' || $custom_tax_name == 'Dama') {
            if( is_product_category(array('dama', 'caballero', 'alta-relojeria')) ) {
                 echo '<li class="item-current item-archive"><a href="' . site_url('/categoria-producto/relojes') . '" class="bread-cat bread-custom-post-type-product">Relojes</a></li>';
                 echo '<li class="separator"> ' . $separator . ' </li>';
