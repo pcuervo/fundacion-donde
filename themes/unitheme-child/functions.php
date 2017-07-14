@@ -522,3 +522,4 @@ function new_loop_shop_per_page( $cols ) {
   $cols = 12;
   return $cols;
 }
+

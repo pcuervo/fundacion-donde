@@ -44,7 +44,7 @@ $cat_name = $terms[0]->name;
 <?php if ( $query->have_posts() ) :?>
 
 	<div class="related products">
-		<h2><?php _e( 'Related Products', 'woocommerce' ); ?></h2>
+		<h2>Productos relacionados</h2>
 		<?php woocommerce_product_loop_start(); ?>
 		<?php woocommerce_product_subcategories(); ?>
 			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
