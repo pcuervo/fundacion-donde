@@ -523,3 +523,8 @@ function new_loop_shop_per_page( $cols ) {
   return $cols;
 }
 
+//Quitar facturación de errores checkout
+function my_woocommerce_add_error( $error ) {
+    return str_replace('Facturación ','',$error);
+}
+add_filter( 'woocommerce_add_error', 'my_woocommerce_add_error' );

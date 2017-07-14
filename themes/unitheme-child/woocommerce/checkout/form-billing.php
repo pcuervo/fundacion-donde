@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php else : ?>
 
 		<?php if ( is_user_logged_in() ) : ?>
-			<h3><?php _e( 'Billing Details', 'woocommerce' ); ?></h3>
+			<h3>Detalles de envío</h3>
 		<?php else : ?>
 			<h3>¿No eres cliente? Llena tus datos y completa tu compra</h3>
 		<?php endif; ?>

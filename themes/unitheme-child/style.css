@@ -542,6 +542,7 @@ footer{
 	padding: 40px 20px 10px;
 	color: #fff;
 	margin-bottom: 20px;
+	clear: both;
 }
 .woocommerce-checkout p.create-account {
 	padding: 20px!important;
