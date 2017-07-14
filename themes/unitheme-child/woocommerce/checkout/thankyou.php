@@ -82,6 +82,8 @@ if ( $order ) : ?>
 
 <?php endif; ?>
 
-	<div class="text-center">
-		<button class="color-light" onclick="tankyouPrint()">Imprimir</button>
-	</div>
+<?php if(WC()->session->__isset('pdf_url')): ?>
+    <div class="clear"></div>
+    <br>
+    <iframe id="pdf" src="<?php echo WC()->session->get( 'pdf_url' ) ?>" style="width:100%; height:950px;" frameborder="0"></iframe>
+<?php endif; ?>
