@@ -7,6 +7,7 @@ if ( !defined( 'ABSPATH' ) )
 function wooccm_csv_export_modify_column_headers( $column_headers ) {
 
 	$new_headers = array();
+
 	$shipping = array(
 		'country', 
 		'first_name', 
@@ -44,7 +45,7 @@ function wooccm_csv_export_modify_column_headers( $column_headers ) {
 		if( !empty( $options[$name.'_buttons'] ) ) {
 			foreach( $options[$name.'_buttons'] as $btn ) {
 				if( !in_array( $btn['cow'], $array ) ) {
-					$new_headers['_'.$name.'_'.$btn['cow']] = wooccm_wpml_string($btn['label']);
+					$new_headers[sprintf( '_%s_%s', $name, $btn['cow'] )] = wooccm_wpml_string($btn['label']);
 				}
 			}
 		}
@@ -64,6 +65,12 @@ function wooccm_csv_export_modify_column_headers( $column_headers ) {
 
 // set the data for each for custom columns
 function wooccm_csv_export_modify_row_data( $order_data, $order, $csv_generator ) {
+
+	if( version_compare( wooccm_get_woo_version(), '2.7', '>=' ) ) {
+		$order_id = ( method_exists( $order, 'get_id' ) ? $order->get_id() : $order->id );
+	} else {
+		$order_id = ( isset( $order->id ) ? $order->id : 0 );
+	}
  
 	$custom_data = array();
 
@@ -109,25 +116,25 @@ function wooccm_csv_export_modify_row_data( $order_data, $order, $csv_generator 
 				if( !in_array( $btn['cow'], $array ) ) {
 
 					if(
-						get_post_meta( $order->id, '_'.$name.'_'.$btn['cow'], true ) && 
+						get_post_meta( $order_id, sprintf( '_%s_%s', $name, $btn['cow'] ), true ) && 
 						$btn['type'] !== 'heading' && 
 						(
 							$btn['type'] !== 'multiselect' || $btn['type'] !== 'multicheckbox'
 						)
 					) {
-						$custom_data['_'.$name.'_'.$btn['cow']] = get_post_meta( $order->id, '_'.$name.'_'.$btn['cow'], true );
+						$custom_data[sprintf( '_%s_%s', $name, $btn['cow'] )] = get_post_meta( $order_id, sprintf( '_%s_%s', $name, $btn['cow'] ), true );
 					}
 
 					if(
-						get_post_meta( $order->id, '_'.$name.'_'.$btn['cow'], true )  && 
+						get_post_meta( $order_id, sprintf( '_%s_%s', $name, $btn['cow'] ), true )  && 
 						$btn['type'] !== 'heading' && 
 						$btn['type'] !== 'wooccmupload' && 
 						(
 							$btn['type'] == 'multiselect' || $btn['type'] == 'multicheckbox'
 						)
 					) {
-						$custom_data['_'.$name.'_'.$btn['cow']] = '';
-						$value = get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true );
+						$custom_data[sprintf( '_%s_%s', $name, $btn['cow'] )] = '';
+						$value = get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true );
 						$strings = maybe_unserialize( $value );
 						if( !empty( $strings ) ) {
 							if( is_array( $strings ) ) {
@@ -135,9 +142,9 @@ function wooccm_csv_export_modify_row_data( $order_data, $order, $csv_generator 
 								$len = count($strings);
 								foreach( $strings as $key ) {
 									if ( $iww == $len - 1) {
-										$custom_data['_'.$name.'_'.$btn['cow']] .= $key;
+										$custom_data[sprintf( '_%s_%s', $name, $btn['cow'] )] .= $key;
 									} else {
-										$custom_data['_'.$name.'_'.$btn['cow']] .= $key.', ';
+										$custom_data[sprintf( '_%s_%s', $name, $btn['cow'] )] .= $key.', ';
 									}
 									$iww++;
 								}
@@ -161,17 +168,17 @@ function wooccm_csv_export_modify_row_data( $order_data, $order, $csv_generator 
 		foreach( $options['buttons'] as $btn ) {
 
 			if(
-				get_post_meta( $order->id, $btn['cow'], true ) && 
+				get_post_meta( $order_id, $btn['cow'], true ) && 
 				$btn['type'] !== 'heading' && 
 				(
 					$btn['type'] !== 'multiselect' || $btn['type'] !== 'multicheckbox'
 				)
 			) {
-				$custom_data[$btn['cow']] = get_post_meta( $order->id, $btn['cow'], true );
+				$custom_data[$btn['cow']] = get_post_meta( $order_id, $btn['cow'], true );
 			}
 
 			if(
-				get_post_meta( $order->id, $btn['cow'], true ) && 
+				get_post_meta( $order_id, $btn['cow'], true ) && 
 				$btn['type'] !== 'heading' && 
 				$btn['type'] !== 'wooccmupload' && 
 				(
@@ -179,7 +186,7 @@ function wooccm_csv_export_modify_row_data( $order_data, $order, $csv_generator 
 				)
 			) {
 				$custom_data[$btn['cow']] = '';
-				$value = get_post_meta( $order->id, $btn['cow'], true );
+				$value = get_post_meta( $order_id, $btn['cow'], true );
 				$strings = maybe_unserialize( $value );
 				if( !empty( $strings ) ) {
 					if( is_array( $strings ) ) {

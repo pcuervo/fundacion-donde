@@ -140,12 +140,12 @@ function wooccm_update_attachment_ids( $order_id = 0 ) {
 		$array = ( $name == 'billing' ) ? $billing : $shipping;
 
 		$options = get_option( 'wccs_settings'.$inc );
-		if( !empty( $options[$name.'_buttons'] ) ) {
-			foreach( $options[$name.'_buttons'] as $btn ) {
+		if( !empty( $options[sprintf( '%s_buttons', $name )] ) ) {
+			foreach( $options[sprintf( '%s_buttons', $name )] as $btn ) {
 
 				if( !in_array( $btn['cow'], $array ) ) {
 					if( $btn['type'] == 'wooccmupload' ) {
-						$attachments = get_post_meta( $order_id , '_'.$name.'_'.$btn['cow'], true );
+						$attachments = get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true );
 						if( !empty( $attachments ) ) {
 							$attachments = explode( ",", $attachments );
 							if( !empty( $attachments ) ) {
@@ -200,6 +200,12 @@ add_action( 'woocommerce_order_status_completed', 'wooccm_update_attachment_ids'
 // Checkout - Order Received
 function wooccm_custom_checkout_details( $order ) {
 
+	if( version_compare( wooccm_get_woo_version(), '2.7', '>=' ) ) {
+		$order_id = ( method_exists( $order, 'get_id' ) ? $order->get_id() : $order->id );
+	} else {
+		$order_id = ( isset( $order->id ) ? $order->id : 0 );
+	}
+
 	$shipping = array(
 		'country', 
 		'first_name', 
@@ -239,12 +245,12 @@ function wooccm_custom_checkout_details( $order ) {
 			$array = ( $name == 'billing' ) ? $billing : $shipping;
 
 			$options = get_option( 'wccs_settings'.$inc );
-			if( !empty( $options[$name.'_buttons'] ) ) {
-				foreach( $options[$name.'_buttons'] as $btn ) {
+			if( !empty( $options[sprintf( '%s_buttons', $name )] ) ) {
+				foreach( $options[sprintf( '%s_buttons', $name )] as $btn ) {
 
 					if( !in_array( $btn['cow'], $array ) ) {
 						if(
-							( get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true) !== '' ) && 
+							( get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true) !== '' ) && 
 							!empty( $btn['label'] ) && 
 							empty( $btn['deny_receipt'] ) && 
 							$btn['type'] !== 'heading' && 
@@ -255,7 +261,7 @@ function wooccm_custom_checkout_details( $order ) {
 							echo '
 <tr>
 	<th>'.wooccm_wpml_string($btn['label']).':</th>
-	<td>'.nl2br( get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true ) ).'</td>
+	<td>'.nl2br( get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true ) ).'</td>
 </tr>';
 						} elseif (
 							!empty( $btn['label'] ) && 
@@ -269,7 +275,7 @@ function wooccm_custom_checkout_details( $order ) {
 	<th colspan="2">' .wooccm_wpml_string($btn['label']). '</th>
 </tr>';
 						} elseif (
-							( get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true) !== '') && 
+							( get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true) !== '') && 
 							$btn['type'] !== 'wooccmupload' && 
 							!empty( $btn['label'] ) && 
 							empty( $btn['deny_receipt'] ) && 
@@ -278,7 +284,7 @@ function wooccm_custom_checkout_details( $order ) {
 								( $btn['type'] == 'multiselect' ) || ( $btn['type'] == 'multicheckbox' )
 							)
 						) {
-							$value = get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true );
+							$value = get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true );
 							$strings = maybe_unserialize( $value );
 							echo '
 <tr>
@@ -299,7 +305,7 @@ function wooccm_custom_checkout_details( $order ) {
 	</td>
 </tr>';
 						} elseif( $btn['type'] == 'wooccmupload' ) {
-							$info = explode("||", get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true));
+							$info = explode("||", get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true));
 							$btn['label'] = ( !empty( $btn['force_title2'] ) ? $btn['force_title2'] : $btn['label'] );
 							echo '
 <tr>
@@ -321,7 +327,7 @@ function wooccm_custom_checkout_details( $order ) {
 			foreach( $buttons as $btn ) {
 
 				if(
-					( get_post_meta( $order->id , $btn['cow'], true ) !== '' ) && 
+					( get_post_meta( $order_id , $btn['cow'], true ) !== '' ) && 
 					!empty( $btn['label'] ) && 
 					empty( $btn['deny_receipt'] ) && 
 					$btn['type'] !== 'heading' && 
@@ -332,7 +338,7 @@ function wooccm_custom_checkout_details( $order ) {
 					echo '
 <tr>
 	<th>'.wooccm_wpml_string($btn['label']).':</th>
-	<td data-title="' .wooccm_wpml_string($btn['label']). '">'.nl2br( get_post_meta( $order->id, $btn['cow'], true ) ).'</td>
+	<td data-title="' .wooccm_wpml_string($btn['label']). '">'.nl2br( get_post_meta( $order_id, $btn['cow'], true ) ).'</td>
 </tr>';
 				} elseif(
 					!empty( $btn['label'] ) && 
@@ -347,7 +353,7 @@ function wooccm_custom_checkout_details( $order ) {
 	<th colspan="2">' .wooccm_wpml_string($btn['label']). '</th>
 </tr>';
 				} elseif(
-					( get_post_meta( $order->id, $btn['cow'], true ) !== '' ) && 
+					( get_post_meta( $order_id, $btn['cow'], true ) !== '' ) && 
 					!empty( $btn['label'] ) && 
 					empty( $btn['deny_receipt'] ) && 
 					$btn['type'] !== 'heading' && 
@@ -356,7 +362,7 @@ function wooccm_custom_checkout_details( $order ) {
 						$btn['type'] == 'multiselect' || $btn['type'] == 'multicheckbox'
 					)
 				) {
-					$value = get_post_meta( $order->id , $btn['cow'], true );
+					$value = get_post_meta( $order_id , $btn['cow'], true );
 					$strings = maybe_unserialize( $value );
 					echo '
 <tr>
@@ -377,7 +383,7 @@ function wooccm_custom_checkout_details( $order ) {
 	</td>
 </tr>';
 				} elseif( $btn['type'] == 'wooccmupload' ) {
-					$info = explode("||", get_post_meta( $order->id , $btn['cow'], true));
+					$info = explode("||", get_post_meta( $order_id , $btn['cow'], true));
 					$btn['label'] = ( !empty( $btn['force_title2'] ) ? $btn['force_title2'] : $btn['label'] );
 					echo '
 <tr>
@@ -398,12 +404,12 @@ function wooccm_custom_checkout_details( $order ) {
 			$array = ( $name == 'billing' ) ? $billing : $shipping;
 
 			$options = get_option( 'wccs_settings'.$inc );
-			if( !empty( $options[$name.'_buttons'] ) ) {
-				foreach( $options[$name.'_buttons'] as $btn ) {
+			if( !empty( $options[sprintf( '%s_buttons', $name )] ) ) {
+				foreach( $options[sprintf( '%s_buttons', $name )] as $btn ) {
 
 					if( !in_array( $btn['cow'], $array ) ) {
 						if(
-							( get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true ) !== '' ) && 
+							( get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true ) !== '' ) && 
 							!empty( $btn['label'] ) && 
 							empty( $btn['deny_receipt'] ) && 
 							$btn['type'] !== 'heading' && 
@@ -413,7 +419,7 @@ function wooccm_custom_checkout_details( $order ) {
 						) {
 							echo '
 <dt>'.wooccm_wpml_string($btn['label']).':</dt>
-<dd>'.nl2br( get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true ) ).'</dd>';
+<dd>'.nl2br( get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true ) ).'</dd>';
 						} elseif(
 							!empty( $btn['label'] ) && 
 							empty( $btn['deny_receipt'] ) && 
@@ -424,7 +430,7 @@ function wooccm_custom_checkout_details( $order ) {
 							echo '
 <h2>' .wooccm_wpml_string($btn['label']). '</h2>';
 						} elseif(
-							( get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true ) !== '' ) && 
+							( get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true ) !== '' ) && 
 							!empty( $btn['label'] ) && 
 							empty( $btn['deny_receipt'] ) && 
 							$btn['type'] !== 'heading' && 
@@ -432,7 +438,7 @@ function wooccm_custom_checkout_details( $order ) {
 								$btn['type'] == 'multiselect' || $btn['type'] == 'multicheckbox'
 							)
 						) {
-							$value = get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true );
+							$value = get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true );
 							$strings = maybe_unserialize( $value );
 							echo '
 <dt>'.wooccm_wpml_string($btn['label']).':</dt>
@@ -451,7 +457,7 @@ function wooccm_custom_checkout_details( $order ) {
 							echo '
 </dd>';
 						} elseif( $btn['type'] == 'wooccmupload' ) {
-							$info = explode( "||", get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true ) );
+							$info = explode( "||", get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true ) );
 							$btn['label'] = ( !empty( $btn['force_title2'] ) ? $btn['force_title2'] : $btn['label'] );
 							echo '
 <dt>'.wooccm_wpml_string( trim( $btn['label'] ) ).':</dt>
@@ -471,7 +477,7 @@ function wooccm_custom_checkout_details( $order ) {
 			foreach( $buttons as $btn ) {
 
 				if(
-					( get_post_meta( $order->id , $btn['cow'], true ) !== '' ) && 
+					( get_post_meta( $order_id , $btn['cow'], true ) !== '' ) && 
 					!empty( $btn['label'] ) && 
 					empty( $btn['deny_receipt'] ) && 
 					$btn['type'] !== 'heading' && 
@@ -482,7 +488,7 @@ function wooccm_custom_checkout_details( $order ) {
 				) {
 					echo '
 <dt>'.wooccm_wpml_string($btn['label']).':</dt>
-<dd>'.nl2br( get_post_meta( $order->id , $btn['cow'], true ) ).'</dd>';
+<dd>'.nl2br( get_post_meta( $order_id , $btn['cow'], true ) ).'</dd>';
 				} elseif(
 					!empty( $btn['label'] ) && 
 					empty( $btn['deny_receipt'] ) && 
@@ -494,7 +500,7 @@ function wooccm_custom_checkout_details( $order ) {
 					echo '
 <h2>' .wooccm_wpml_string($btn['label']). '</h2>';
 				} elseif(
-					( get_post_meta( $order->id , $btn['cow'], true ) !== '' ) && 
+					( get_post_meta( $order_id , $btn['cow'], true ) !== '' ) && 
 					!empty( $btn['label'] ) && 
 					empty( $btn['deny_receipt'] ) && 
 					$btn['type'] !== 'heading' && 
@@ -503,7 +509,7 @@ function wooccm_custom_checkout_details( $order ) {
 						$btn['type'] == 'multiselect' || $btn['type'] == 'multicheckbox'
 					)
 				) {
-					$value = get_post_meta( $order->id , $btn['cow'], true );
+					$value = get_post_meta( $order_id , $btn['cow'], true );
 					$strings = maybe_unserialize( $value );
 					echo '
 <dt>'.wooccm_wpml_string($btn['label']).':</dt>
@@ -522,7 +528,7 @@ function wooccm_custom_checkout_details( $order ) {
 					echo '
 </dd>';
 				} elseif( $btn['type'] == 'wooccmupload' ) {
-					$info = explode( "||", get_post_meta( $order->id , $btn['cow'], true ) );
+					$info = explode( "||", get_post_meta( $order_id , $btn['cow'], true ) );
 					$btn['label'] = ( !empty( $btn['force_title2'] ) ? $btn['force_title2'] : $btn['label'] );
 					echo '
 <dt>'.wooccm_wpml_string( trim( $btn['label'] ) ).':</dt>

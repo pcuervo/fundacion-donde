@@ -4,8 +4,8 @@ Contributors: visser, visser.labs, Emark
 Donate link: https://www.visser.com.au/donations/
 Tags: woocommerce, ecommerce, e-commerce, store, cart, checkout, manager, editor, field, shipping, billing, order
 Requires at least: 3.0
-Tested up to: 4.7.4
-Stable tag: 4.1.2
+Tested up to: 4.8
+Stable tag: 4.1.3
 License: GPLv2 or later
 
 Manages WooCommerce Checkout, the advanced way.
@@ -134,6 +134,13 @@ Example:
 8. Customize Checkout fields from the WooCheckout menu item in the WordPress Administration.
 
 == Changelog ==
+
+= 4.1.3 =
+* Fixed: WooCommerce 3.0 compatibility using $order->id
+* Changed: Cleaned up the code across the Plugin
+
+= 4.1.2.1 =
+* Fixed: WooCommerce 3.0 compatbility in wooccm_add_payment_method_to_new_order()
 
 = 4.1.2 =
 * Fixed: Show required indicator for Billing/Shipping Address 2

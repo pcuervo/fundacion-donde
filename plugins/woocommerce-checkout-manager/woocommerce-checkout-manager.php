@@ -6,7 +6,7 @@ Description: Manages WooCommerce Checkout, the advanced way.
 Contributors: visser, Emark
 Author: Visser Labs
 Author URI: http://www.visser.com.au
-Version: 4.1.2
+Version: 4.1.3
 Text Domain: woocommerce-checkout-manager
 Domain Path: /languages/
 License: GPLv2 or later

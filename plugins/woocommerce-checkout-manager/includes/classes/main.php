@@ -527,6 +527,12 @@ function wooccm_state_default_switch() {
 
 function wooccm_woocommerce_delivery_notes_compat( $fields, $order ) {
 
+	if( version_compare( wooccm_get_woo_version(), '2.7', '>=' ) ) {
+		$order_id = ( method_exists( $order, 'get_id' ) ? $order->get_id() : $order->id );
+	} else {
+		$order_id = ( isset( $order->id ) ? $order->id : 0 );
+	}
+
 	$new_fields = array();
 
 	$shipping = array(
@@ -570,30 +576,30 @@ function wooccm_woocommerce_delivery_notes_compat( $fields, $order ) {
 				if( !in_array( $btn['cow'], $array ) ) {
 
 					if(
-						get_post_meta( $order->id, '_'.$name.'_'.$btn['cow'], true ) && 
+						get_post_meta( $order_id, sprintf( '_%s_%s', $name, $btn['cow'] ), true ) && 
 						$btn['type'] !== 'wooccmupload' && 
 						$btn['type'] !== 'heading' && 
 						(
 							$btn['type'] !== 'multiselect' || $btn['type'] !== 'multicheckbox'
 						)
 					) {
-						$new_fields['_'.$name.'_'.$btn['cow']] = array(
+						$new_fields[sprintf( '_%s_%s', $name, $btn['cow'] )] = array(
 							'label' => wooccm_wpml_string( $btn['label'] ),
-							'value' => get_post_meta( $order->id, '_'.$name.'_'.$btn['cow'], true )
+							'value' => get_post_meta( $order_id, sprintf( '_%s_%s', $name, $btn['cow'] ), true )
 						);
 					}
 
 					if(
-						get_post_meta( $order->id, '_'.$name.'_'.$btn['cow'], true ) && 
+						get_post_meta( $order_id, sprintf( '_%s_%s', $name, $btn['cow'] ), true ) && 
 						$btn['type'] !== 'wooccmupload' && 
 						$btn['type'] !== 'heading' && 
 						(
 							$btn['type'] == 'multiselect' || $btn['type'] == 'multicheckbox'
 						)
 					) {
-						$new_fields['_'.$name.'_'.$btn['cow']]['label'] = wooccm_wpml_string( $btn['label'] );
-						$new_fields['_'.$name.'_'.$btn['cow']]['value'] = '';
-						$value = get_post_meta( $order->id , '_'.$name.'_'.$btn['cow'], true );
+						$new_fields[sprintf( '_%s_%s', $name, $btn['cow'] )]['label'] = wooccm_wpml_string( $btn['label'] );
+						$new_fields[sprintf( '_%s_%s', $name, $btn['cow'] )]['value'] = '';
+						$value = get_post_meta( $order_id , sprintf( '_%s_%s', $name, $btn['cow'] ), true );
 						$strings = maybe_unserialize( $value );
 						if( !empty( $strings ) ) {
 							if( is_array( $strings ) ) {
@@ -601,9 +607,9 @@ function wooccm_woocommerce_delivery_notes_compat( $fields, $order ) {
 								$len = count( $strings );
 								foreach( $strings as $key ) {
 									if( $iww == $len - 1 ) {
-										$new_fields['_'.$name.'_'.$btn['cow']]['value'] .= $key;
+										$new_fields[sprintf( '_%s_%s', $name, $btn['cow'] )]['value'] .= $key;
 									} else {
-										$new_fields['_'.$name.'_'.$btn['cow']]['value'] .= $key.', ';
+										$new_fields[sprintf( '_%s_%s', $name, $btn['cow'] )]['value'] .= $key.', ';
 									}
 									$iww++;
 								}
@@ -615,9 +621,9 @@ function wooccm_woocommerce_delivery_notes_compat( $fields, $order ) {
 						}
 
 					} elseif( $btn['type'] == 'wooccmupload' ) {
-						$info = explode( "||",get_post_meta( $order->id, '_'.$name.'_'.$btn['cow'], true ) );
+						$info = explode( "||",get_post_meta( $order_id, sprintf( '_%s_%s', $name, $btn['cow'] ), true ) );
 						$btn['label'] = ( !empty( $btn['force_title2'] ) ? $btn['force_title2'] : $btn['label'] );
-						$new_fields['_'.$name.'_'.$btn['cow']] = array(
+						$new_fields[sprintf( '_%s_%s', $name, $btn['cow'] )] = array(
 							'label' => wooccm_wpml_string( trim( $btn['label'] ) ),
 							'value' => $info[0]
 						);
@@ -636,7 +642,7 @@ function wooccm_woocommerce_delivery_notes_compat( $fields, $order ) {
 		foreach( $options['buttons'] as $btn ) {
 
 			if(
-				get_post_meta( $order->id, $btn['cow'], true ) && 
+				get_post_meta( $order_id, $btn['cow'], true ) && 
 				$btn['type'] !== 'wooccmupload' && 
 				$btn['type'] !== 'heading' && 
 				(
@@ -645,12 +651,12 @@ function wooccm_woocommerce_delivery_notes_compat( $fields, $order ) {
 			) {
 				$new_fields[$btn['cow']] = array( 
 					'label' => wooccm_wpml_string( $btn['label'] ),
-					'value' => get_post_meta( $order->id, $btn['cow'], true )
+					'value' => get_post_meta( $order_id, $btn['cow'], true )
 				);
 			}
 
 			if(
-				get_post_meta( $order->id, $btn['cow'], true ) && 
+				get_post_meta( $order_id, $btn['cow'], true ) && 
 				$btn['type'] !== 'wooccmupload' && 
 				$btn['type'] !== 'heading' && 
 				(
@@ -659,7 +665,7 @@ function wooccm_woocommerce_delivery_notes_compat( $fields, $order ) {
 			) {
 				$new_fields[$btn['cow']]['label'] = wooccm_wpml_string( $btn['label'] );
 				$new_fields[$btn['cow']]['value'] = '';
-				$value = get_post_meta( $order->id , $btn['cow'], true );
+				$value = get_post_meta( $order_id , $btn['cow'], true );
 				$strings = maybe_unserialize( $value );
 				if( !empty( $strings ) ) {
 					if( is_array( $strings ) ) {
@@ -682,7 +688,7 @@ function wooccm_woocommerce_delivery_notes_compat( $fields, $order ) {
 			}
 
 			if( $btn['type'] == 'wooccmupload' ){
-				$info = get_post_meta( $order->id, $btn['cow'], true );
+				$info = get_post_meta( $order_id, $btn['cow'], true );
 				$btn['label'] = ( !empty( $btn['force_title2'] ) ? $btn['force_title2'] : $btn['label'] );
 				$new_fields[$btn['cow']] = array( 
 					'label' => wooccm_wpml_string( trim( $btn['label'] ) ),

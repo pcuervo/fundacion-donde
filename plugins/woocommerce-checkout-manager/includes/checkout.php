@@ -208,7 +208,7 @@ name.wooccm_name, .wooccm_each_file span.container {
 	background-image: none;
 	border: 1px solid transparent;
 	border-radius: 4px;
-	font-family: "Raleway", Arial, Helvetica, sans-serif; 
+	font-family: "Raleway", Arial, Helvetica, sans-serif;
 	color: #767676;
 	background-color: buttonface;
 	align-items: flex-start;
@@ -282,7 +282,7 @@ function wooccm_checkout_text_before(){
 
 	$options = get_option( 'wccs_settings' );
 
-	if( !empty($options['checkness']['text2']) ) {
+	if( !empty( $options['checkness']['text2'] ) ) {
 		if( ( isset( $options['checkness']['checkbox3'] ) && $options['checkness']['checkbox3'] == true ) || ( isset( $options['checkness']['checkbox4'] ) && $options['checkness']['checkbox4'] == true ) ) {
 			if( isset( $options['checkness']['checkbox3'] ) && $options['checkness']['checkbox3'] == true ) {
 				echo $options['checkness']['text2'];
@@ -290,7 +290,7 @@ function wooccm_checkout_text_before(){
 		}
 	}
 
-	if( !empty($options['checkness']['text1']) ) {
+	if( !empty( $options['checkness']['text1'] ) ) {
 		if( $options['checkness']['checkbox1'] == true || $options['checkness']['checkbox2'] == true ) {
 			if( isset( $options['checkness']['checkbox1'] ) && $options['checkness']['checkbox1'] == true ) {
 				echo $options['checkness']['text1'];

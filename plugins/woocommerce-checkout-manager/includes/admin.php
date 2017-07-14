@@ -1129,6 +1129,12 @@ function wooccm_admin_edit_order_additional_details( $order ) {
 
 	global $post;
 
+	if( version_compare( wooccm_get_woo_version(), '2.7', '>=' ) ) {
+		$order_id = ( method_exists( $order, 'get_id' ) ? $order->get_id() : $order->id );
+	} else {
+		$order_id = ( isset( $order->id ) ? $order->id : 0 );
+	}
+
 	$options = get_option( 'wccs_settings' );
 	$buttons = ( isset( $options['buttons'] ) ? $options['buttons'] : false );
 	if( !empty( $buttons ) ) {
@@ -1137,7 +1143,7 @@ function wooccm_admin_edit_order_additional_details( $order ) {
 <h4>' . __( 'Additional Details', 'woocommerce-checkout-manager' ) . '</h4>';
 		foreach( $buttons as $btn ) {
 			if(
-				( get_post_meta( $order->id , $btn['cow'], true ) !== '' ) && 
+				( get_post_meta( $order_id , $btn['cow'], true ) !== '' ) && 
 				!empty( $btn['label'] ) && 
 				$btn['type'] !== 'heading' && 
 				$btn['type'] !== 'multiselect' && 
@@ -1147,7 +1153,7 @@ function wooccm_admin_edit_order_additional_details( $order ) {
 				echo '
 <p id="additional_' . $btn['cow'] . '" class="form-field form-field-wide form-field-type-' . $btn['type'] . '">
 	<strong title="' . sprintf( __( 'ID: %s | Field Type: %s', 'woocommerce-checkout-manager' ), $btn['cow'], __( 'Generic', 'woocommerce-checkout-manager' ) ) . '">
-	'.wooccm_wpml_string( trim( $btn['label'] ) ).':</strong><br />' . nl2br( get_post_meta( $order->id , $btn['cow'], true ) ) . '
+	'.wooccm_wpml_string( trim( $btn['label'] ) ).':</strong><br />' . nl2br( get_post_meta( $order_id , $btn['cow'], true ) ) . '
 </p>
 <!-- .form-field-type-... -->';
 			} elseif(
@@ -1160,7 +1166,7 @@ function wooccm_admin_edit_order_additional_details( $order ) {
 				echo '
 <h4>' .wooccm_wpml_string( trim( $btn['label'] ) ). '</h4>';
 			} elseif( 
-				( get_post_meta( $order->id , $btn['cow'], true ) !== '' ) && 
+				( get_post_meta( $order_id , $btn['cow'], true ) !== '' ) && 
 				!empty( $btn['label'] ) && 
 				$btn['type'] !== 'heading' && 
 				$btn['type'] !== 'wooccmupload' && 
@@ -1168,7 +1174,7 @@ function wooccm_admin_edit_order_additional_details( $order ) {
 					$btn['type'] == 'multiselect' || $btn['type'] == 'multicheckbox'
 				)
 			) {
-				$value = get_post_meta( $order->id, $btn['cow'], true );
+				$value = get_post_meta( $order_id, $btn['cow'], true );
 				$strings = maybe_unserialize( $value );
 				echo '
 <p class="form-field form-field-wide form-field-type-' . $btn['type'] . '">
@@ -1193,10 +1199,10 @@ function wooccm_admin_edit_order_additional_details( $order ) {
 </p>
 <!-- .form-field-type-multiselect .form-field-type-multicheckbox -->';
 			} elseif(
-				( get_post_meta( $order->id , $btn['cow'], true ) !== '' ) && 
+				( get_post_meta( $order_id , $btn['cow'], true ) !== '' ) && 
 				$btn['type'] == 'wooccmupload'
 			) {
-				$attachments = get_post_meta( $order->id, $btn['cow'], true );
+				$attachments = get_post_meta( $order_id, $btn['cow'], true );
 				$attachments = ( $attachments !== '' ? explode( ",", $attachments ) : false );
 				echo '
 <p class="form-field form-field-wide form-field-type-wooccmupload">
@@ -1242,7 +1248,7 @@ function wooccm_admin_edit_order_billing_details( $order ) {
 		foreach( $buttons as $btn ) {
 			if( !in_array( $btn['cow'], $fields ) ) {
 				if(
-					( get_post_meta( $order->id , sprintf( '_billing_%s', $btn['cow'] ), true ) !== '' ) && 
+					( get_post_meta( $order_id , sprintf( '_billing_%s', $btn['cow'] ), true ) !== '' ) && 
 					!empty( $btn['label'] ) && 
 					$btn['type'] !== 'heading' && 
 					$btn['type'] !== 'multiselect' && 
@@ -1252,7 +1258,7 @@ function wooccm_admin_edit_order_billing_details( $order ) {
 					echo '
 <p id="billing_' . $btn['cow'] . '" class="form-field form-field-wide form-field-type-' . $btn['type'] . '">
 	<strong title="' . sprintf( __( 'ID: %s | Field Type: %s', 'woocommerce-checkout-manager' ), sprintf( '_billing_%s', $btn['cow'] ), __( 'Generic', 'woocommerce-checkout-manager' ) ) . '">
-	'.wooccm_wpml_string( trim( $btn['label'] ) ).':</strong><br />'.nl2br( get_post_meta( $order->id , sprintf( '_billing_%s', $btn['cow'] ), true ) ).'
+	'.wooccm_wpml_string( trim( $btn['label'] ) ).':</strong><br />'.nl2br( get_post_meta( $order_id , sprintf( '_billing_%s', $btn['cow'] ), true ) ).'
 </p>
 <!-- .form-field-type-... -->';
 				} elseif( 
@@ -1265,7 +1271,7 @@ function wooccm_admin_edit_order_billing_details( $order ) {
 					echo '
 <h4>' .wooccm_wpml_string( trim( $btn['label'] ) ). '</h4>';
 				} elseif(
-					( get_post_meta( $order->id , sprintf( '_billing_%s', $btn['cow'] ), true ) !== '' ) && 
+					( get_post_meta( $order_id , sprintf( '_billing_%s', $btn['cow'] ), true ) !== '' ) && 
 					!empty( $btn['label'] ) && 
 					$btn['type'] !== 'heading' && 
 					$btn['type'] !== 'wooccmupload' && 
@@ -1273,7 +1279,7 @@ function wooccm_admin_edit_order_billing_details( $order ) {
 						$btn['type'] == 'multiselect' || $btn['type'] == 'multicheckbox'
 					)
 				) {
-					$value = get_post_meta( $order->id , sprintf( '_billing_%s', $btn['cow'] ), true );
+					$value = get_post_meta( $order_id , sprintf( '_billing_%s', $btn['cow'] ), true );
 					$strings = maybe_unserialize( $value );
 
 					echo '
@@ -1301,10 +1307,10 @@ function wooccm_admin_edit_order_billing_details( $order ) {
 </p>
 <!-- .form-field-type-multiselect .form-field-type-multicheckbox -->';
 				} elseif(
-					( get_post_meta( $order->id , sprintf( '_billing_%s', $btn['cow'] ), true ) !== '' ) && 
+					( get_post_meta( $order_id , sprintf( '_billing_%s', $btn['cow'] ), true ) !== '' ) && 
 					$btn['type'] == 'wooccmupload'
 				) {
-					$attachments = get_post_meta( $order->id, sprintf( '_billing_%s', $btn['cow'] ), true );
+					$attachments = get_post_meta( $order_id, sprintf( '_billing_%s', $btn['cow'] ), true );
 					$attachments = ( $attachments !== '' ? explode( ",", $attachments ) : false );
 					$btn['label'] = ( !empty( $btn['force_title2'] ) ? $btn['force_title2'] : $btn['label'] );
 					echo '
@@ -1351,7 +1357,7 @@ function wooccm_admin_edit_order_shipping_details( $order ) {
 
 			if( !in_array( $btn['cow'], $fields ) ) {
 				if(
-					( get_post_meta( $order->id , sprintf( '_shipping_%s', $btn['cow'] ), true ) !== '' ) && 
+					( get_post_meta( $order_id , sprintf( '_shipping_%s', $btn['cow'] ), true ) !== '' ) && 
 					!empty( $btn['label'] ) && 
 					$btn['type'] !== 'wooccmupload' && 
 					$btn['type'] !== 'heading' && 
@@ -1361,7 +1367,7 @@ function wooccm_admin_edit_order_shipping_details( $order ) {
 					echo '
 <p id="shipping_' . $btn['cow'] . '" class="form-field form-field-wide form-field-type-' . $btn['type'] . '">
 	<strong title="' . sprintf( __( 'ID: %s | Field Type: %s', 'woocommerce-checkout-manager' ), sprintf( '_shipping_%s', $btn['cow'] ), __( 'Generic', 'woocommerce-checkout-manager' ) ) . '">
-	'.wooccm_wpml_string( trim( $btn['label'] ) ).':</strong><br />'.nl2br( get_post_meta( $order->id , sprintf( '_shipping_%s', $btn['cow'] ), true ) ).'
+	'.wooccm_wpml_string( trim( $btn['label'] ) ).':</strong><br />'.nl2br( get_post_meta( $order_id , sprintf( '_shipping_%s', $btn['cow'] ), true ) ).'
 </p>
 <!-- .form-field-type-... -->';
 				} elseif(
@@ -1373,7 +1379,7 @@ function wooccm_admin_edit_order_shipping_details( $order ) {
 					echo '
 <h4>' .wooccm_wpml_string( trim( $btn['label'] ) ). '</h4>';
 				} elseif( 
-					( get_post_meta( $order->id, sprintf( '_shipping_%s', $btn['cow'] ), true ) !== '' ) && 
+					( get_post_meta( $order_id, sprintf( '_shipping_%s', $btn['cow'] ), true ) !== '' ) && 
 					!empty( $btn['label'] ) && 
 					$btn['type'] !== 'heading' && 
 					$btn['type'] !== 'wooccmupload' && 
@@ -1381,7 +1387,7 @@ function wooccm_admin_edit_order_shipping_details( $order ) {
 						$btn['type'] == 'multiselect' || $btn['type'] == 'multicheckbox'
 					)
 				) {
-					$value = get_post_meta( $order->id, sprintf( '_shipping_%s', $btn['cow'] ), true );
+					$value = get_post_meta( $order_id, sprintf( '_shipping_%s', $btn['cow'] ), true );
 					$strings = maybe_unserialize( $value );
 					echo '
 <p class="form-field form-field-wide form-field-type-' . $btn['type'] . '">
@@ -1408,10 +1414,10 @@ function wooccm_admin_edit_order_shipping_details( $order ) {
 </p>
 <!-- .form-field-type-multiselect .form-field-type-multicheckbox -->';
 				} elseif(
-					( get_post_meta( $order->id , sprintf( '_shipping_%s', $btn['cow'] ), true ) !== '' ) && 
+					( get_post_meta( $order_id , sprintf( '_shipping_%s', $btn['cow'] ), true ) !== '' ) && 
 					$btn['type'] == 'wooccmupload'
 				) {
-					$attachments = get_post_meta( $order->id, sprintf( '_shipping_%s', $btn['cow'] ), true );
+					$attachments = get_post_meta( $order_id, sprintf( '_shipping_%s', $btn['cow'] ), true );
 					$attachments = ( $attachments !== '' ? explode( ",", $attachments ) : false );
 					$btn['label'] = ( !empty( $btn['force_title2'] ) ? $btn['force_title2'] : $btn['label'] );
 					echo '
